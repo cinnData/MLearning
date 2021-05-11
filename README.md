@@ -1,2 +1,3 @@
-# MLearning
-Machine Learning Course
+# Machine Learning Course
+
+### 1. What is machine learning?
