@@ -1,4 +1,4 @@
-### 7. Logistic regression
+# 7. Logistic regression
 
 ### Logistic regression
 
