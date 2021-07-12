@@ -2,7 +2,7 @@
 
 ### What is a decision tree?
 
-A **decision tree** is a collection of **decision nodes**, connected by branches, extending downwards from the **root node**, until terminating in the **leaf nodes**. The usual graphical representation of a decision tree puts the root on top and the leaves at the bottom, as in Figures 1 and 2, which have been created with a scikit-learn utility and saved to PNG files wit the `matplotlib.pyplot` function `savefig`.
+A **decision tree** is a collection of **decision nodes**, connected by branches, extending downwards from the **root node**, until terminating in the **leaf nodes**. The usual graphical representation of a decision tree puts the root on top and the leaves at the bottom, as in Figures 1 and 2, which have been created with a scikit-learn utility and saved to PNG files with the `matplotlib.pyplot` function `savefig`.
 
 Decision trees can be used for both classification and regression purposes. A decision tree creates a partition of the data set into a collection of subsets, one for each leaf. In a predictive model based on a decision tree, the predicted target value is the same for all the samples of the same leaf. More specifically, in a decision tree regressor, the predicted target value is obtained in a straightforward way, as the average target value in that leaf. In a decision tree classifier, the predicted target value is the one that happens more frequently in that leaf.
 
