@@ -4,11 +4,11 @@
 
 Logistic regression is one of the simplest classification methods. Note that, in spite of its name, it is a classification method, not a regression method. The explanation is that logistic regression was created by statisticians, and regression does not mean the same in statistics and machine learning.
 
-Let me start with binary classification, and suppose that the target $Y$ is coded as a dummy (1 = positive, 0 = negative) and that there is a collection of numeric features, $X_1,\ \dots,\ X_k$. A **logistic regression equation** is one of type
+Let us start with binary classification, calling the target values positive and negative. A **logistic regression equation** is one of type
 
 <img src="https://render.githubusercontent.com/render/math?math=\large p = F\big(b_0 %2B b_1 X_1 %2B b_2 X_2 %2B \cdots %2B b_k X_k\big).">
 
-Here, $p$ is the predictive score, that is, a score for $Y=1$, and $F$ is the **logistic function**,
+Here, *p* is the **predictive score**, that is, the probability of a positive target value, and *F* is the **logistic function**,
 
 <img src="https://render.githubusercontent.com/render/math?math=\large F(x) = \displaystyle \frac{1}{1 %2B \exp(-x)}\,.">
 
