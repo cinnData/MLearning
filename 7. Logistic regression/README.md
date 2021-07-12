@@ -4,7 +4,7 @@
 
 Logistic regression is one of the simplest classification methods. Note that, in spite of its name, it is a classification method, not a regression method. The explanation is that logistic regression was created by statisticians, and regression does not mean the same in statistics and machine learning.
 
-Let us start with binary classification, calling the target values positive and negative. A **logistic regression equation** is one of type
+Let us start with **binary classification**, calling the target values positive and negative. A **logistic regression equation** is one of type
 
 <img src="https://render.githubusercontent.com/render/math?math=\large p = F\big(b_0 %2B b_1 X_1 %2B b_2 X_2 %2B \cdots %2B b_k X_k\big).">
 
@@ -50,7 +50,4 @@ The scikit-learn subpckage `linear_model`, already mentioned in these notes, pro
 
 The basic methods `fit`, `predict`, `predict_proba` and `score` are available here, the same as in other classifiers. `score` returns the **accuracy**, that is the proportion of right prediction.
 
-`LogisticRegression` works the same in a multi-class context, but instead of basing the predictions on a single equation, uses several logistic regression equations (as many equations as target values minus 1).
-
-
-
+`LogisticRegression` works the same in a **multi-class** context, but instead of basing the predictions on a single equation, uses several logistic regression equations (as many equations as target values minus 1).
