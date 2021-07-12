@@ -12,6 +12,8 @@ Here, $p$ is the predictive score, that is, a score for $Y=1$, and $F$ is the **
 
 <img src="https://render.githubusercontent.com/render/math?math=\large F(x) = \displaystyle \frac{1}{1 %2B \exp(-x)}\,.">
 
+![](https://github.com/cinnData/MLearning/blob/main/7.%20Logistic%20regression/fig%207.1.png)
+
 The graph of the logistic function has an inverted S shape, as shown in Figure 1. You can get this figure as follows.
 
 `import numpy as np`
@@ -37,4 +39,3 @@ The graph of the logistic function has an inverted S shape, as shown in Figure 1
 
 
 
-![](https://github.com/cinnData/MLearning/blob/main/7.%20Logistic%20regression/fig%207.1.png)
