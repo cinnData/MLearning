@@ -36,6 +36,21 @@ The graph of the logistic function has an inverted S shape, as shown in Figure 1
 
 `plt.savefig('Dropbox/ML Course/fig 7.1.png');`
 
+As given by the logistic function, the scores fall within the unit interval (0 < *p* < 1). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples in order to select those to which a specific policy is going to be applied.
+
+The coefficients of the logistic regression equation are obtained so that a certain loss function, called the **cross-entropy**, achieves its minimum value. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users, so you better use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical flavor, you can use the package `StatsModels`.
+
+### Logistic regression in scikit-learn
+
+The scikit-learn subpckage `linear_model`, already mentioned in these notes, provides various regression and classification estimator. As usual in scikit-learn, you instantiate the estimator, which, in this case, you pick in the class `LogisticRegression`. I use here the name `logclf` (my name, not a scikit-learn name):
+
+`from sklearn.linear\under model import LogisticRegression`
+
+`logclf = LogisticRegression()`
+
+The basic methods `fit`, `predict`, `predict_proba` and `score` are available here, the same as in other classifiers. `score` returns the **accuracy**, that is the proportion of right prediction.
+
+`LogisticRegression` works the same in a multi-class context, but instead of basing the predictions on a single equation, uses several logistic regression equations (as many equations as target values minus 1).
 
 
 
