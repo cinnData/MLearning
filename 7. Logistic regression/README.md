@@ -42,7 +42,7 @@ The coefficients of the logistic regression equation are obtained so that a cert
 
 ### Logistic regression in scikit-learn
 
-The scikit-learn subpckage `linear_model`, already mentioned in these notes, provides various regression and classification estimator. As usual in scikit-learn, you instantiate the estimator, which, in this case, you pick in the class `LogisticRegression`. I use here the name `logclf` (my name, not a scikit-learn name):
+The scikit-learn subpckage `linear_model`, already mentioned in these notes, provides various regression and classification estimator. As usual in scikit-learn, we instantiate the estimator, which, in this case, we pick in the class `LogisticRegression`.  
 
 `from sklearn.linear\under model import LogisticRegression`
 
