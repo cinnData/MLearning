@@ -46,9 +46,9 @@ Then, we would plot the tree with:
 
 `from sklearn.tree import plot_tree`
 
-`plt.figure(figsize=(12,7))`
+`plt.figure(figsize=(13,7))`
 
-`plot_tree(treereg, fontsize=10);`
+`plot_tree(treereg, fontsize=11);`
 
 To obtain the tree of Figure 2, we would use:
 
