@@ -40,7 +40,7 @@ The methods that use this approach differ on how the centers are extracted from 
 
 ### *k*-means clustering
 
-The *k*-**means algorithm** searches for a set of $k$ centers such that the corresponding clusters have any of the mathematically equivalent properties:
+The *k*-**means algorithm** searches for a set of *k* centers such that the corresponding clusters have any of the mathematically equivalent properties:
 
 * The center is the average of the samples of the cluster.
 
@@ -48,7 +48,7 @@ The *k*-**means algorithm** searches for a set of $k$ centers such that the corr
 
 The *k*-means search is iterative. The steps are:
 
-* A random choice of $k$ samples is taken as the initial set of centers.
+* A random choice of *k* samples is taken as the initial set of centers.
 
 * Every sample is assigned to the cluster whose center is the closest one (in the Euclidean distance).
 
