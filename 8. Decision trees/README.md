@@ -14,9 +14,13 @@ There are various ways to extract a decision tree model from data. The top popul
 
 At every decision node, there is a `split`, based on one of the features and a cutoff. CART chooses at every node the **optimal split**. In decision tree regressors, the split search is based on a **least squares criterion**: the optimal split is the one for which the sum of squared prediction errors is minimum.
 
+![](https://github.com/cinnData/MLearning/blob/main/8.%20Decision%20trees/fig%208.1.png)
+
 Figure 1 shows a decision tree regressor, developed to predict the sale price of a house (see the example *Assessing home values in West Roxbury*). At every node, you find the number of samples, the mean squared error and the predicted value, which is the mean target value in that leaf. The tree is optimal among those satisfying the conditions set by the arguments of `DecisionTreeRegressor` (in this case `max_depth=2`), in the sense that the sum of squared prediction errors is minimum.
 
 In a decision tree classifier, the split search is based either on the **Gini impurity measure** (the default) or on the **entropy measure**. For every possible split, CART calculates the loss as the weighted average of the losses at the two branches, choosing the split that leads to the minimum loss.
+
+![](fig 8.2.png)
 
 Figure 2 is a graphical representation of a decision tree classifier used as a spam filter (see the example *The spam filter*). At every leaf, you find the number of samples, the Gini value and the number of negative and positive samples (alphabetic order) in that leaf. If there are more positive than negative samples, the predicted target for that leaf is positive. If there are more negative than positive samples, it is negative. This tree is optimal in the sense that the total Gini value (the weighted average of the Gini values of the leaf nodes) is minimum.
 
@@ -42,9 +46,9 @@ Then, we would plot the tree with:
 
 `from sklearn.tree import plot_tree`
 
-`plt.figure(figsize=(6,3.5))`
+`plt.figure(figsize=(12,7))`
 
-`plot_tree(treereg, fontsize=7);`
+`plot_tree(treereg, fontsize=10);`
 
 To obtain the tree of Figure 2, we would use:
 
