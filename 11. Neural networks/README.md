@@ -24,7 +24,7 @@ The slope coefficients *w1*, *w2*, …, *wk* are called weights, and the interce
 
 The multilayer perceptron could be seen as if the samples were circulating through the network one-by-one. The feature values are entered in the input nodes, which send them to the nodes of the first hidden layer. At each hidden node, they are combined using the corresponding weights, and the result is transformed by means of the activation function. The hidden nodes send the resulting values to the nodes of the next layer, where they are combined. According to the legend, this simulates how animal neurons learn.
 
-![](fig 11.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/11.%20Neural%20networks/fig%2011.1.png)
 
 The model of the abobe figure is a MLP regressor with one hidden layer of two nodes. But this is just a representation of a set of three equations. The two equations that allow us to go from the input layer to the hidden layer combine the features with weights *w1A*, *w2A* and *w3A* and *w1B*, *w2B* and *w3B*, respectively. The biases are *w0A* and *w0B*, respectively.
 
