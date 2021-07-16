@@ -78,7 +78,7 @@ In scikit-learn, normalization is left to the user. **Min-max normalization** is
 
 In the min-max normalization, the features are forced, through a linear transformation, into the 0-1 range. The formula for this transformation is
 
-<img src="https://render.githubusercontent.com/render/math?math=\large Z = \frac{X-\min(X)}{\max(X)-\min(X)}\,.">
+<img src="https://render.githubusercontent.com/render/math?math=\large Z = \displaystyle\frac{X-\min(X)}{\max(X)-\min(X)}\,.">
 
 A transformer of the class `MinMaxScaler`, from the subpackage `preprocessing`, can be used to create a new feature matrix in which every column is normalized. It is similar to other preprocessing methods. You can instantiate it with:
 
