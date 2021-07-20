@@ -34,18 +34,6 @@ Subarrays can also be extracted by means of expressions. For instance, the first
 
 This is easier to manage in Pandas data frames, where rows and columns have names, than in NumPy 2d arrays. So, there is more detail below.
 
-### The package Pandas
-
-**Pandas** provides a wide range of data wrangling tools. It is typically imported as:
-
-`import pandas as pd`
-
-Pandas allows for two data container classes, the series (one-dimensional) and the data frames (two-dimensional).
-
-A Pandas **series** can be understood as the combination of a 1d array containing the **values** and a list containing the names of the values, called the **index**. These two components can be extracted as the attributes `values` and `index`.
-
-A **data frame** can be seen as formed by one or several series with the same index (hence, with the same length). It can be seen as a table for which the index provides the row names. In a Pandas data frame, each column has its own data type. The numeric types work as usual, but Pandas uses the data type `object` for many things, not only strings.
-
 ### Plotting with Matplotlib
 
 At the turn of this century, a commercial application called **MATLAB** was the leader in scientific computing. At that time, two packages were built on top of NumPy to allow Pyton users to leave aside MATLAB: SciPy and Matplotlib. While **SciPy** is a library of mathematical and statistical methods, **Matplotlib** provides graphical methods.
