@@ -8,13 +8,13 @@
 
 ### 4. Working with data in NumPy
 
-### 5. scikit-learn
+### 5. Linear regression
 
-### 6. Linear regression
+### 6. Logistic regression
 
-### 7. Logistic regression
+### 7. Decision trees
 
-### 8. Decision trees
+### 8. One-hot encoding
 
 ### 9. Model validation
 
