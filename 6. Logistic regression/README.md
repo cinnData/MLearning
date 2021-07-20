@@ -1,4 +1,4 @@
-# 7. Logistic regression
+# 6. Logistic regression
 
 ### Classification in scikit-learn
 
@@ -58,7 +58,7 @@ Here, *p* is the predictive score and *F* is the **logistic function**,
 
 <img src="https://render.githubusercontent.com/render/math?math=\large F(x) = \displaystyle \frac{1}{1 %2B \exp(-x)}\,.">
 
-![](fig 6.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/6.%20Logistic%20regression/fig%206.1.png)
 
 The graph of the logistic function has an inverted S shape, as shown in Figure 1. You can get this figure as follows.
 
