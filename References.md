@@ -10,3 +10,4 @@
 
 5. S Haykin (1999), *Neural Networks*, Prentice Hall.
 
+6. M Mitchell (2020), *Artificial Intelligence --- A Guide for Thinking Humans*, Pelican
