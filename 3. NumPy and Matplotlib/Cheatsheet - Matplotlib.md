@@ -10,7 +10,7 @@
 
 ### Line style
 
-Specified by the argument `linestyle` (in short, `ls`). The default is `linestyle='solid'.
+Specified by the argument `linestyle` (in short, `ls`). The default is `linestyle='solid'`.
 
 * Solid line: `'solid'` (`--`).
 
@@ -42,7 +42,7 @@ Specified by the argument `color` (in short, `c`). The default is `color='blue'`
 
 ### Marker style
 
-Specified by the argument `marker` (in short, `c`). The default of `plt.plot` is `marker=None.
+Specified by the argument `marker` (in short, `c`). The default of `plt.plot` is `marker=None`.
 
 * Point: `'.'`.
 
