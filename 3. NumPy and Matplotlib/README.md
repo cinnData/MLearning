@@ -4,7 +4,7 @@
 
 In Mathematics, a **vector** is a sequence of numbers, and a **matrix** is a rectangular arrangement of numbers. Operations with vectors and matrices are the subject of a branch of mathematics called linear algebra. In Python (and in many other languages), vectors are called one-dimensional (1d) **arrays**, while matrices are called two-dimensional (2d) arrays. Arrays of more than two dimensions can be managed in Python without pain.
 
-Python arrays are not necessarily numeric. Indeed, vectors of dates and strings appear frequently in data science. In principle, all the terms of an ordinary array must have the same type, so the array itself can have a type, although you can relax this constraint using mixed types, not covered by this course. Arrays were already implemented in plain Python, but the functionality of the Python arrays was enlarged in the NumPy library, intended to be the fundamental library for scientific computing in Python.
+Python arrays are not necessarily numeric. Indeed, vectors of dates and strings appear frequently in data science. In principle, all the terms of an ordinary array must have the same type, so the array itself can have a type, although you can relax this constraint using mixed types, to appear later in this course. 
 
 The usual way to import NumPy is:
 
@@ -20,13 +20,13 @@ An array has a collection of attributes, such as `ndim`, `shape` and `dtype`. Th
 
 ### NumPy functions
 
-NumPy incorporates vectorized forms of the **mathematical functions** of the package `math`. A **vectorized function** is one that, when applied to an array, returns an array with the same shape, whose terms are the values of the function on the corresponding terms of the original array. For instance, the square root function `np.sqrt` takes the square root of every term of a numeric array.
+NumPy incorporates vectorized forms of the **mathematical functions** of the package `math`. A **vectorized function** is one that, when applied to an array, returns an array with the same shape, whose terms are the values of the function on the corresponding terms of the original array. For instance, the square root function `np.sqrt` takes the square root of the terms of a numeric array.
 
 NumPy also provides common **statistical functions**, such as `mean`, `max`, `sum`, etc.
 
 ### Subsetting arrays
 
-Slicing works in 1d arrays as in lists. For instance, `arr1[1:3]` would extract an array containing `'b'` and `'c'`. The same applies to 2d arrays, but we need two indexes within the square brackets. The first index selects the rows, and the second index the columns.
+Subsetting works in 1d arrays as in lists. For instance, `arr1[1:3]` would extract an array containing `'b'` and `'c'`. The same applies to 2d arrays, but we need two indexes within the square brackets. The first index selects the rows, and the second index the columns.
 
 Subarrays can also be extracted by means of expressions. For instance, the first row of `arr2` can be extracted with:
 
@@ -38,7 +38,7 @@ This is easier to manage in Pandas data frames, where rows and columns have name
 
 At the turn of this century, a commercial application called **MATLAB** was the leader in scientific computing. At that time, two packages were built on top of NumPy to allow Pyton users to leave aside MATLAB: SciPy and Matplotlib. While **SciPy** is a library of mathematical and statistical methods, **Matplotlib** provides graphical methods.
 
-Matplotlib, used by many data scientists for visualization, has an impressive range of methods, including image processing. As many other libraries in the Python world, Matplotlib has several API's, which confounds the beginners. In this context, an **application programmers interface** (API) is like an idiom that you speak to call the functions of the library. It defines the kinds of requests that can be made and how to make them. API's exist out of Python, for instance the Twitter Search API that we use to extract data from Twitter.
+Matplotlib, used by many data scientists for visualization, has an impressive range of methods, including image processing. As many other libraries in the Python world, Matplotlib has several API's, which confounds the beginners. In this context, an **application programmers interface** (API) is like an idiom that you speak to call the functions of the library. It defines the kinds of requests that can be made and how to make them. 
 
 Matplotlib offers you a choice between two API's, the **pyplot API**, used in this course, and the object-oriented API. Beware that, if you use Google or similar ways to find information about plotting in Matplotlib, the solutions found can come in any of the two API's. This can make Matplotlib to look more difficult than it really is.
 
