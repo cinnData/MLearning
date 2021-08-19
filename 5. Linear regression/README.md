@@ -1,10 +1,10 @@
-# 5.Linear regression
+# 5. Linear regression
 
 ### scikit-learn
 
 The package scikit-learn (`sklearn` in the code) is a machine learning toolkit, built on top of NumPy, SciPy and Matplotlib. To get an idea of the hierarchy and the contents of the various scikit-learn subpackages, the best source is the **scikit-learn API Reference** (`scikit-learn.org/stable/modules/classes.html`). Some of these subpackages will appear in this course: `linear_model`, `tree`, `metrics`, `cluster`, etc.
 
-In Python, a **class** is like an object constructor, or a "blueprint" for creating objects. The subpackages that we use for supervised learning in this course contain a collection of **estimator classes**, or ways to create and apply predictive models. We will use a number of these classes: `LinearRegression`, `LogisticRegression`, `DecisionTreeRegressor`, etc.
+In Python, a **class** is like an object constructor, or a "blueprint" for creating objects. The subpackages that we use for supervised learning contain a collection of **estimator classes**, or ways to create and apply predictive models. We will use a number of these classes: `LinearRegression`, `LogisticRegression`, `DecisionTreeRegressor`, etc.
 
 The scikit-learn API provides rules for writing your code which are quite consistent across the different estimator classes. We see how this works for linear regression in this chapter. The first time you will find it a bit awkward, but you will get used after some examples.
 
@@ -14,11 +14,11 @@ Working with scikit-learn, you should be ready to get **warnings** anytime. Note
 
 In machine learning, the term **regression** applies to the prediction of a numeric target. Regression models are not necessarily related to a mathematical equation, as in statistical analysis, although an equation is the first idea that comes to our mind when we think about "predicting".
 
-When the equation is linear, as in
+When the model is based on a linear equation, as in
 
 <img src="https://render.githubusercontent.com/render/math?math=\large Y = b_0 %2B b_1 X_1 %2B b_2 X_2 %2B \cdots %2B b_k X_k,">
 
-we have **linear regression**, which is the subject of this chapter. The predictions of a linear regression model can typically be improved by more sophisticated techniques, but most analysts start there, because it helps them to understand the data. An alternative approach, based on **decision trees**, will be discussed later in this course.
+we have **linear regression**, which is the subject of this chapter. Though the predictions of a linear regression model can usually be improved by more sophisticated techniques, most analysts start there, because it helps them to understand the data. An alternative approach, based on **decision trees**, will be discussed later in this course.
 
 ### Evaluation of a linear regression model
 
@@ -46,7 +46,7 @@ The second step is to create an **instance** of this class, that is, an object w
 
 `linreg = LinearRegression()`
 
-Note that `linreg` is a name which we use to remind us what this object is. You can call it what you want. Also, note the parenthesis in this definition. Leaving the parenthesis empty, we accept the **default arguments**. This makes sense for linear regression, where the default is the old least squares method, but it may not for other models like a decision tree, in which we typically control the growth to prevent overfitting. 
+Note that `linreg` is a name which I use here to remind us what this object is. You can call it what you want. Also, note the parenthesis in this definition. Leaving the parenthesis empty, you accept the **default arguments**. This makes sense for linear regression, where the default is the old least squares method, but it may not for other models like a decision tree, in which we typically control the growth to prevent overfitting. 
 
 ### The three basic methods
 
@@ -54,7 +54,7 @@ Irrespective of the type of predictive model, three basic methods, namely `fit`,
 
 `mod.fit(X, y)`
 
-Depending on the type of model, `fit` will do different jobs. For `linreg`, the prediction is obtained by means of a linear equation, so `fit` finds the optimal coefficients for the equation. That the model extracted is the one for which the match between the **actual target values** (the vector `y`) and the **predicted target values** is the best possible. If we use the linear regression default, this means the least squares method.
+Depending on the type of model, `fit` will do different jobs. For `linreg`, the prediction is obtained by means of a linear equation, so `fit` finds the optimal coefficients for the equation. This means that the model extracted is the one for which the match between the **actual target values** (the vector `y`) and the **predicted target values** (the vector `y_pred` below) is the best possible. If we use the linear regression default, this is operationalized by the least squares method.
 
 Once the model has been fitted to the data (it has been learned), the predicted values are obtained with the method `predict`:
 
@@ -68,9 +68,9 @@ In both regression and classification, `score` returns a number in the 0-1 range
 
 ### Saving a scikit-learn model
 
-How can you save your model, to use it in another session, without having to train it again? This question is capital for the applicability of the model in business. Of course, if your model is a simple linear regression equation, you can extract the coefficients of the regression equation, write the equation and apply it again. 
+How can you save your model, to use it in another session, without having to train it again? This question is capital for the applicability of the model in business, where you use it to predict a target value for new samples for which the target has not yet been observed. Of course, if your model is a simple linear regression equation, you can extract the coefficients of the regression equation, write the equation and apply it to the incoming samples. 
 
-But, even if this seems feasible for a simple regression equation, it would not be so for the more complex models, which may look like black boxes to you. There are many ways to save and reload an object in Python, but the recommended method for scikit-learn algorithms is based on the functions `dump` and `load` of the package `joblib`, which is included in the Anaconda distribution. This package uses a special file format, the PKL file (extension `.pkl`).
+But, even if this seems feasible for a simple regression equation, it would not be so for the more complex models, which may look like black boxes to you. There are many ways to save and reload an object in Python, but the recommended method for scikit-learn models is based on the functions `dump` and `load` of the package `joblib`, which is included in the Anaconda distribution. This package uses a special file format, the **PKL file format** (extension `.pkl`).
 
 With `joblib`, saving your model to a PKL file is straightforward. For our linear regression model `linreg`, this would be
 
@@ -81,4 +81,3 @@ With `joblib`, saving your model to a PKL file is straightforward. For our linea
 Do not forget to add the path for the PKL file. You can recover the model, anytime, even if you no longer have the training data, with:
 
 `newlinreg = joblib.load('linreg.pkl')`
-
