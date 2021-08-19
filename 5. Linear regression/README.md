@@ -72,7 +72,7 @@ How can you save your model, to use it in another session, without having to tra
 
 But, even if this seems feasible for a simple regression equation, it would not be so for the more complex models, which may look like black boxes to you. There are many ways to save and reload an object in Python, but the recommended method for scikit-learn models is based on the functions `dump` and `load` of the package `joblib`, which is included in the Anaconda distribution. This package uses a special file format, the **PKL file format** (extension `.pkl`).
 
-With `joblib`, saving your model to a PKL file is straightforward. For our linear regression model `linreg`, this would be
+With `joblib`, saving your model to a PKL file is straightforward. For our linear regression model `linreg`, this would be:
 
 `import joblib`
 
