@@ -4,15 +4,15 @@
 
 A **decision tree** is a collection of **decision nodes**, connected by branches, extending downwards from the **root node**, until terminating in the **leaf nodes**. The usual graphical representation of a decision tree puts the root on top and the leaves at the bottom, as in Figures 1 and 2, which have been created with a scikit-learn utility and saved to PNG files with the `matplotlib.pyplot` function `savefig`.
 
-Decision trees can be used for both classification and regression purposes. A decision tree creates a partition of the data set into a collection of subsets, one for each leaf. In a predictive model based on a decision tree, the predicted target value is the same for all the samples of the same leaf. More specifically, in a decision tree regressor, the predicted target value is obtained in a straightforward way, as the average target value in that leaf. In a decision tree classifier, the predicted target value is the one that happens more frequently in that leaf.
+Decision trees can be used for both classification and regression purposes. A decision tree creates a partition of the data set into a collection of subsets, one for each leaf. In a predictive model based on a decision tree, the predicted target value is the same for all the samples of the same leaf. More specifically, in a **decision tree regressor**, the predicted target value is the average target value in that leaf. In a **decision tree classifier**, the predicted target value is the one that occurs more frequently in that leaf.
 
-Decision tree classifiers deserve a longer introduction. Under the hood, these classifiers predict a probability for the samples from a particular leaf node to take each target value. This predicted probability is calculated as the proportion of occurrence of that target value in the leaf. In a binary classifier, if the probability of the positive class is taken as a predictive score, the predicted class results from applying a cutoff value 0.5 to the score.
+Decision tree classifiers deserve a longer introduction. Under the hood, these classifiers assign a probability to the samples from a particular leaf node for each target value. This predicted probability class is the proportion of occurrence of that target value in the leaf. In a binary classifier, if the probability of the positive class is taken as a **predictive score**, the predicted class results from applying a cutoff value 0.5 to the score.
 
 ### The CART algorithm
 
 There are various ways to extract a decision tree model from data. The top popular one is the **CART** (Classification And Regression Trees) algorithm. In scikit-learn, the subpackage `tree` provides the estimator classes `DecisionTreeRegressor` and `DecisionTreeClassifier`, both based on CART.
 
-At every decision node, there is a `split`, based on one of the features and a cutoff. CART chooses at every node the **optimal split**. In decision tree regressors, the split search is based on a **least squares criterion**: the optimal split is the one for which the sum of squared prediction errors is minimum.
+At every decision node, there is a **split**, based on one of the features and a cutoff. CART chooses at every node the **optimal split**. In decision tree regressors, the split search is based on a **least squares criterion**: the optimal split is the one for which the sum of squared prediction errors is minimum.
 
 ![](https://github.com/cinnData/MLearning/blob/main/7.%20Decision%20trees/fig%207.1.png)
 
@@ -30,7 +30,7 @@ Predictive models based on decision trees are prone to **overfitting**. Even wit
 
 * The **depth** of a tree is the number of nodes in the longest branch. The trees of Figures 1 and 2 have been obtained by setting `max_depth=2`.
 
-* `max_leaf_nodes` controls directly the maximum number of leaves.
+* `max_leaf_nodes` controls directly the **maximum number of leaves**.
 
 To obtain the tree of Figure 1, we would use:
 
@@ -61,4 +61,3 @@ To obtain the tree of Figure 2, we would use:
 One of the advantages of decision tree algorithms is that it is very easy to get a report on **feature importance**. The importance of a feature is computed as the proportion of impurity decrease (either a mean sum of squares or a Gini value) brought by that feature. The attribute `feature_importances_` is a 1d array containing importance values for all the features. A zero value signals that the corresponding feature is not used in the tree.
 
 `treeclf.feature_importances_`
-
