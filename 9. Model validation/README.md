@@ -2,24 +2,24 @@
 
 ### Overfitting
 
-**Overfitting** is a typical problem of predictive models. It occurs when the model fits satisfactorily the data used to obtain it, but fails with data that have not been used. The purpose of **validation** is to dismiss the concerns about overfitting raised by the use of complex machine learning models. These concerns are well justified, since many popular models, like neural nets, are prone to overfit the training data. Validation is also called **out-of-sample testing**, because this is what it really does. 
+**Overfitting** is a typical problem of predictive models. It occurs when the model fits satisfactorily the data used to obtain it, but fails with data that have not been used. The purpose of **validation** is to dismiss the concerns about overfitting raised by the use of complex machine learning models. These concerns are well justified, since many popular models, like neural nets, are prone to overfit the training data. Validation is also called **out-of-sample testing**, because this is what it really does.
 
-In the simplest approach to validation, we extract the model from a **training set**, trying it on a **test set**. The training and test sets can have a temporal basis (eg training with the first ten months of the year and testing with the last two months), or they can be obtained from a random split of a unique data set.
+In the simplest approach to validation, we extract the model from a **training data set**, trying it on a **test data set**. The training and test sets can have a temporal basis (eg training with the first ten months of the year and testing with the last two months), or they can be obtained from a random split of a unique data set.
 
-**Cross-validation** is more sophisticated. Though it has many variations, this note only covers *k*-**fold cross-validation**, in which the original data set is randomly partitioned into *k* equally sized subsets. Of the *k* subsets, one is used for testing and the other *k* - 1 subsets for training. The model is scored on the test data (eg with the accuracy). This process is repeated for each of the *k* subsets. The *k* evaluation scores obtained can then be averaged to produce a single value, which is taken as the score of the model. *k* = 10 is commonly used, but some people prefer smaller numbers.
+**Cross-validation** is more sophisticated. Though it has many variations, this course only covers *k*-**fold cross-validation**, in which the original data set is randomly partitioned into *k* equally sized subsets. Of the *k* subsets, one is used for testing and the other *k* - 1 subsets for training. The model is scored on the test data (eg with the accuracy). This process is repeated for each of the *k* subsets. The *k* evaluation scores obtained can then be averaged to produce a single value, which is taken as the score of the model. 10-fold cross-validation has commonly used for years, but practitioners seem to favor smaller numbers nowadays.
 
 In scikit-learn, the subpackage `model_selection` provides tools for validating supervised learning models. I start by the simplest approach, based on the function `train_test_split`. In a second round, I'll show you how to perform *k*-fold cross-validation with the function `cross_val_score`.
 
 ### Train-test split
 
-Suppose that you are given a target vector `y` and a feature matrix `X`. A random split can be obtained with:
+Suppose that you are given a target vector `y` and a feature matrix `X`. A **train-test split** can be obtained with:
 
 `from sklearn.model_selection import train_test_split`
 
 `X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)`
 
 
-Setting `test_size=0.2`, we get a 80-20 split, which is quite popular among practitioners. Of course, there is nothing special in a 20% test size, though the idea that it is not reasonable to waste too much data on testing is commonly accepted.
+Setting `test_size=0.2`, you get a 80-20 split, which is quite popular among practitioners. Of course, there is nothing special in a 20% test size, though the idea that it is not reasonable to waste too much data on testing is commonly accepted.
 
 Suppose, to get it simple, that you wish to validate a logistic regression classifier, with a 1/0 target, and you have named `logclf` a `LogisticRegression` instance, with the default arguments. The logistic regression coefficients are calculated by applying `logclf.fit` to the training data:
 
@@ -55,8 +55,10 @@ If your evaluation is based on the accuracy, you will just compare the two numbe
 
 As far as you can trust the evaluation of your model to the method `score` (either *R*-squared or accuracy), *k*-fold cross-validation provides a quick and dirty assesment of your model. You can do it with:
 
+`from sklearn.model_selection import cross_val_score`
+
 `cross_val_score(logclf, X, y, cv=10)`
 
-The argument `cv=10` sets the number of folds. This function returns a vector of ten scores (accuracy values, in this case). You can average them to get a score for the model, but you can also take a look at the variation across folds, to decide whether you will trust the model. Textbooks usually suggest using ten folds, but `cv=5` is popular among practitioners. 
+This function returns a vector of ten scores (accuracy values, in this case). You can average them to get a score for the model, but you can also take a look at the variation across folds, to decide whether you will trust the model. The argument `cv=10` sets the number of folds. The default is `cv=5`. 
 
-*Note*. In some cases, people complain about cross-validation in scikit-learn producing unreasonable results, such as negative score values. This is due to the way it has been programmed, so many of us prefer to try a series of train-test splits. 
+*Note*. In some cases, people complain about cross-validation in scikit-learn producing unreasonable results, such as negative score values. This is due to the way it has been programmed, so many of us prefer to try a series of train-test splits.
