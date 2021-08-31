@@ -10,7 +10,7 @@ There are, basically, two approaches to clustering: the **distance-based** metho
 
 A warning note: clustering algorithms always produce clusters. But the clusters you get could be useless for their intended application. For instance, if you expect them to help to understand your customers, they have to be described in a intelligible way. This would probably imply a low number of clusters. 
 
-Frequently, professors and teaching materials suggest that, for a clustering to be useful, the number of clusters have to be small. This is may be true when the clusters are intended to be managed by humans, which is not true in many business applications. A big e-retailer like Amazon can easily manage hundreds of clusters, with no human mind understanding what they are. In some cases, the clusters are used only to speed up computation. For instance, to get recommendations faster, you can search them within clusters of products. 
+Frequently, professors and teaching materials suggest that, for a clustering to be useful, the number of clusters have to be small. This may be true when the clusters are intended to be managed by humans, but this is not the case in many business applications. A big e-retailer like Amazon can easily manage hundreds of clusters, with no human mind understanding what they are. In some cases, the clusters are used only to speed up computation. For instance, to get recommendations faster, you can search them within clusters of products. 
 
 ### Similarities
 
