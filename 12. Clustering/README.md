@@ -58,11 +58,11 @@ The *k*-means search is iterative. The steps are:
 
 * The algorithm returns the collection of centers and a vector with the cluster labels for the training samples.
 
-Despite some drawbacks, *k*-means remains the most widely used clustering algorithm. It is simple, easily understandable and reasonably scalable, and it can be easily modified to deal with streaming data. 
+Despite some drawbacks, *k*-means remains the most widely used clustering algorithm. It is simple, easily understandable and reasonably scalable, and it can be easily modified to deal with **streaming data**. 
 
-In *k*-means clustering, you have to specify the number of clusters *k*. Even if this is something on which you do not have a definite number, you will probably have a preliminary idea, so you will work around that. For instance, you may wish to have a number of clusters from 3 to 6. You will then try *k* = 3, 4, 5 and 6, comparing the results. You will consider the cluster sizes, since you do not want clusters which are too small, and you will monitor how the clusters change when you increase the number of clusters. 
+In *k*-means clustering, you have to specify the number of clusters. Even if this is something on which you do not have a clear mind, you will probably have a preliminary idea, so you will work around that. For instance, you may wish to have a number of clusters from 3 to 6. You will then try *k* = 3, 4, 5 and 6, comparing the results. You will consider the cluster sizes, since you do not want clusters which are too small, and you will monitor how the clusters change when you increase the number of clusters. 
 
-Stability is expected from a respectable segmentation. Fisrt, mind that, due to the random start, two runs of the *k*-means clustering can give different results. The difference should not be relevant. Also, you can apply here a out-of-sample for testing your clusters. You can leave out a test data subset, group the remaining samples again, and compare the partitions. 
+Stability (some call it robustness) is expected from a respectable segmentation. Fisrt, mind that, due to the random start, two runs of the *k*-means clustering can give different results. The difference should not be relevant. Also, you can apply here a out-of-sample for testing your clusters. You can leave out a test data subset, group the remaining samples again, and compare the partitions. 
 
 ### Clustering in scikit-learn
 
