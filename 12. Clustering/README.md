@@ -18,7 +18,7 @@ In the distance-based methods, the similarity of two instances is measured by a 
 
 Pick two points in the plane, such as *x* = (-1, 3) and *y* = (2, 2). The vector with origin *x* and endpoint *y* is (3, -1). The distance between *x* and *y* is the length of this vector:
 
-<img src="https://render.githubusercontent.com/render/math?math=\large \sqrt{3^2 %2B 5^2} = 7.211.">
+<img src="https://render.githubusercontent.com/render/math?math=\large \sqrt{3^2 %2B 1^2} = 3.162.">
 
 The general formula, for a *p*-dimensional space, is
 
