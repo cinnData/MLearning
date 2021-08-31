@@ -54,7 +54,7 @@ In a MLP regressor (as in Figure 1), there is no activation at the (single) outp
 
 In scikit-learn, MLP models  are available in the classes `MLPRegressor` and `LPClassifier`, from the subpackage `neural_network`. The key parameter is `hidden_layer_sizes`, which sets the number of nodes of each hidden layer.
 
-An example of a MLP classifier with a single hidden layer with 32 nodes would be:
+An example of a MLP classifier with a single hidden layer of 32 nodes would be:
 
 `from sklearn.neural_network import MLPClassifier`
 
