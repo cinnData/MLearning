@@ -66,7 +66,7 @@ Here is an alternative layout with two layers of 16 nodes each:
 
 The default is one layer of 100 hidden nodes, but I would recommend you to start with something smaller. The default solver is `solver='adam'`, which uses a variant of the SGD method, with a constant learning rate of 0.001 and a batch size of 200. But you better leave that as it is until you are familiar with the technical stuff.
 
-The default for the maximum number of iterations is `max_iter=200`. But neural network models are prone to overfitting. So a common practice is to stop the iterations before achieving the convergence, since after a certain number of iterations (frequently no more than 10) the performance improves on the training data, but not on the test data. The code would be:
+The default for the maximum number of iterations is `max_iter=200`. But neural network models are prone to overfitting. So a common practice is to stop the iterations before achieving the convergence, since after a certain number of iterations (frequently no more than 50) the performance improves on the training data, but not on the test data. The code would be:
 
 `mlpclf = MLPClassifier(hidden_layer_sizes=(32), max_iter=10)`
 
