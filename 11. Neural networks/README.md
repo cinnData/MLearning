@@ -44,7 +44,7 @@ In a MLP regressor (as in Figure 1), there is no activation at the (single) outp
 
 * *The optimization method*, called the **solver** in scikit-learner. The **limited-memory Broyden-Fletcher-Goldfarb-Shanno method** (LBFGS) has been the choice for many years, but the current default option is the **stochastic gradient descent** (SGD). For small data sets, however, LFBGS can converge faster and perform better.
 
-* *How to specify the parameters that control the learning process*. The **learning rate** is a parameter which controls how fast the adjustment of the weights is done. If it is too low, there is no convergence to the optimal solution. If it is too high, you can overshoot the optimal solution. Modern ML software allows setting an initial learning rate and decrease it as the learning process. The **momentum** controls the inertia: high momentum values influence the adjustment to the current weight to have the same direction as the previous adjustment.
+* *How to specify the parameters that control the learning process*. The **learning rate** is a parameter which controls how fast the adjustment of the weights is done. If it is too low, there is no convergence to the optimal solution. If it is too high, you can overshoot the optimal solution. Modern ML software allows setting an initial learning rate and decrease it as the learning process. 
 
 * *The batch size*. In the SGD method, we modify the parameters little by little based on the current loss value on a **random batch** of data. In every iteration, the training data are randomly partitioned in batches and all the batches are tried.
 
