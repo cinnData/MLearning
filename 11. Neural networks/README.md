@@ -74,9 +74,7 @@ The methods `fit`, `predict` and `score` work as usual in supervised learning.
 
 ### Normalization
 
-In scikit-learn, normalization is left to the user. **Min-max normalization** is frequently applied in this context. You will need this unless all the features are of the same nature, as it happens with image data.
-
-In the min-max normalization, the features are forced, through a linear transformation, into the 0-1 range. The formula for this transformation is
+In scikit-learn, normalization is left to the user. You will probably need it. A method called **min-max normalization** is frequently applied in this context. In min-max normalization, the features are forced, through a linear transformation, into the 0-1 range. The formula for this transformation is
 
 <img src="https://render.githubusercontent.com/render/math?math=\large Z = \displaystyle\frac{X-\min(X)}{\max(X)-\min(X)}\,.">
 
