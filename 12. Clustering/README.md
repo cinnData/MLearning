@@ -30,7 +30,7 @@ It is not rare, in real data, that some features show a much higher variation th
 
 ### Cluster centers
 
-Suppose that you wish to group the samples in *k* clusters using $p$ numeric features. Many clustering methods are based on finding a set of *k* points in the *p*-dimensional space of the features, called **centers**, and clustering the samples around the centers. Every sample will be assigned to the cluster whose center is most similar. Typically, the similarity is the Euclidean distance. 
+Suppose that you wish to group the samples in *k* clusters using *p* numeric features. Many clustering methods are based on finding a set of *k* points in the *p*-dimensional space of the features, called **centers**, and clustering the samples around the centers. Every sample will be assigned to the cluster whose center is most similar. Typically, the similarity is the Euclidean distance. 
 
 The centers can also be used for assigning a cluster to a new sample which has not used to find the centers. We just select the cluster whose center is closer to that new sample.
 
