@@ -18,7 +18,7 @@ One way to get a diverse ensemble is to use the same algorithm for every predict
 
 The random forest approach introduces extra randomness when growing trees, by using just a random subset of the features in every split. This results in a greater tree diversity, generally yielding an overall better model. Despite its simplicity, random forest models are among the most powerful predictive models available. In general, they have less overfitting problems than other models.
 
-Random forests can be used for both regression and classification. In the scikit-learn subpackage `ensemble`, this is provided by the estimator classes `RandomForestRegressor` and `RandomForestClassifier`. The growth of the trees is controlled with arguments such as `max_depth` and `max_leaf_nodes` (no defaults), as in individual tree models. You can also control the number of trees with the argument `n_estimators` (the default is 100 trees), and the number of features that can be selected for the splits with the argument `max_features` (the default is the number of columns in the feature matrix).
+Random forests can be used for both regression and classification. In the scikit-learn subpackage `ensemble`, this is provided by the estimator classes `RandomForestRegressor` and `RandomForestClassifier`. The growth of the trees is controlled with arguments such as `max_depth` and `max_leaf_nodes` (no defaults), as in individual tree models. You can also control the number of trees with the argument `n_estimators` (the default is 100 trees), and the number of features that can be selected for the splits with the argument `max_features` (the default is the square root of the number of columns of the feature matrix).
 
 Here follows a classification example:
 
