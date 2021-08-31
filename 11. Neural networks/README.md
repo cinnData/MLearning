@@ -34,7 +34,7 @@ At the hidden nodes *A* and *B*, activation is applied to the values given by th
 
 The choice of the activation function is based on performance, since we do not have any serious theory which could explain why this mathematical formula is better than that one. Just a few years ago, the **logistic function** was the recommended activation function in the hidden layers, although some preferred a similar formula called the **hyperbolic tangent function**. The current trend favors the **rectified linear unit function** (ReLU), which is the default in scikit-learn. ReLU(*x*) is equal to *x* when *x* > 0 and equal to 0 otherwise. So, if you accept the default of scikit-learn, the activation in the hidden layers consists in turning the negative incoming values into zeros.
 
-In a MLP regressor (as in Figure 1), there is no activation at the output node, so the equation predicting the values at that node is linear. In a MLP classifier, the final output is a vector containing the **class probabilities**}**, as returned by an activation function called the **softmax function**, whose mathematical expression is similar to that of the logistic function.
+In a MLP regressor (as in Figure 1), there is no activation at the (single) output node, so the equation predicting the values at that node is linear. In a MLP classifier, there are as many output nodes as target values. An activation function called the **softmax function** is applied to the whole set of incoming values, turning them into a set of **class probabilities**. The mathematical expressions involved in the definition of the softmax function are similar to the logistic function formula.
 
 ### Other technicalities
 
