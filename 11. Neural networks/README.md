@@ -20,7 +20,7 @@ How do these networks work? Let us see first what happens at a hidden node. Supp
 
 <img src="https://render.githubusercontent.com/render/math?math=\large Z = F\big(w_0 + w_1 U_1 %2B w_2 U_2 %2B \cdots %2B w_k U_k\big).">
 
-The slope coefficients *w1*, *w2*, …, *wk* are called weights, and the intercept *w0* is called **bias**. *F* is the **activation function**. The role of the activation function is to introduce nonlinearity in the model. A bit of mathematical detail is given in the next section.
+The slope coefficients *w1*, *w2*, …, *wk* are called weights, and the intercept *w0* is called **bias**. *F* is the **activation function**. The role of the activation function is to introduce nonlinearity in the model. A bit of mathematical detail is given below.
 
 The multilayer perceptron could be seen as if the samples were circulating through the network one-by-one. The feature values are entered in the input nodes, which send them to the nodes of the first hidden layer. At each hidden node, they are combined using the corresponding weights, and the result is transformed by means of the activation function. The hidden nodes send the resulting values to the nodes of the next layer, where they are combined. According to the legend, this simulates how animal neurons learn.
 
