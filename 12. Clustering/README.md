@@ -50,7 +50,7 @@ The *k*-means search is iterative. The steps are:
 
 * A random choice of *k* samples is taken as the initial set of centers.
 
-* Every sample is assigned to the cluster whose center is the closest one (in the Euclidean distance).
+* *k* clusters are created so that every sample is in the same cluster as the closest center (in the Euclidean distance).
 
 * Then, the average of every cluster is taken as the new center and the samples are reassigned based on the new centers.
 
