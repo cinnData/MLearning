@@ -38,7 +38,7 @@ In a MLP regressor (as in Figure 1), there is no activation at the (single) outp
 
 ### Other technicalities
 
-* *The number of hidden layers and nodes*. The scikit-learn default is one layer of 100 hidden nodes, but you can start with something smaller, and let it grow if that is supported by an improved performance.
+* *The number of hidden layers and nodes*. The scikit-learn default is one layer of 100 hidden nodes, but you can start with something smaller, and let it grow if that is supported by an improved performance. Many practitioners (including myself) use powers of two (8, 16, 32, etc), although there is no theory behind that.
 
 *  *How to find the optimal weights*. This typically follows a method called **backpropagation**. Initially, the weights are randomly assigned. Then, an iterative process starts. At every step, the prediction is performed with the current weights, the value of a **loss function** is calculated and the weights are adjusted in order to reduce the loss. The process is expected to converge to an optimal solution, but, in practice, a maximum number of iterations is prespecified. In regression, the loss is the sum of the squared errors, while, in classification, it is the **cross-entropy**.
 
