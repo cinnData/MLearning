@@ -38,7 +38,7 @@ In a MLP regressor (as in Figure 1), there is no activation at the (single) outp
 
 ### Other technicalities
 
-* *The number of hidden layers and nodes*. The scikit-learn default is one layer of 100 hidden nodes, but you can start with something smaller, and let it grow if that is supported by an improved performance. Many practitioners (including myself) use powers of two (8, 16, 32, etc), although there is no theory behind that.
+* *The number of hidden layers and nodes*. It is recommended to start with something small and let it grow if that is supported by an improved performance. Many practitioners (including myself) use powers of two (8, 16, 32, etc), although there is no theory behind that.
 
 *  *How to find the optimal weights*. This typically follows a method called **backpropagation**. Initially, the weights are randomly assigned. Then, an iterative process starts. At every step, the prediction is performed with the current weights, the value of a **loss function** is calculated and the weights are adjusted in order to reduce the loss. The process is expected to converge to an optimal solution, but, in practice, a maximum number of iterations is prespecified. In regression, the loss is the sum of the squared errors, while, in classification, it is given by a formula from information theory called the **cross-entropy**.
 
@@ -64,7 +64,7 @@ Here is an alternative layout with two layers of 16 nodes each:
 
 `mlpclf = MLPClassifier(hidden_layer_sizes=(16,16))`
 
-The default solver is `solver='adam'`, which uses a variant of the SGD method, with a constant learning rate of 0.001 and a batch size of 200. But you better leave all this as it is until you are familiar with the technical stuff.
+The default is one layer of 100 hidden nodes, but I would recommend you to start with something smaller. The default solver is `solver='adam'`, which uses a variant of the SGD method, with a constant learning rate of 0.001 and a batch size of 200. But you better leave that as it is until you are familiar with the technical stuff.
 
 The default for the maximum number of iterations is `max_iter=200`. But neural network models are prone to overfitting. So a common practice is to stop the iterations before achieving the convergence, since after a certain number of iterations (frequently no more than 10) the performance improves on the training data, but not on the test data. The code would be:
 
