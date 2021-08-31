@@ -78,13 +78,13 @@ In scikit-learn, normalization is left to the user. You will probably need it. A
 
 <img src="https://render.githubusercontent.com/render/math?math=\large Z = \displaystyle\frac{X-\min(X)}{\max(X)-\min(X)}\,.">
 
-A transformer of the class `MinMaxScaler`, from the subpackage `preprocessing`, can be used to create a new feature matrix in which every column is normalized. It is similar to other preprocessing methods. You can instantiate it with:
+`MinMaxScaler`, from the subpackage `preprocessing`, can be used to create a new feature matrix in which every column is normalized. It is similar to other preprocessing methods. You can instantiate a transformer with:
 
 `from sklearn.preprocessing import MinMaxScaler`
 
 `scaler = MinMaxScaler()`
 
-Next, you apply `fit` and `transform` to the original feature matrix `X`, to obtain the normalized matrix `Z`:
+Next, you apply the methods `fit` and `transform` to the original feature matrix `X`, to obtain the normalized matrix `Z`:
 
 `scaler.fit(X)`
 
