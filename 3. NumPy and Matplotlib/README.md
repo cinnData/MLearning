@@ -32,15 +32,11 @@ Subarrays can also be extracted by means of expressions. For instance, the first
 
 `arr2[arr2[:, 1] > 0, :]`
 
-This is easier to manage in Pandas data frames, where rows and columns have names, than in NumPy 2d arrays. So, there is more detail below.
-
 ### Plotting with Matplotlib
 
-At the turn of this century, a commercial application called **MATLAB** was the leader in scientific computing. At that time, two packages were built on top of NumPy to allow Pyton users to leave aside MATLAB: SciPy and Matplotlib. While **SciPy** is a library of mathematical and statistical methods, **Matplotlib** provides graphical methods.
+**Matplotlib** has an impressive range of graphical methods, including image processing. As many other libraries in the Python world, Matplotlib has several API's, which confounds the beginners. In this context, an **application programmers interface** (API) is like an idiom that you speak to call the functions of the library. It defines the kinds of requests that can be made and how to make them. 
 
-Matplotlib, used by many data scientists for visualization, has an impressive range of methods, including image processing. As many other libraries in the Python world, Matplotlib has several API's, which confounds the beginners. In this context, an **application programmers interface** (API) is like an idiom that you speak to call the functions of the library. It defines the kinds of requests that can be made and how to make them. 
-
-Matplotlib offers you a choice between two API's, the **pyplot API**, used in this course, and the object-oriented API. Beware that, if you use Google or similar ways to find information about plotting in Matplotlib, the solutions found can come in any of the two API's. This can make Matplotlib to look more difficult than it really is.
+Matplotlib offers you a choice between two API's, the yplot API, used in this course, and the object-oriented API. This course only uses the pyplot API**. Beware that, if you use Google or similar ways to find information about plotting in Matplotlib, the solutions found can come in any of the two API's. This can make Matplotlib to look more difficult than it really is.
 
 The subpackage `matplotlib.pyplot` is a collection of command style functions that make Matplotlib work like MATLAB. It is typically imported as:
 
