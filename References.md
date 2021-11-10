@@ -8,6 +8,4 @@
 
 4. A Géron (2017), *Hands-On Machine Learning with Scikit-Learn & TensorFlow*, O'Reilly.
 
-5. S Haykin (1999), *Neural Networks*, Prentice Hall.
-
-6. M Mitchell (2020), *Artificial Intelligence --- A Guide for Thinking Humans*, Pelican
+5. M Mitchell (2020), *Artificial Intelligence --- A Guide for Thinking Humans*, Pelican.
