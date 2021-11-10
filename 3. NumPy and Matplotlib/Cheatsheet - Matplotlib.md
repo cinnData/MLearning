@@ -12,7 +12,7 @@
 
 Specified by the argument `linestyle` (in short, `ls`). The default is `linestyle='solid'`.
 
-* Solid line: `'solid'` (`--`).
+* Solid line: `'solid'` (`-`).
 
 * Dashed line: `'dashed`' (`--`).
 
