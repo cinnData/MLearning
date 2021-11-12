@@ -58,13 +58,13 @@ Depending on the type of model, `fit` will do different jobs. For `linreg`, the 
 
 Once the estimator has fitted the data, the predicted values are obtained with the method `predict`:
 
-`y_pred = linreg.predict(X)`
+`ypred = linreg.predict(X)`
 
-Finally, the method `score` provides an assessment of the quality of the predictions, that is, of the match between `y` and `y_pred`: 
+Finally, the method `score` provides an assessment of the quality of the predictions, that is, of the match between `y` and `ypred`: 
 
 `linreg.score(X, y)`
 
-In both regression and classification, `score` returns a number in the 0-1 range, which is read as *the higher the better*. Nevertheless, the matematics are completely different. For a regression model, it is a *R*-squared statistic, that is the squared correlation of `y` and `y_pred`.
+In both regression and classification, `score` returns a number in the 0-1 range, which is read as *the higher the better*. Nevertheless, the matematics are completely different. For a regression model, it is a *R*-squared statistic, that is the squared correlation of `y` and `ypred`.
 
 ### Saving a scikit-learn model
 
