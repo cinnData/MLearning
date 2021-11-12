@@ -6,3 +6,4 @@
 
 ### Example - The churn model: `churn.csv`
 
+### Example - The spam filter: `spam.csv`
