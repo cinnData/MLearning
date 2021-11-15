@@ -13,3 +13,5 @@
 * Example - Telecom churn prediction: `telecom.csv`
 
 * Example - Handwritten digit recognition: `digits1.csv`-`digits7.csv` 
+
+* Example - Labeling Zalando pics: `zalando.csv`-`zalando7.csv`
