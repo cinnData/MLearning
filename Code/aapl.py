@@ -1,4 +1,4 @@
-## Apple Inc. stock prices ##
+## Example - Apple Inc. stock prices ##
 
 # Importing the data #
 import numpy as np
