@@ -16,7 +16,7 @@ A multilayer perceptron is formed by:
 
 * A sequence of **hidden layers** placed between the input and the output layers. If the network is **fully-connected**, that is, if every node of a layer is connected to all the nodes of the following layer, the model is completely specified by the number of hidden layers and the number of nodes in each hidden layer. This course only covers fully-connected networks.
 
-How do these networks work? Let us see first what happens at a hidden node. Suppose that *Z* is a hidden node and *U1*, *U2*, …, *Uk* are the nodes of the preceding layer. Then, the values of *Z* are calculated as
+How do these networks work? Suppose first that *Z* is a hidden node and *U1*, *U2*, …, *Uk* are the nodes of the preceding layer. Then, the values of *Z* are calculated as
 
 <img src="https://render.githubusercontent.com/render/math?math=\large Z = F\big(w_0 + w_1 U_1 %2B w_2 U_2 %2B \cdots %2B w_k U_k\big).">
 
