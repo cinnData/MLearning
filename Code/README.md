@@ -17,3 +17,5 @@
 * Example - Telecom churn prediction: `telecom.py`
 
 * Example - Handwritten digit recognition: `digits.py`
+
+* Example - Labeling Zalando pics: `zalando.py`
