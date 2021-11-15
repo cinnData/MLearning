@@ -7,3 +7,7 @@
 ### Example - The churn model: `churn.csv`
 
 ### Example - The spam filter: `spam.csv`
+
+### Example - House sales in King County: `king.csv`
+
+### Example - Telecom churn prediction: `telecom.csv`
