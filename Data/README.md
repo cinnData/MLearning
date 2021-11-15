@@ -11,3 +11,5 @@
 ### Example - House sales in King County: `king.csv`
 
 ### Example - Telecom churn prediction: `telecom.csv`
+
+## Example - Handwritten digit recognition: `digits1.csv`, `digits2.csv`, `digits3.csv`, `digits4.csv`, `digits5.csv`, `digits6.csv` and `digits7.csv` 
