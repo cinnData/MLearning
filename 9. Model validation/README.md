@@ -27,11 +27,11 @@ For instance, suppose, that `logclf` is a `LogisticRegression` instance, with th
 
 Then, you can evaluate the model on both data sets and compare the results. Suppose that your evaluation is based on the true positive and false positive rates, and the cutoff has been set to 0.5, so you get your predictions directly from `logclf.predict`. You can extract a true positive and a false positive rate from the training set:
 
-`y_pred_train = logclf.predict(X_train)`
+`ypred_train = logclf.predict(X_train)`
 
 `from sklearn.metrics import confusion_matrix`
 
-`conf_train = confusion_matrix(y_train, y_pred_train)`
+`conf_train = confusion_matrix(y_train, ypred_train)`
 
 `tp_train = conf_train[1, 1]/sum(conf_train[1, :])`
 
@@ -39,9 +39,9 @@ Then, you can evaluate the model on both data sets and compare the results. Supp
 
 In a similar way, in the test set:
 
-`y_pred_test = logclf.predict(X_test)`
+`ypred_test = logclf.predict(X_test)`
 
-`conf_test = confusion_matrix(y_test, y_pred_test)`
+`conf_test = confusion_matrix(y_test, ypred_test)`
 
 `tp_test = conf_test[1, 1]/sum(conf_test[1, :])`
 
