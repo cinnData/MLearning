@@ -14,3 +14,5 @@
 
 ### Example - House sales in King County: `king.py`
 
+### Example - Telecom churn prediction: `telecom.py`
+
