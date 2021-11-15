@@ -1,15 +1,15 @@
 # Data files
 
-### Example - Apple Inc. stock prices: `aapl.csv`
+* Example - Apple Inc. stock prices: `aapl.csv`
 
-### Example - Assessing home values in West Roxbury: `roxbury.csv`
+* Example - Assessing home values in West Roxbury: `roxbury.csv`
 
-### Example - The churn model: `churn.csv`
+* Example - The churn model: `churn.csv`
 
-### Example - The spam filter: `spam.csv`
+* Example - The spam filter: `spam.csv`
 
-### Example - House sales in King County: `king.csv`
+* Example - House sales in King County: `king.csv`
 
-### Example - Telecom churn prediction: `telecom.csv`
+* Example - Telecom churn prediction: `telecom.csv`
 
-### Example - Handwritten digit recognition: `digits1.csv`-`digits7.csv` 
+* Example - Handwritten digit recognition: `digits1.csv`-`digits7.csv` 
