@@ -47,9 +47,7 @@ In a similar way, in the test set:
 
 `fp_test = conf_test[0, 1]/sum(conf_test[0, :])`
 
-Roughly speaking, the model can be considered as validated if `tp_test` and `fp_test` are as good as `tp_train` and `fp_train`. You may find this a bit loose, but it is the approach we frequently take in business.
-
-If your evaluation is based on the accuracy, you will just compare the two numbers `logclf.score(X_train, y_train)` and `logclf.score(X_test, y_test)`.
+Roughly speaking, the model can be considered as validated if `tp_test` and `fp_test` are as good as `tp_train` and `fp_train`. You may find this a bit loose, but it is the approach we frequently take in business. If your evaluation is based on the accuracy, you will just compare the two numbers `logclf.score(X_train, y_train)` and `logclf.score(X_test, y_test)`.
 
 ### Cross-validation
 
@@ -59,6 +57,6 @@ As far as you can trust the evaluation of your model to the method `score` (eith
 
 `cross_val_score(logclf, X, y, cv=10)`
 
-This function returns a vector of ten scores (accuracy values, in this case). You can average them to get a score for the model, but you can also take a look at the variation across folds, to decide whether you will trust the model. The argument `cv=10` sets the number of folds. `. 
+This function returns a vector of ten scores (accuracy values, in this case). You can average them to get a score for the model, but you can also take a look at the variation across folds, to decide whether you will trust the model. The argument `cv=10` sets the number of folds.
 
 *Note*. In some cases, people complain about cross-validation in scikit-learn producing unreasonable results, such as negative score values. This is due to the way it has been programmed, so many of us prefer to try a series of train-test splits.
