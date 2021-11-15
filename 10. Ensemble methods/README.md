@@ -8,7 +8,7 @@ Suppose that you ask a complex question to thousands of random people, and then 
 
 * Suppose that you have trained a few regression models, each one achieving a moderate correlation. A simple way to get better predictions is to average the predictions of these models.
 
-* In a classification context, you would average the class probabilities (in scikit-learn, those given by the `predict_proba` method). This is called **soft voting**, in contrast to **hard-voting**, which consist in picking the class getting more votes. This course only covers soft voting.
+* In a classification context, you would average the class probabilities. This is called **soft voting**, in contrast to **hard-voting**, which consist in picking the class getting more votes. This course only covers soft voting.
 
 The group of models whose predictions are aggregated is called an **ensemble**. In scikit-learn, the subpackage `ensemble` offers plenty of choice. On top of the popularity ranking, we find the random forest and the gradient boosting methods, both using ensembles of decision tree models.
 
