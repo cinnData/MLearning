@@ -4,13 +4,13 @@
 
 Suppose that you ask a complex question to thousands of random people, and then aggregate their answers. In many cases, you will find that this aggregated answer is better than an expert's answer. This has been called the **wisdom of the crowds**. 
 
-**Ensemble learning** is based on a similar idea. If you aggregate the predictions of a group of regression or classification models, you will often get better predictions than with the best individual model. That group of models is called an **ensemble**. This chapter covers ensembles of both regression and classification models:
+**Ensemble learning** is based on a similar idea. If you aggregate the predictions of a group of regression or classification models, you will often get better predictions than with the best individual model:
 
-* Suppose that you have trained a few regression models, each one achieving a moderate correlation. A simple way to get better predictions is to average the separate predictions of these models.
+* Suppose that you have trained a few regression models, each one achieving a moderate correlation. A simple way to get better predictions is to average the predictions of these models.
 
-* In a classification context, you would average the class probabilities (in scikit-learn, those given by the `predict_proba` method). This is called **soft voting**, in contrast to **hard-voting**, which consist in picking the class getting more votes among the models of the ensemble. The ensemble models discussed in this course use soft voting.
+* In a classification context, you would average the class probabilities (in scikit-learn, those given by the `predict_proba` method). This is called **soft voting**, in contrast to **hard-voting**, which consist in picking the class getting more votes. This course only covers soft voting.
 
-In scikit-learn, the subpackage `ensemble` offers plenty of choice. On top of the popularity ranking, we find the random forest and the gradient boosting methods. Both use ensembles of decision tree models.
+The group of models whose predictions are aggregated is called an **ensemble**. In scikit-learn, the subpackage `ensemble` offers plenty of choice. On top of the popularity ranking, we find the random forest and the gradient boosting methods, both using ensembles of decision tree models.
 
 ### Random forests
 
