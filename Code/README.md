@@ -16,4 +16,4 @@
 
 ### Example - Telecom churn prediction: `telecom.py`
 
-### Handwritten digit recognition: `digits.py`
+### Example - Handwritten digit recognition: `digits.py`
