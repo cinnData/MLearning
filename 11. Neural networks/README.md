@@ -14,7 +14,7 @@ A multilayer perceptron is formed by:
 
 * The **output layer**. In regression, it has a unique node, which is the target (as in the figure below). In classification, it has one node for every target value.
 
-* Some **hidden layers**. If the network is **fully-connected**, that is, if every node of a layer is connected to all the nodes of the following layer, the model is completely specified by the number of hidden layers and the number of nodes in each hidden layer. This course only covers fully-connected networks.
+* A sequence of **hidden layers** placed between the input and the output layers. If the network is **fully-connected**, that is, if every node of a layer is connected to all the nodes of the following layer, the model is completely specified by the number of hidden layers and the number of nodes in each hidden layer. This course only covers fully-connected networks.
 
 How do these networks work? Let us see first what happens at a hidden node. Suppose that *Z* is a hidden node and *U1*, *U2*, …, *Uk* are the nodes of the preceding layer. Then, the values of *Z* are calculated as
 
