@@ -18,7 +18,7 @@ A multilayer perceptron is formed by:
 
 How do these networks work? Suppose first that *Z* is a hidden node and *U1*, *U2*, …, *Uk* are the nodes of the preceding layer. Then, the values of *Z* are calculated as
 
-<img src="https://render.githubusercontent.com/render/math?math=\large Z = F\big(w_0 + w_1 U_1 %2B w_2 U_2 %2B \cdots %2B w_k U_k\big).">
+<img src="https://render.githubusercontent.com/render/math?math=\large Z = F\big(w_0 %2B w_1 U_1 %2B w_2 U_2 %2B \cdots %2B w_k U_k\big).">
 
 The slope coefficients *w1*, *w2*, …, *wk* are called weights, and the intercept *w0* is called **bias**. *F* is the **activation function**. The role of the activation function is to introduce nonlinearity in the model. A bit of mathematical detail is given below.
 
