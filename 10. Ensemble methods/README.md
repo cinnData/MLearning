@@ -4,7 +4,7 @@
 
 Suppose that you ask a complex question to thousands of random people, and then aggregate their answers. In many cases, you will find that this aggregated answer is better than an expert's answer. This has been called the **wisdom of the crowds**. 
 
-**Ensemble learning** is based on a similar idea. If you aggregate the predictions of a group of regression or classification models, you will often get better predictions than with the best individual model. That group of models is called an **ensemble**. This course covers both ensembles of regressor and ensebles of classifiers:
+**Ensemble learning** is based on a similar idea. If you aggregate the predictions of a group of regression or classification models, you will often get better predictions than with the best individual model. That group of models is called an **ensemble**. This chapter covers both ensembles of regressor and ensembles of classifiers:
 
 * Suppose that you have trained a few regression models, each one achieving a moderate correlation. A simple way to get better predictions is to average the separate predictions of these models.
 
