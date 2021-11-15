@@ -21,11 +21,11 @@ Suppose that you are given a target vector `y` and a feature matrix `X`. A **tra
 
 Setting `test_size=0.2`, you get a 80-20 split, which is quite popular among practitioners. Of course, there is nothing special in a 20% test size. The idea is that it is not reasonable to waste too much data on testing.
 
-Suppose, to get it simple, that you wish to validate a logistic regression classifier, with a 1/0 target, and you have named `logclf` a `LogisticRegression` instance, with the default arguments. The logistic regression coefficients are calculated by applying `logclf.fit` to the training data:
+For instance, suppose, that `logclf` is a `LogisticRegression` instance, with the default arguments. The model coefficients are obtained by applying `logclf.fit` to the training data:
 
 `logclf.fit(X_train, y_train)`
 
-Then, you can evaluate the model on both data sets and compare the results. Suppose that your evaluation is based on the true positive and false positive rates, and the cutoff has been set to 0.5, so you get your predictions directly from `logclf.predict`. You extract a true positive and a false positive rate from the training set:
+Then, you can evaluate the model on both data sets and compare the results. Suppose that your evaluation is based on the true positive and false positive rates, and the cutoff has been set to 0.5, so you get your predictions directly from `logclf.predict`. You can extract a true positive and a false positive rate from the training set:
 
 `y_pred_train = logclf.predict(X_train)`
 
