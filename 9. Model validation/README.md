@@ -19,7 +19,7 @@ Suppose that you are given a target vector `y` and a feature matrix `X`. A **tra
 `X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)`
 
 
-Setting `test_size=0.2`, you get a 80-20 split, which is quite popular among practitioners. Of course, there is nothing special in a 20% test size, though the idea that it is not reasonable to waste too much data on testing is commonly accepted.
+Setting `test_size=0.2`, you get a 80-20 split, which is quite popular among practitioners. Of course, there is nothing special in a 20% test size. The idea is that it is not reasonable to waste too much data on testing.
 
 Suppose, to get it simple, that you wish to validate a logistic regression classifier, with a 1/0 target, and you have named `logclf` a `LogisticRegression` instance, with the default arguments. The logistic regression coefficients are calculated by applying `logclf.fit` to the training data:
 
