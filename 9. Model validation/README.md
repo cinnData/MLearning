@@ -6,7 +6,7 @@
 
 In the simplest approach to validation, we obtain the model from a **training data set**, trying it on a **test data set**. The training and test sets can have a temporal basis (eg training with the first ten months of the year and testing with the last two months), or they can be obtained from a random split of a unique data set.
 
-**Cross-validation** is more sophisticated. Though it has many variations, this course only covers *k*-**fold cross-validation**, in which the original data set is randomly partitioned into *k* equally sized subsets. Of the *k* subsets, one is used for testing and the other *k* - 1 subsets for training. The model is scored on the test data (eg with the accuracy). This process is repeated for each of the *k* subsets. The *k* evaluation scores obtained can then be averaged to produce a single value, which is taken as the score of the model. 10-fold cross-validation has commonly used for years, but practitioners seem to favor smaller numbers nowadays.
+**Cross-validation** is more sophisticated. Though it has many variations, this course only covers *k*-**fold cross-validation**, in which the original data set is randomly partitioned into *k* equally sized subsets. Of the *k* subsets, one is used for testing and the other *k* - 1 subsets for training. The model is scored on the test data (eg with the accuracy). This process is repeated for each of the *k* subsets. The *k* evaluation scores obtained can then be averaged to produce a single value, which is taken as the score of the model. *k* = 10 has been recommended by some authors, but *k* = 10 is also popular.
 
 In scikit-learn, the subpackage `model_selection` provides tools for validating supervised learning models. I start by the simplest approach, based on the function `train_test_split`. In a second round, I'll show you how to perform *k*-fold cross-validation with the function `cross_val_score`.
 
@@ -59,6 +59,6 @@ As far as you can trust the evaluation of your model to the method `score` (eith
 
 `cross_val_score(logclf, X, y, cv=10)`
 
-This function returns a vector of ten scores (accuracy values, in this case). You can average them to get a score for the model, but you can also take a look at the variation across folds, to decide whether you will trust the model. The argument `cv=10` sets the number of folds. The default is `cv=5`. 
+This function returns a vector of ten scores (accuracy values, in this case). You can average them to get a score for the model, but you can also take a look at the variation across folds, to decide whether you will trust the model. The argument `cv=10` sets the number of folds. `. 
 
 *Note*. In some cases, people complain about cross-validation in scikit-learn producing unreasonable results, such as negative score values. This is due to the way it has been programmed, so many of us prefer to try a series of train-test splits.
