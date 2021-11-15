@@ -1,8 +1,8 @@
 # Machine Learning Course
 
-### 1. What is machine learning?
+1. What is machine learning?
 
-### 2. Introduction to Python
+2. Introduction to Python
 
 ### 3. NumPy and Matplotlib
 
