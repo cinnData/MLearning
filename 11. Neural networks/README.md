@@ -84,7 +84,7 @@ In scikit-learn, normalization is left to the user. You will probably need it. A
 
 `scaler = MinMaxScaler()`
 
-Next, you apply the methods `fit` and `transform` to the original feature matrix `X`, to obtain the normalized matrix `Z`:
+Then, you apply the methods `fit` and `transform` to the original feature matrix `X`, to obtain the normalized feature matrix `Z`:
 
 `scaler.fit(X)`
 
