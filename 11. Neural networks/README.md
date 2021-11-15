@@ -26,7 +26,7 @@ The multilayer perceptron could be seen as if the samples were circulating throu
 
 ![](https://github.com/cinnData/MLearning/blob/main/11.%20Neural%20networks/fig%2011.1.png)
 
-The model of the above figure is a MLP regressor with one hidden layer of two nodes. But this is just a representation of a set of three equations. The two equations that allow us to go from the input layer to the hidden layer combine the features with weights *w1A*, *w2A* and *w3A* and *w1B*, *w2B* and *w3B*, respectively. The biases are *w0A* and *w0B*, respectively.
+The model of the above figure is a MLP regressor with one hidden layer of two nodes. But this is just a graphical representation of a set of three equations. The two equations that allow us to go from the input layer to the hidden layer combine the features with weights *w1A*, *w2A* and *w3A* and *w1B*, *w2B* and *w3B*, respectively. The biases are *w0A* and *w0B*, respectively.
 
 At the hidden nodes *A* and *B*, activation is applied to the values given by these equations. Once the activation has been applied, *A* and *B* are combined in the third equation with weights *wAY* and *wBY* and bias *w0Y*, to obtain the predicted value of *Y*. This model has a total of 11 parameters.
 
