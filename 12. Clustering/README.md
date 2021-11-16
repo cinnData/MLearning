@@ -24,7 +24,7 @@ The general formula, for a *p*-dimensional space, is
 
 <img src="https://render.githubusercontent.com/render/math?math=\large \textrm{dist}(x,y) = \sqrt{(x_1-y_1 )^2 %2B \cdots %2B (x_p-y_p)^2}.">
 
-This formula can be applied to any pair of rows of a data set with *p* numeric columns. In the machine learning toolbox, the Euclidean distance is the default similarity measure. Nevertheless, in particular contexts, such as **text mining**, other measures, like the **cosine-based similarity**, are preferred.
+This formula can be applied to any pair of rows of a data set with *p* numeric columns. In the ML toolbox, the Euclidean distance is the default similarity measure. Nevertheless, in particular contexts, such as **text mining**, other measures, like the **cosine-based similarity**, are preferred.
 
 It is not rare, in real data, that some features show a much higher variation than the rest. Formulas like the Euclidean distance make those features too influential on the clustering process. To prevent this, the features involved in the clustering process can be normalized. Min-max normalization is typical in this context. Beware that normalization can change significantly your clusters. In customer segmentation, for instance, this is a relevant issue.
 
