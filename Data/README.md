@@ -15,3 +15,5 @@
 * Example - Handwritten digit recognition: `digits1.csv`-`digits7.csv` 
 
 * Example - Labeling Zalando pics: `zalando.csv`-`zalando7.csv`
+
+* Example - Marketing to frqeuent fliers: `fliers.csv
