@@ -2,9 +2,9 @@
 
 ### What is a clustering algorithm?
 
-A **clustering algorithm** groups samples into **clusters**, based on their similarity. Clustering methods have been applied for a long time in many fields, under specific names. For instance, in marketing, clustering customers is called **customer segmentation**. In the machine learning context, clustering it is regarded as **unsupervised learning**.
+A **clustering algorithm** groups samples into **clusters**, based on their similarity. Clustering methods have been applied for a long time in many fields, under specific names. For instance, in marketing, clustering customers is called **customer segmentation**. In the ML context, clustering it is regarded as **unsupervised learning**.
 
-There are many clustering methods, all based on the same principle, to get the maximum similarity within clusters and the minimum similarity between clusters. This is operationalized through a **similarity measure**. Similarity measures are also used in other machine learning techniques, such as the *k*-**nearest neighbor** (kNN) algorithm and **collaborative filtering**.
+There are many clustering methods, all based on the same principle, to get the maximum similarity within clusters and the minimum similarity between clusters. This is operationalized through a **similarity measure**. Similarity measures are also used in other ML techniques, such as the *k*-**nearest neighbor** (kNN) algorithm and **collaborative filtering**.
 
 There are, basically, two approaches to clustering: the **distance-based** methods, such as the *k*-means algorithm, and the **probability-based** methods, such as the EM clustering algorithm. Only the *k*-means algorithm is considered here, because most of the other methods, in spite of their popularity in textbooks, have **scalability** problems, meaning that they do not work, or become too slow, with big data sets.
 
