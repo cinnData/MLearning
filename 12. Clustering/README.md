@@ -6,7 +6,7 @@ A **clustering algorithm** groups samples into **clusters**, based on their simi
 
 There are many clustering methods, all based on the same principle, to get the maximum similarity within clusters and the minimum similarity between clusters. This is operationalized through a **similarity measure**. Similarity measures are also used in other ML techniques, such as the *k*-**nearest neighbor** (kNN) algorithm and **collaborative filtering**.
 
-There are, basically, two approaches to clustering: the **distance-based** methods, such as the *k*-means algorithm, and the **probability-based** methods, such as the EM clustering algorithm. Only the *k*-means algorithm is considered here, because most of the other methods, in spite of their popularity in textbooks, have **scalability** problems, meaning that they do not work, or become too slow, with big data sets.
+There are, basically, two approaches to clustering: the **distance-based** methods, such as the *k*-means algorithm, and the **probability-based** methods, such as the EM clustering algorithm. Only the *k*-means algorithm is considered here. Most of the other methods have **scalability** problems, meaning that they do not work, or become too slow, with big data sets.
 
 A warning note: clustering algorithms always produce clusters. But the clusters you get could be useless for their intended application. For instance, if you expect them to help to understand your customers, they have to be described in a intelligible way. This would probably imply a low number of clusters. 
 
