@@ -16,4 +16,4 @@
 
 * Example - Labeling Zalando pics: `zalando.csv`-`zalando7.csv`
 
-* Example - Marketing to frqeuent fliers: `fliers.csv
+* Example - Marketing to frequent fliers: `fliers.csv
