@@ -36,7 +36,7 @@ The centers can also be used for assigning a cluster to a new sample which has n
 
 In real-world applications, we look at the center as an artificial sample which we consider as the "typical element" of the cluster. The values that this artificial sample takes for the different features are used to create a description of the cluster, as far as this makes sense. This is the usual approach in customer segmentation. Thus, a marketing manager may say that he has a segment of customers above 60, with annual family income between $100,000 and $250,000, who frequently watch soap opera TV comedy series. This is just a description of the center of that segment.
 
-The methods that use this approach differ on how the centers are extracted from the training data. The next section presents a brief discussion of the top popular one, the *k*-means clustering algorithm, and some of ideas on how you can decide the number of centers *k*.
+The methods that use this approach differ on how the centers are extracted from the training data. Let us see how it works in the *k*-means clustering algorithm.
 
 ### *k*-means clustering
 
