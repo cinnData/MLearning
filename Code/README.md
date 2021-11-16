@@ -19,3 +19,5 @@
 * Example - Handwritten digit recognition: `digits.py`
 
 * Example - Labeling Zalando pics: `zalando.py`
+
+* Example - Marketing to frequent fliers: `fliers.py
