@@ -30,7 +30,7 @@ With Anaconda, most packages used in this course are already available and can b
 
 ### The main packages
 
-These notes do not look at Python as a programming language, that is, as one for developing software applications, but from a very specific perspective. Our approach is mainly based on three packages, NumPy, Matplotlib, Pandas and scikit-learn.
+These notes do not look at Python as a programming language, that is, as one for developing software applications, but from a very specific perspective. Our approach is mainly based on three packages, NumPy, Matplotlib and scikit-learn.
 
 * **NumPy** adds support for large vectors and matrices, called there **arrays**. Data sets  are managed as 2d arrays in this course.
 
@@ -60,7 +60,7 @@ Python has various **data container** types. The most versatile is the **list**,
 
 `mylist = ['Messi', 'Cristiano', 'Neymar', 'Coutinho']`
 
-An element of a list (or a tuple) is extracted indicating its place between square brackets. For instance, `mylist[1]` would extract `'Cristiano'` (in Python we start at zero). To extract a sublist with several consecutive terms, we indicate the corresponding range. For instance, `mylist[1:3]` extracts the sublist `['Cristiano', 'Neymar']` (in Python, the left limit is included but the right limit is not).
+An element of a list is extracted indicating its place between square brackets. For instance, `mylist[1]` would extract `'Cristiano'` (in Python we start at zero). To extract a sublist with several consecutive terms, we indicate the corresponding range. For instance, `mylist[1:3]` extracts the sublist `['Cristiano', 'Neymar']` (in Python, the left limit is included but the right limit is not).
 
 A **tuple** is like a list, represented with parentheses instead of square brackets:
 
