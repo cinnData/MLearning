@@ -20,4 +20,4 @@
 
 * Example - Labeling Zalando pics: `zalando.py`
 
-* Example - Marketing to frequent fliers: `fliers.py
+* Example - Marketing to frequent fliers: `fliers.py`
