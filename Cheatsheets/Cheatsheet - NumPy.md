@@ -1,0 +1,45 @@
+# Cheatsheet - NumPy
+
+### Unstructured arrays
+
+* `arr.dtype`: `returns` the data type of the array `arr`. If the elements of `arr` are literals, it will be `int64`, `float64`, `<Ul` or `bool`. More complex data can have data type `object`.
+
+* `arr.shape`: returns the shape of the array `arr`, as a tuple. For a 1d array, it is `(l,)`, and, for a 2d array, `(r,c)`.
+
+* `np.abs(arr)`: replaces the terms of a numeric array by their absolute values.
+
+* `np.array(lst)`: for a list `lst` whose elements are literals of the same data type, it returns a 1d array containing the same elements as `lst`. For a list whose elements are lists of the same length, containing literals of the same data type, it returns a 2d array.
+
+* `np.argsort(arr)`: takes a 1d array `arr` and returns a 1d array containing the index that every term will take if `arr` were sorted in ascending order.
+
+* `np.concatenate([arr1, arr2, ...], axis=n)`: concatenates a list of arrays vertically (`axis=0`) or horizontally (`axis=1`). The default is `axis=0`. When `axis=0`, all the arrays must have the same number of columns, and, when `axis=1`, the same number of rows.
+
+* `np.corrcoef([arr1, arr2, ...])`: returns the correlation matrix a list of numeric 1d arrays of the same length. For two arrays, the square brackets can be omitted. It can also take a 2d array, returning the correlations of the row vectors (not of the columns).
+
+* `np.int64(arr)`: converts a `float` or `bool` array to data type `int64`. The same can be done with `arr.astype('int')`.
+
+* `np.linspace(a,b,n)`: returns a 1d array with `n` equally spaced terms, starting by `a` and ending by `b`.
+
+* `np.max(arr)`: returns the maximum of the terms of a numeric or string array. The same can be obtained with `arr.max()`.
+
+* `np.mean(arr)`: returns the mean of the terms of a numeric array. The same can be obtained with `arr.mean()`.
+
+* `np.min(arr)`: returns the minimum of the terms of a numeric or string array. The same can be obtained with `arr.min()`.
+
+* `np.round(arr, d)`: rounds the terms of a numeric array to a specified number of digits. The same can be obtained with `arr.round(d)`.
+
+* `np.reshape(arr, sh)`: changes the shape of an array. The number of terms of the reshaped array must be equal to that of the original array. The same can be done with `arr.reshape(sh)`.
+
+* `np.sort(arr)`: sorts a 1d array in ascending order. To reverse this, add `[::-1]`. For higher dimensional arrays, look at the manual.
+
+* `np.sum(arr)`: returns the sum of the terms of a numeric array. The same can be obtained with `arr.sum()`.
+
+* `np.transpose(arr)`: transposes a 2d array. The same can be done with `arr.transpose()` and with `arr.T`.
+
+* `np.unique(arr)`: returns a 1d array containing the unique terms of `arr`, in ascending order. With additional argument `returns_counts=True`, it returns a second array containing the number of occurrences of every unique value.
+
+### Structured arrays
+
+* `np.genfromtxt(fname, delimiter=',', names=True, dtype=None, encoding='utf-8')`: imports data from a CSV file to a structured array, taking the column names from first row. For variations, look at the manual.
+
+* `structured_to_unstructured(arr)`: converts a structured array + arr` to an unstructured (ordinary) array. The subpackage `numpy.lib.recfunctions` must be imported.
