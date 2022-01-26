@@ -20,11 +20,11 @@
 
 * `np.linspace(a,b,n)`: returns a 1d array with `n` equally spaced terms, starting by `a` and ending by `b`.
 
-* `np.max(arr)`: returns the maximum of the terms of a numeric or string array. The same can be obtained with `arr.max()`.
+* `np.max(arr)`: returns the maximum of the terms of aa array. The same can be obtained with `arr.max()`.
 
 * `np.mean(arr)`: returns the mean of the terms of a numeric array. The same can be obtained with `arr.mean()`.
 
-* `np.min(arr)`: returns the minimum of the terms of a numeric or string array. The same can be obtained with `arr.min()`.
+* `np.min(arr)`: returns the minimum of the terms of an array. The same can be obtained with `arr.min()`.
 
 * `np.round(arr, d)`: rounds the terms of a numeric array to a specified number of digits. The same can be obtained with `arr.round(d)`.
 
@@ -34,7 +34,7 @@
 
 * `np.sum(arr)`: returns the sum of the terms of a numeric array. The same can be obtained with `arr.sum()`.
 
-* `np.transpose(arr)`: transposes a 2d array. The same can be done with `arr.transpose()` and with `arr.T`.
+* `np.transpose(arr)`: transposes a 2d array. The same can be done with `arr.transpose()` or `arr.T`.
 
 * `np.unique(arr)`: returns a 1d array containing the unique terms of `arr`, in ascending order. With additional argument `returns_counts=True`, it returns a second array containing the number of occurrences of every unique value.
 
@@ -42,4 +42,4 @@
 
 * `np.genfromtxt(fname, delimiter=',', names=True, dtype=None, encoding='utf-8')`: imports data from a CSV file to a structured array, taking the column names from first row. For variations, look at the manual.
 
-* `structured_to_unstructured(arr)`: converts a structured array + arr` to an unstructured (ordinary) array. The subpackage `numpy.lib.recfunctions` must be imported.
+* `structured_to_unstructured(arr)`: converts a structured array to an unstructured (ordinary) array. The subpackage `numpy.lib.recfunctions` must be already imported.
