@@ -49,7 +49,7 @@ mylist[:3]
 # Functions #
 def f(x):
     y = 1/(1 - x**2)
-    return(y)
+    return y
 f(2)
 f(1)
 f('Mary')
