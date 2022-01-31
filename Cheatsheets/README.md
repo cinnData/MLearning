@@ -1,5 +1,5 @@
 # Cheatsheets
 
-### NumPy
+### Cheatsheet - NumPy
 
-### Matplotlib
+### Cheatsheet - Matplotlib
