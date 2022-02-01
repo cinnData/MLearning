@@ -12,7 +12,7 @@ Real data come with mixed data type. We can deal with this in NumPy by means of 
 
 * Columns can be extracted by name: `str_arr['president']` is the first column, and `str_arr['year']` is the second column. With a list of column names, you can extract a structured subarray.
 
-* Individual entries can be extracted with two indexes: `'Trump'` is `str_arr[0][0]`, and `'Obama'` is `str_arr[0][0]`.  
+* Individual entries can be extracted with two indexes: `'Trump'` is `str_arr[0][0]`, and `'Obama'` is `str_arr[1][0]`.  
 
 ### Converting structured arrays
 
