@@ -76,7 +76,7 @@ With `joblib`, saving your model to a PKL file is straightforward. For our linea
 
 `import joblib`
 
-`joblib.dump(linreg, 'linreg.pkl\')`
+`joblib.dump(linreg, 'linreg.pkl')`
    
 Do not forget to add the path for the PKL file. You can recover the model, anytime, even if you no longer have the training data, with:
 
