@@ -18,7 +18,7 @@ X.shape
 
 # Logistic regression equation #
 from sklearn.linear_model import LogisticRegression
-logclf = LogisticRegression(max_iter=1000)
+logclf = LogisticRegression(max_iter=1500)
 logclf.fit(X, y)
 round(logclf.score(X, y), 3)
 
