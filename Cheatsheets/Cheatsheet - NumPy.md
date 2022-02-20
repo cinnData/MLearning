@@ -16,8 +16,6 @@
 
 * `arr.astype()`: converts `arr` to a different data type.
 
-* `np.cumsum(arr)`: returns a 1d array containing the cumulative sums of the terms of `arr`. For a 2d array, cumulative sums are calculated row following row. With argument `axis=0`, returns a 2d array containing the cumulative sums calculated separately for every column. With argument `axis1`, separately for every row. The same as `arr.cumsum()`.
-
 * `arr.dtype`: `returns` the data type of `arr`. If the elements of `arr` are literals, it will be `int64`, `float64`, `<Ul` or `bool`. More complex data can have data type `object`.
 
 * `arr.ndim`: returns the number of dimensions, 1 for a 1d array and 2 for 2d array.
@@ -33,6 +31,8 @@
 * `np.concatenate([arr1, arr2, ...], axis=n)`: concatenates a list of arrays vertically (`axis=0`) or horizontally (`axis=1`). The default is `axis=0`. When `axis=0`, all the arrays must have the same number of columns, and, when `axis=1`, the same number of rows.
 
 * `np.corrcoef([arr1, arr2, ...])`: returns the correlation matrix a list of numeric 1d arrays of the same length. For two arrays, the square brackets can be omitted. It can also take a 2d array, returning the correlations of the row vectors (not of the columns).
+
+* `np.cumsum(arr)`: returns a 1d array containing the cumulative sums of the terms of `arr`. For a 2d array, cumulative sums are calculated row following row. With argument `axis=0`, returns a 2d array containing the cumulative sums calculated separately for every column. With argument `axis1`, separately for every row. The same as `arr.cumsum()`.
 
 * `np.int64(arr)`: converts a `float` or `bool` array to data type `int64`. The same can be done with `arr.astype('int')`.
 
