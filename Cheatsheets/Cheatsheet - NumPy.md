@@ -14,6 +14,10 @@
 
 ### Unstructured arrays
 
+* `np.argmax(arr)`: returns the index of the maximum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the maximum of every column of `arr`. With argument `axis1`, the index of the maximum of every row. 
+
+* `np.argmin(arr)`: returns the index of the minimum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row. 
+
 * `arr.astype()`: converts `arr` to a different data type.
 
 * `arr.dtype`: `returns` the data type of `arr`. If the elements of `arr` are literals, it will be `int64`, `float64`, `<Ul` or `bool`. More complex data can have data type `object`.
@@ -53,6 +57,8 @@
 * `np.sort(arr)`: sorts a 1d array in ascending order. To reverse this, add `[::-1]`. For higher dimensional arrays, look at the manual.
 
 * `np.sum(arr)`: returns the sum of the terms of `arr`. With argument `axis=0`, returns a 1d array containing the column totals. With argument `axis1`, the row totals.  The same can be obtained with `arr.sum()`.
+
+* `np.vectorize(fname)`: vectorizes the function `fname`, so it can take NumPy arrays as arguments.
 
 * `np.transpose(arr)`: transposes a 2d array. The same as `arr.transpose()` and `arr.T`.
 
