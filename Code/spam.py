@@ -2,7 +2,7 @@
 
 # Importing the data #
 import numpy as np
-path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/7.%20Decision%20trees/'
+path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
 fname = path + 'spam.csv'
 data = np.genfromtxt(fname, delimiter=',', names=True, dtype=None, encoding='utf-8')
 data.shape
