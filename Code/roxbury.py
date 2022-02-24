@@ -1,60 +1,61 @@
-## Example - Assessing home values in West Roxbury ##
+## Example - House sales in King County ##
 
 # Importing the data #
 import numpy as np
 path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
-fname = path + 'roxbury.csv'
+fname = path + 'king.csv'
 data = np.genfromtxt(fname, delimiter=',', names=True, dtype=None, encoding='utf-8')
 data.shape
-data[:5]
-np.unique(data['floors'])
+data[:2]
 
 # Target vector and feature matrix #
-y = data['value']
-data.dtype.names
-X = data[list(data.dtype.names[1:])]
+y = data['price']/1000
+X = data[list(data.dtype.names[3:-1])]
 from numpy.lib.recfunctions import structured_to_unstructured
 X = structured_to_unstructured(X)
 X.shape
 
-# Linear regression equation #
-from sklearn.linear_model import LinearRegression
-linreg = LinearRegression()
-linreg.fit(X, y)
-round(linreg.score(X, y), 3)
-
-# Predicted values #
-ypred = linreg.predict(X)
-r = np.corrcoef(y, ypred)[0,1]
-round(r**2, 3)
-
-# Scatter plot #
+# The distribution of the sale price #
 from matplotlib import pyplot as plt
-plt.figure(figsize=(6,6))
-plt.scatter(ypred, y, color='black', s=1)
-plt.title('Figure 1. Actual vs predicted value')
-plt.xlabel('Predicted value (thousands)')
-plt.ylabel('Actual value (thousands)');
-
-# Distribution of the home assessed value #
 plt.figure(figsize=(8,6))
-plt.title('Figure 2. Actual value')
+plt.title('Figure 1. Sale price')
 plt.hist(y, color='gray', rwidth=0.97)
-plt.xlabel('Actual value (thousands)');
+plt.xlabel('Sale price (thousands)');
 
-# Trimmed data #
-y_trim = y[(y >= 250) & (y <= 500)]
-X_trim = X[(y >= 250) & (y <= 500)]
-linreg.fit(X_trim, y_trim)
-ypred_trim = linreg.predict(X_trim)
+# # Linear regression (first round) #
+from sklearn.linear_model import LinearRegression
+linreg1 = LinearRegression()
+linreg1.fit(X, y)
+round(linreg1.score(X, y), 3)
+ypred1 = linreg1.predict(X)
 plt.figure(figsize=(6,6))
-plt.scatter(ypred_trim, y_trim, color='black', s=1)
-plt.title('Figure 3. Actual vs predicted value (trimmed data)')
-plt.xlabel('Predicted value (thousands)')
-plt.ylabel('Actual value (thousands)');
+plt.scatter(x=ypred1, y=y, color='black', s=1)
+plt.title('Figure 2. Actual vs predicted price')
+plt.xlabel('Predicted price (thousands)')
+plt.ylabel('Actual price (thousands)');
+np.sum(ypred1 < 0)
 
-# Saving the model (edit path) #
-import joblib
-joblib.dump(linreg, 'linreg.pkl')
-newlinreg = joblib.load('linreg.pkl')
-np.sum(newlinreg.predict(X) != ypred)
+# Incorporating the zipcode #
+X1 = data[list(data.dtype.names[5:-1])]
+X1 = structured_to_unstructured(X1)
+from sklearn.preprocessing import OneHotEncoder
+enc = OneHotEncoder()
+X2 = data['zipcode'].reshape(21613,1)
+enc.fit(X2)
+X2 = enc.transform(X2).toarray()
+X2.shape
+np.unique(X2, return_counts=True)
+X = np.concatenate([X1, X2], axis=1)
+X.shape
+
+# Linear regression (second round) #
+linreg2 = LinearRegression()
+linreg2.fit(X, y)
+round(linreg2.score(X, y), 3)
+ypred2 = linreg2.predict(X)
+plt.figure(figsize=(6,6))
+plt.scatter(x=ypred2, y=y, color='black', s=1)
+plt.title('Figure 3. Actual vs predicted price (2nd round)')
+plt.xlabel('Predicted price (thousands)')
+plt.ylabel('Actual price (thousands)');
+np.sum(ypred2 < 0)
