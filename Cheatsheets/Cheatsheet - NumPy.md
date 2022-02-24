@@ -14,10 +14,6 @@
 
 ### Unstructured arrays
 
-* `np.argmax(arr)`: returns the index of the maximum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the maximum of every column of `arr`. With argument `axis1`, the index of the maximum of every row. 
-
-* `np.argmin(arr)`: returns the index of the minimum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row. 
-
 * `arr.astype()`: converts `arr` to a different data type.
 
 * `arr.dtype`: `returns` the data type of `arr`. If the elements of `arr` are literals, it will be `int64`, `float64`, `<Ul` or `bool`. More complex data can have data type `object`.
@@ -27,6 +23,10 @@
 * `arr.shape`: returns the shape of the array `arr`, as a tuple. For a 1d array, it is `(l,)`, and, for a 2d array, `(r,c)`.
 
 * `np.abs(arr)`: replaces the terms of a numeric array by their absolute values. The same as `abs(arr)`.
+
+* `np.argmax(arr)`: returns the index of the maximum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the maximum of every column of `arr`. With argument `axis1`, the index of the maximum of every row. 
+
+* `np.argmin(arr)`: returns the index of the minimum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row. 
 
 * `np.array(lst)`: for a list `lst` whose elements are literals of the same data type, it returns a 1d array containing the same elements as `lst`. For a list whose elements are lists of the same length, containing literals of the same data type, it returns a 2d array.
 
