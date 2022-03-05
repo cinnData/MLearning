@@ -28,7 +28,7 @@ In general, regression models are evaluated through their prediction errors. The
 
 In a linear regression context, prediction errors are called **residuals**. In the standard approach to linear regression, the regression coefficients are calculated so that the sum of the squared residuals is minimum. This is called the **least squares method**. The errors of a linear equation obtained by means of the least squares method have an important property, that their sum is zero, which is no longer true in other regression models.
 
-Statisticians look at the **residual sum of squares** for evidence of good fit between the regression model and the data. The *R***-squared statistic** is a standardized measure which operationalizes this. More specifically, they take advantage of the variance decomposition formula
+Statisticians look at the **residual sum of squares** for evidence of good fit between the regression model and the data. The *R* **squared statistic** is a standardized measure which operationalizes this. More specifically, they take advantage of the variance decomposition formula
 
 <img src="https://render.githubusercontent.com/render/math?math=\large R^2 = \displaystyle \frac{\textrm{var(Predicted\ values)}} {\textrm{var(Actual\ values)}}\,.">
 
