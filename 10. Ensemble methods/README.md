@@ -2,11 +2,11 @@
 
 ### Ensemble methods
 
-Suppose that you ask a complex question to thousands of random people, and then aggregate their answers. In many cases, you will find that this aggregated answer is better than an expert's answer. This has been called the **wisdom of the crowds**. 
+Suppose that you ask a complex question to thousands of random people, and then aggregate their answers. In many cases, you will find that this aggregated answer is better than an expert's answer. This has been called the **wisdom of the crowds**.
 
 **Ensemble learning** is based on a similar idea. If you aggregate the predictions of a group of regression or classification models, you will often get better predictions than with the best individual model:
 
-* Suppose that you have trained a few regression models, each one achieving a moderate correlation. A simple way to get better predictions is to average the predictions of these models.
+* Suppose that you have trained a few regression models, each one achieving a moderate correlation. A simple way to get better predictions could be to average the predictions of these models.
 
 * In a classification context, you would average the class probabilities. This is called **soft voting**, in contrast to **hard-voting**, which consist in picking the class getting more votes. This course only covers soft voting.
 
@@ -14,7 +14,7 @@ The group of models whose predictions are aggregated is called an **ensemble**. 
 
 ### Random forests
 
-One way to get a diverse ensemble is to use the same algorithm for every predictor, but training it on different random subsets of the training set. When these subsets are extracted by sampling with replacement, the method is called **bagging** (short for bootstrap aggregating). Bagging allows training instances to be sampled several times for the same predictor. 
+One way to get a diverse ensemble is to use the same algorithm for every predictor, but training it on different random subsets of the training set. When these subsets are extracted by sampling with replacement, the method is called **bagging** (short for bootstrap aggregating). Bagging allows training instances to be sampled several times for the same predictor.
 
 The star of bagging ensemble methods is the **random forest** method, which allows extra randomness when growing trees, by using just a random subset of the features at every split. This results in a greater tree diversity, generally yielding an overall better model. Despite its simplicity, random forest models are among the most powerful predictive models available. In general, they have less overfitting problems than other models.
 
@@ -42,7 +42,7 @@ Here follows a classification example:
 
 `gbclf = ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)`
 
-**XGBoost** (extreme gradient boosting) is is an implementation of gradient boosting designed for speed and performance. It has recently been on top of the ranking in applied machine learning competitions. For Python, it is available in the package `xgboost`, which can be used as if it were a scikit-learn subpackage (though other interfaces are available). Gradient boosting optimization takes less time in `xgboost` than in the scikit-learn subpackage. The defaults are `n_estimators=100`, `learning_rate=0.3` and `max_depth=6`. 
+**XGBoost** (extreme gradient boosting) is is an implementation of gradient boosting designed for speed and performance. It has recently been on top of the ranking in applied machine learning competitions. For Python, it is available in the package `xgboost`, which can be used as if it were a scikit-learn subpackage (though other interfaces are available). Gradient boosting optimization takes less time in `xgboost` than in the scikit-learn subpackage. The defaults are `n_estimators=100`, `learning_rate=0.3` and `max_depth=6`.
 
 The `xgboost` version of the preceding example would be:
 
@@ -50,4 +50,4 @@ The `xgboost` version of the preceding example would be:
 
 `xgbclf = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)`
 
-`xgboost` can be installed from the Shell, with `pip install xgboost` or `conda install -c conda-forge xgboost`. The second one works only for Anaconda distributions. Although it is much slower, it is recommended, because `xgboost` has many dependencies, and you may have a conflict of versions.
+`xgboost` can be installed from the shell, with `pip install xgboost` or `conda install -c conda-forge xgboost`. The second one works only for Anaconda distributions. Although it is much slower, it is recommended, because `xgboost` has many dependencies, and you may have a conflict of versions.
