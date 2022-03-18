@@ -10,7 +10,7 @@
 
 * `arr[r1:r2, c1:c2]`: for a 2d array, returns the subarray resulting from selecting the rows from `r1` to `r2-1` and the columns from `c1` to `c2-1`. Omissions are understood as for 1d array.
 
-* `arr[bm]`: for a boolean mask `bm`, returns a subarray of `arr`containg the terms for which `bm` takes value `True`. 
+* `arr[bm]`: for a boolean mask `bm`, returns a subarray of `arr`containg the terms for which `bm` takes value `True`.
 
 ### Unstructured arrays
 
@@ -24,9 +24,9 @@
 
 * `np.abs(arr)`: replaces the terms of a numeric array by their absolute values. The same as `abs(arr)`.
 
-* `np.argmax(arr)`: returns the index of the maximum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the maximum of every column of `arr`. With argument `axis1`, the index of the maximum of every row. 
+* `np.argmax(arr)`: returns the index of the maximum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the maximum of every column of `arr`. With argument `axis1`, the index of the maximum of every row.
 
-* `np.argmin(arr)`: returns the index of the minimum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row. 
+* `np.argmin(arr)`: returns the index of the minimum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row.
 
 * `np.array(lst)`: for a list `lst` whose elements are literals of the same data type, it returns a 1d array containing the same elements as `lst`. For a list whose elements are lists of the same length, containing literals of the same data type, it returns a 2d array.
 
@@ -37,6 +37,8 @@
 * `np.corrcoef([arr1, arr2, ...])`: returns the correlation matrix a list of numeric 1d arrays of the same length. For two arrays, the square brackets can be omitted. It can also take a 2d array, returning the correlations of the row vectors (not of the columns).
 
 * `np.cumsum(arr)`: returns a 1d array containing the cumulative sums of the terms of `arr`. For a 2d array, cumulative sums are calculated row following row. With argument `axis=0`, returns a 2d array containing the cumulative sums calculated separately for every column. With argument `axis1`, separately for every row. The same as `arr.cumsum()`.
+
+* `np.diagonal(arr)`: returns the diagonal of a square 2d array, as a 1d array. The same can be done with `arr.diagonal()`.
 
 * `np.int64(arr)`: converts a `float` or `bool` array to data type `int64`. The same can be done with `arr.astype('int')`.
 
