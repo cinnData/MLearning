@@ -40,7 +40,7 @@ Here follows a classification example:
 
 `from sklearn.ensemble import GradientBoostingClassifier`
 
-`gbclf = ensemble.GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)`
+`gbclf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)`
 
 **XGBoost** (extreme gradient boosting) is an implementation of gradient boosting designed for speed and performance. It has recently been on top of the ranking in applied machine learning competitions. For Python, it is available in the package `xgboost`, which can be used as if it were a scikit-learn subpackage (though other interfaces are available). Gradient boosting optimization takes less time in `xgboost` than in the scikit-learn subpackage. The defaults are `n_estimators=100`, `learning_rate=0.3` and `max_depth=6`.
 
