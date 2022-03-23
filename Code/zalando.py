@@ -50,7 +50,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/7, random_
 
 # Random forest classifier #
 from sklearn.ensemble import RandomForestClassifier
-rfclf = RandomForestClassifier(max_leaf_nodes=256, n_estimators=100)
+rfclf = RandomForestClassifier(max_leaf_nodes=256, n_estimators=100, random_state=0)
 rfclf.fit(X_train, y_train)
 round(rfclf.score(X_train, y_train), 3), round(rfclf.score(X_test, y_test), 3)
 
@@ -78,5 +78,3 @@ round(mlpclf.score(X_train, y_train), 3), round(mlpclf.score(X_test, y_test), 3)
 mlpclf = MLPClassifier(hidden_layer_sizes=(32), max_iter=25, random_state=0)
 mlpclf.fit(X_train, y_train)
 round(mlpclf.score(X_train, y_train), 3), round(mlpclf.score(X_test, y_test), 3)
-
-
