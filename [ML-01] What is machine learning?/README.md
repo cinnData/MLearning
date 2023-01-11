@@ -8,7 +8,7 @@ In general, an algorithm is a set of rules that precisely define a sequence of o
 
 The model learnt from the **training data** is ofetn tested on different data, which are then called **test data**. This is **model validation**. Validation is needed for models whose complexity allows them to overfit the data. **Overfitting** happens when the performance of a model on fresh data is significantly worse than its performance on the training data. Overfitting is a fact of life for many machine learning algorithms, eg for those used to develop neural network models. So, validation must be integrated in the development of many models.
 
-### Supervised and unsupervised learning
+## Supervised and unsupervised learning
 
 In machine learning, based on the structure of the data used in the training process, it is usual to distinguish between supervised and unsupervised learning. Roughly speaking, **supervised learning** is what the statisticians call prediction, that is, the description of one variable ($Y$), in terms of other variables (the $X$'s). In the ML context, $Y$ is called the **target**, and the $X$'s are called **features**. The units (they can be customers, products, etc) on which the features and the target are observed are called **samples** (this term has a different meaning in statistics).
 
