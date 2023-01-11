@@ -18,7 +18,7 @@ In an example of regression, we may try to predict the price of a house from a s
 
 In **unsupervised leaning**, there is no target to be predicted (only $X$'s). The objective is to learn patterns from the data. Unsupervised learning is more difficult, and more creative, than supervised learning. The two classics of unsupervised learning are **clustering**, which consists in grouping objects based on their similarity, and **association rules** mining, which consists in extracting from the data rules such as *if A, then B*. A typical application of clustering in business is **customer segmentation**. Association rules are applied in **market basket analysis**, to associate products that are purchased (or viewed in a website) together. Other relevant examples of unsupervised learning are **dimensionality reduction** and **anomaly detection**.
 
-### Variations
+## Variations
 
 In-between supervised and unsupervised learning, we have **semisupervised learning**. Another variation is **reinforcement learning**, which is one of the currrent trending ML topics, because of its unexpected success in playing games like go and StarCraft II. It is not considered as supervised nor as unsupervised learning. For more information on this, see Mitchell (2020).
 
