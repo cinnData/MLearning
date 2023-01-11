@@ -1,6 +1,6 @@
 # [ML-01] What is machine learning?
 
-### Machine learning
+## Machine learning
 
 **Machine learning** (ML) is a branch of **artificial intelligence** (AI). You may have heard about other branches, such as robotics, or speech recognition. The objective of machine learning is the development and implementation of **algorithms** which learn from data how to accomplish difficult or tiring tasks.
 
