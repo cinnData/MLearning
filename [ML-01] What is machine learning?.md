@@ -26,9 +26,9 @@ From the point of view of the practical implementation, we can also distinguish 
 
 ## References
 
-E Alpaydin (2016), Machine Learning, MIT Press.
+E Alpaydin (2016), *Machine Learning*, MIT Press.
 
-P Domingos (2015), The Master Algorithm, Basic Books.
+P Domingos (2015), *The Master Algorithm*, Basic Books.
 
-M Mitchell (2020), Artificial Intelligence --- A Guide for Thinking Humans, Pelican.
+M Mitchell (2020), *Artificial Intelligence: A Guide for Thinking Humans*, Pelican.
 
