@@ -20,7 +20,9 @@ In **unsupervised leaning**, there is no target to be predicted (only $X$'s). Th
 
 ## Variations
 
-In-between supervised and unsupervised learning, we have **semisupervised learning**. Another variation is **reinforcement learning**, which is one of the currrent trending ML topics, because of its unexpected success in playing games like go and StarCraft II. It is not considered as supervised nor as unsupervised learning. For more information on this, see Mitchell (2020).
+In-between supervised and unsupervised learning, we have **self-supervised learning** and **semi-supervised learning**. 
+
+Another variation is **reinforcement learning**, which is one of the current trending ML topics, because of its unexpected success in playing games like go and StarCraft II. It is not considered as supervised nor as unsupervised learning. For more information on this, see Mitchell (2020).
 
 From the point of view of the practical implementation, we can also distinguish between batch and on-line learning. In **batch learning**, the algorithm is trained and tested on given data sets and applied for some time without modification. In **on-line training**, it is continuously retrained with the incoming data. The choice between batch and continuous learning depends on practical issues, rather than on theoretical arguments.
 
@@ -31,4 +33,3 @@ E Alpaydin (2016), *Machine Learning*, MIT Press.
 P Domingos (2015), *The Master Algorithm*, Basic Books.
 
 M Mitchell (2020), *Artificial Intelligence: A Guide for Thinking Humans*, Pelican.
-
