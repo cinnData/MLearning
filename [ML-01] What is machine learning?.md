@@ -20,7 +20,9 @@ In **unsupervised leaning**, there is no target to be predicted (only $X$'s). Th
 
 ## Variations
 
-In-between supervised and unsupervised learning, we have **self-supervised learning** and **semi-supervised learning**. 
+In a classification context, distinction is frequently made between labeled and unlabeled data. The **labels** are the target values. When the data come with labels, one can use supervised learning and, when they are not, unsupervised learning. For instance, in image classification, the data ususally consist in a set of pictures. The pictures can be human-labeled, which makes the training data more expensive, or unlabeled.
+
+In-between supervised and unsupervised learning, we have **semi-supervised learning**, which combines supervised and unsupervised learning, requiring only a small portion of the learning data be labeled. An alternative approach is **self-supervised learning**, which uses only unlabeled data. A well known example of self-supervised learning is Google's **word2vec**, a technique which learns word associations to generate a representation of words as vectors in a multidimensional space. This representation is used later in other jobs.
 
 Another variation is **reinforcement learning**, which is one of the current trending ML topics, because of its unexpected success in playing games like go and StarCraft II. It is not considered as supervised nor as unsupervised learning. For more information on this, see Mitchell (2020).
 
