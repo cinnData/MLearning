@@ -1,73 +1,75 @@
 # Cheatsheet - NumPy
 
-### Slicing and indexing
+## Slicing and indexing
 
-* `arr[n]`: for a 1d array `arr`, returns the term of index `n`. Since Python starts counting at zero, this would be the entry at the `n-1`-th place.
+* `arr[n]`: for a 1D array `arr`, returns the term of index `n`. Since Python starts counting at zero, this would be the entry in place `n-1`.
 
-* `arr[n:m]`: for a 1d array `arr`, returns a subarray containing the terms of `arr` whose indexes go from `n` to `m-1`. If `n` is missing, it is assumed to be equal to `0`. If `m` is missing, it is assumed to be equal to `len(arr)`.
+* `arr[n:m]`: for a 1D array, returns a subarray containing the terms of `arr` whose indexes go from `n` to `m-1`. If `n` is missing, it is assumed to be equal to `0`. If `m` is missing, it is assumed to be equal to `len(arr)`.
 
-* `arr[n,m]`: for a 2d array `arr`, returns the term at row `n` and  column `m`.
+* `arr[n,m]`: for a 2D array, returns the term at row `n` and  column `m`.
 
-* `arr[r1:r2, c1:c2]`: for a 2d array, returns the subarray resulting from selecting the rows from `r1` to `r2-1` and the columns from `c1` to `c2-1`. Omissions are understood as for 1d array.
+* `arr[r1:r2, c1:c2]`: for a 2D array, returns the subarray resulting from selecting the rows from `r1` to `r2-1` and the columns from `c1` to `c2-1`. Omissions are understood as for a 1D array.
 
-* `arr[bm]`: for a boolean mask `bm`, returns a subarray of `arr`containg the terms for which `bm` takes value `True`.
+* `arr[bm]`: for a boolean mask `bm`, returns a subarray containing the terms for which `bm` takes value `True`.
 
-### Unstructured arrays
+## NumPy attributes
 
-* `arr.astype()`: converts `arr` to a different data type.
+* `arr.dtype`: returns the data type of `arr`. If the elements of `arr` are literals, it will be `int64`, `float64`, `<Ul` (`l` being the maximum length) or `bool`. More complex data can have data type `object`.
 
-* `arr.dtype`: `returns` the data type of `arr`. If the elements of `arr` are literals, it will be `int64`, `float64`, `<Ul` or `bool`. More complex data can have data type `object`.
+* `arr.ndim`: returns the number of dimensions, 1 for a 1D array and 2 for 2D array.
 
-* `arr.ndim`: returns the number of dimensions, 1 for a 1d array and 2 for 2d array.
+* `arr.shape`: returns the shape of the array, as a tuple. For a 1D array with `l` terms, it is `(l,)`, and, for a 2D array with `r` rows and `c` columns, `(r,c)`.
 
-* `arr.shape`: returns the shape of the array `arr`, as a tuple. For a 1d array, it is `(l,)`, and, for a 2d array, `(r,c)`.
+## NumPy methods and functions
+
+* `arr.astype()`: converts an array to a different data type.
 
 * `np.abs(arr)`: replaces the terms of a numeric array by their absolute values. The same as `abs(arr)`.
 
-* `np.argmax(arr)`: returns the index of the maximum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the maximum of every column of `arr`. With argument `axis1`, the index of the maximum of every row.
+* `np.argmax(arr)`: returns the index of the maximum term of an array. With argument `axis=0`, returns a 1D array containing the index of the maximum of every column of `arr`. With argument `axis=1`, the index of the maximum of every row.
 
-* `np.argmin(arr)`: returns the index of the minimum term of `arr`. With argument `axis=0`, returns a 1d array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row.
+* `np.argmin(arr)`: returns the index of the minimum term of an array `arr`. With argument `axis=0`, returns a 1D array containing the index of the minimum of every column of `arr`. With argument `axis1`, the index of the minimum of every row.
 
-* `np.array(lst)`: for a list `lst` whose elements are literals of the same data type, it returns a 1d array containing the same elements as `lst`. For a list whose elements are lists of the same length, containing literals of the same data type, it returns a 2d array.
+* `np.array(lst)`: for a list `lst` whose elements are literals of the same data type, returns a 1D array containing the same elements as `lst`. For a list whose elements are lists of the same length, containing literals of the same data type, returns a 2D array.
 
-* `np.argsort(arr)`: takes a 1d array `arr` and returns a 1d array containing the index that every term will take if `arr` were sorted in ascending order.
+* `np.argsort(arr)`: takes a 1D array `arr` and returns a 1D array containing the index that every term will take if `arr` were sorted in ascending order.
 
-* `np.concatenate([arr1, arr2, ...], axis=n)`: concatenates a list of arrays vertically (`axis=0`) or horizontally (`axis=1`). The default is `axis=0`. When `axis=0`, all the arrays must have the same number of columns, and, when `axis=1`, the same number of rows.
+* `np.corrcoef([arr1, arr2, ...])`: returns the correlation matrix of a list of numeric 1D arrays of the same length. For two arrays, the square brackets can be omitted. It can also take a 2D array, returning the correlations of the row vectors (not that of the columns).
 
-* `np.corrcoef([arr1, arr2, ...])`: returns the correlation matrix a list of numeric 1d arrays of the same length. For two arrays, the square brackets can be omitted. It can also take a 2d array, returning the correlations of the row vectors (not of the columns).
+* `np.cumsum(arr)`: returns a 1D array containing the cumulative sums of the terms of `arr`. For a 2D array, the cumulative sums are calculated row following row. With argument `axis=0`, returns a 2D array containing the column cumulative sums. With argument `axis1`, the row cumulative sums. The same as `arr.cumsum()`.
 
-* `np.cumsum(arr)`: returns a 1d array containing the cumulative sums of the terms of `arr`. For a 2d array, cumulative sums are calculated row following row. With argument `axis=0`, returns a 2d array containing the cumulative sums calculated separately for every column. With argument `axis1`, separately for every row. The same as `arr.cumsum()`.
+* `np.diagonal(arr)`: returns the diagonal of a square 2D array, as a 1D array. The same as `arr.diagonal()`.
 
-* `np.diagonal(arr)`: returns the diagonal of a square 2d array, as a 1d array. The same can be done with `arr.diagonal()`.
+* `np.int64(arr)`: converts a `float` or `bool` array to data type `int64`. The same as `arr.astype('int')`.
 
-* `np.int64(arr)`: converts a `float` or `bool` array to data type `int64`. The same can be done with `arr.astype('int')`.
+* `len(arr)`: for a 1D array, returns the number of terms of `arr`. For a 2D array, the number of rows.
 
-* `len(arr)`: for a 1d array, returns the number of terms of `arr`. For a 2d array, the number of rows.
+* `np.linspace(a, b, n)`: returns a 1D array with `n` equally spaced terms, starting by `a` and ending by `b`.
 
-* `np.linspace(a,b,n)`: returns a 1d array with `n` equally spaced terms, starting by `a` and ending by `b`.
+* `np.max(arr)`: returns the maximum of the terms of `arr`. With argument `axis=0`, returns a 1D array containing the column maxima. With `axis=1`, the row maxima. The same as `arr.max()`.
 
-* `np.max(arr)`: returns the maximum of the terms of `arr`. With argument `axis=0`, returns a 1d array containing the maximums of the columns of `arr`. With argument `axis1`, the maximums of the rows. The same as `arr.max()`.
+* `np.mean(arr)`: returns the mean of the terms of `arr`. With argument `axis=0`, returns a 1D array containing the column means. With `axis=1`, the row means. The same as `arr.mean()`.
 
-* `np.mean(arr)`: returns the mean of the terms of `arr`. With argument `axis=0`, returns a 1d array containing the column means. With argument `axis1`, the row means. The same as `arr.mean()`.
+* `np.min(arr)`: returns the minimum of the terms of `arr`. With argument `axis=0`, returns a 1D array containing the column minima. With `axis=1`, the row minima. The same as `arr.min()`.
 
-* `np.min(arr)`: returns the minimum of the terms of `arr`. With argument `axis=0`, returns a 1d array containing the minimums of the columns of `arr`. With argument `axis1`, the minimums of the rows.  The same as `arr.min()`.
+* `np.round(arr, d)`: rounds the terms of a numeric array to a specified number of digits. The same as `arr.round(d)`.
 
-* `np.round(arr, d)`: rounds the terms of a numeric array to a specified number of digits. The same can be obtained with `arr.round(d)`.
+* `np.reshape(arr, sh)`: converts `arr` to shape `sh`. The number of terms of the reshaped array must be equal to that of the original array. The same as `arr.reshape(sh)`.
 
-* `np.reshape(arr, sh)`: changes the shape of an array. The number of terms of the reshaped array must be equal to that of the original array. The same can be done with `arr.reshape(sh)`.
+* `np.sort(arr)`: sorts a 1D array in ascending order. To reverse this, add `[::-1]`. For higher dimensional arrays, look at the manual. 
 
-* `np.sort(arr)`: sorts a 1d array in ascending order. To reverse this, add `[::-1]`. For higher dimensional arrays, look at the manual.
+* `arr.sort()`: sorts a 1D array in ascending order, without returning the new version. The original array is not retained. Not the same as `np.sort(arr)`.
 
-* `np.sum(arr)`: returns the sum of the terms of `arr`. With argument `axis=0`, returns a 1d array containing the column totals. With argument `axis1`, the row totals.  The same can be obtained with `arr.sum()`.
+* `np.sum(arr)`: returns the sum of the terms of `arr`. With argument `axis=0`, returns a 1D array containing the column totals. With `axis=1`, the row totals. The same as `arr.sum()`.
 
 * `np.vectorize(fname)`: vectorizes the function `fname`, so it can take NumPy arrays as arguments.
 
-* `np.transpose(arr)`: transposes a 2d array. The same as `arr.transpose()` and `arr.T`.
+* `np.transpose(arr)`: transposes a 2D array. The same as `arr.transpose()` and `arr.T`.
 
-* `np.unique(arr)`: returns a 1d array containing the unique terms of `arr`, in ascending order. With additional argument `returns_counts=True`, it returns a second array containing the number of occurrences of every unique value.
+* `np.unique(arr)`: returns a 1D array containing the unique terms of `arr`, in ascending order. With the additional argument `returns_counts=True`, returns a second array containing the number of occurrences of every unique value.
 
-### Structured arrays
+## Joining NumPy arrays
 
-* `np.genfromtxt(fname, delimiter=',', names=True, dtype=None, encoding='utf-8')`: imports data from a CSV file to a structured array, taking the column names from first row. For variations, look at the manual.
+* `np.concatenate([arr1, arr2, ...], axis=n)`: joins a sequence of arrays along an existing axis. The default is `axis=0`. For instance, if `arr1` and `arr2` are two matrices of the same number of columns, `np.concatenate([arr1, arr2])` returns a matrix with the same number of columns, with `arr1` on top of `arr2`. If they are two matrices of the same number of rows, `np.concatenate([arr1, arr2], axis=1)` returns a matrix with the same of rows with `arr1` on the left of `arr2`. 
 
-* `structured_to_unstructured(arr)`: converts a structured array to an unstructured (ordinary) array. The subpackage `numpy.lib.recfunctions` must be already imported.
+* `np.stack([arr1, arr2, ...], axis=n)`: joins a sequence of arrays of the same dimensions along a new axis. The axis parameter specifies the index of the new axis in the dimensions of the result. The default is `axis=0`. For instance, if `arr1` and `arr2` are two vectors of the same length, `np.stack([arr1, arr2])` puts them as the rows of a matrix, while `np.stack([arr1, arr2], axis=1)` puts them as the columns of a matrix. Note that stack increases the dimension, while concatenate leaves the dimension unchanged.
