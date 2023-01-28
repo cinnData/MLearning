@@ -32,7 +32,7 @@ Q1. Is there a trend in the opening price?
 
 Q2. The daily returns of an asset are derived from the asset prices as follows. If $P_t$ is the price at day $t$, the daily return at this day is given by 
 
-$$R_t = \frac{P_t}{P_{t−1}} − 1.$$
+$$r(t) = \frac{p(t)}{p(t−1)} − 1.$$
 
 Calculate the daily returns for the opening price. 
 
