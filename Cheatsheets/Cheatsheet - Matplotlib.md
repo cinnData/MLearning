@@ -1,6 +1,6 @@
 # Cheatsheet - Matplotlib
 
-### Main plot types
+## Main plot types
 
 * `plt.hist`: histogram.
 
@@ -8,7 +8,7 @@
 
 * `plt.scatter`: scatter plot.
 
-### Line style
+## Line style
 
 Specified by the argument `linestyle` (in short, `ls`). The default is `linestyle='solid'`.
 
@@ -20,7 +20,7 @@ Specified by the argument `linestyle` (in short, `ls`). The default is `linestyl
 
 * Dotted line: `'dotted'` (`:`).
 
-### Color
+## Color
 
 Specified by the argument `color` (in short, `c`). The default is `color='blue'`.
 
@@ -40,9 +40,9 @@ Specified by the argument `color` (in short, `c`). The default is `color='blue'`
 
 * White: `'white'` (`'w'`).
 
-### Marker style
+## Marker style
 
-Specified by the argument `marker` (in short, `c`). The default of `plt.plot` is `marker=None`.
+Specified by the argument `marker`. The default of `plt.plot` is `marker=None`.
 
 * Point: `'.'`.
 
@@ -58,7 +58,7 @@ Specified by the argument `marker` (in short, `c`). The default of `plt.plot` is
 
 * Diamond: `'D'`.
 
-### Additional pyplot features
+## Additional pyplot features
 
 * `plt.figure`: allows to change some default specifications, such as `figsize`.
 
@@ -72,4 +72,4 @@ Specified by the argument `marker` (in short, `c`). The default of `plt.plot` is
 
 * `plt.annotate`: annotates individual observations.
 
-* `plt.savefig`: saves the figure to a file. The extension of the file name (eg `.pdf`) determines the file format.
+* `plt.savefig`: saves the figure to a file. The extension of the file name (*e.g*. `.pdf`) determines the file format.
