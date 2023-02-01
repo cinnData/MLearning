@@ -4,7 +4,7 @@
 
 The package **scikit-learn** (sklearn in the code) is a machine learning toolkit, built on top of NumPy, SciPy and Matplotlib. To get an idea of the hierarchy and the contents of the various scikit-learn subpackages, the best source is the **scikit-learn API Reference** (`scikit-learn.org/stable/modules/classes.html`). Some of these subpackages will appear in this course: `linear_model`, `tree`, `metrics`, `ensemble`, etc.
 
-In Python, a **class** is like an object constructor, or a "blueprint" for creating objects. The subpackages that we use for supervised learning contain_ a collection of **estimator classes**, or ways to create and apply predictive models. In this course you will see a number of these classes: `LinearRegression`, `LogisticRegression`, `cDecisionTreeClassifier`, etc.
+In Python, a **class** is like an object constructor, or a "blueprint" for creating objects. The subpackages that we use for supervised learning contain_ a collection of **estimator classes**, or ways to create and apply predictive models. In this course you will see a number of these classes: `LinearRegression`, `LogisticRegression`, `DecisionTreeClassifier`, etc.
 
 The scikit-learn API provides rules for writing your code which are quite consistent across the different estimator classes. We see how this works for linear regression in this lecture. The first time you will find it a bit awkward, but you will get used after some examples.
 
