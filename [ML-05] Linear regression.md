@@ -138,4 +138,4 @@ Do not forget to add the path for the PKL file. You can recover the model, anyti
 
 ```
 newreg = joblib.load('reg.pkl')
-``
+```
