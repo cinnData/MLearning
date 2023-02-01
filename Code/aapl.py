@@ -13,7 +13,7 @@ data[1]
 header = data[0]
 header
 import numpy as np
-X = np.array(data[1:])[:, 1:].astype(float)
+X = np.array(data)[1:, 1:].astype(float)
 X[:5, :]
 
 # Q1. Trend in the opening price #
