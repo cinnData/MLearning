@@ -28,7 +28,7 @@ $$\textrm{Prediction\ error} = \textrm{Actual\ value} + \textrm{Predicted\ value
 
 The **coefficient of determination** is a popular metric for the evaluation of regression models. It is given by the formula
 
-$$R^2 = 1 - \displaystyle \frac{\textrm{SSE}}{{\textrm{SSY}}}\,,$$ 
+$$R^2 = 1 - \displaystyle \frac{\textrm{SSE}}{{\textrm{SSY}}},$$ 
 
 in which SSE is the sum of the squared errors and SSY is the sum of the squared centered target values (subtracting the mean).
 
