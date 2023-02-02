@@ -16,9 +16,13 @@
 
 * `arr[r1:r2, c1:c2]`: returns the subarray resulting from selecting the row indexes from `r1` to `r2-1` and the column indexes from `c1` to `c2-1`.
 
-* `arr[lst, c1:c2]`: for a list of indexes `lst`, returns the subarray resulting from selecting the row indexes from `lst` the column indexes from `c1` to `c2-1`. A range can also be used here.
+* `arr[lst, c1:c2]`: for a list of indexes `lst`, returns the subarray resulting from selecting the row indexes from `lst` and the column indexes from `c1` to `c2-1`. A range can also be used here.
 
-* `arr[r1:r2. lst]`: for a list of indexes `lst`, returns the subarray resulting from selecting the row indexes from `r1` to `r2-1` and the column indexes from `lst`. A range can also be used here.
+* `arr[bm, c1:c2]`: for a 1D boolean mask `bm`, with the same length as the number of rows of `arr`, returns the subarray resulting from selecting the row indexes for which `bm` takes value `True` and the column indexes from `c1` to `c2-1`.
+
+* `arr[r1:r2, lst]`: similar to `arr[lst, c1:c2]`.
+
+* `arr[bm, c1:c2]`: similar to `arr[bm, c1:c2]`.
 
 ## NumPy attributes
 
