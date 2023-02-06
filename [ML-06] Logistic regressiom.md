@@ -74,7 +74,7 @@ $$F(x) = \frac {1} {1 + \exp(-x)}.$$
 
 The graph of the logistic function has an inverted S shape, as shown in the figure. As given by this function, the scores fall within the unit interval ($0 < p < 1$). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples in order to select those to which a specific policy is going to be applied.
 
-![](figure/fig_6.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_6.1.png)
 
 The coef cients of the logistic regression equation are optimal, meaning that a certain loss function, called the **cross-entropy**, extracted from information theory, achieves its minimum value. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users. So, it is recommended to use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical package `StatsModels`.
 
