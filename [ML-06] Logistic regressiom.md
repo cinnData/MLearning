@@ -34,31 +34,31 @@ The four cells of the confusion matrix are referred to as **true positive** (act
 
 The proportion of samples classified in the right way, that is, those for which the actual and the predicted values coincide, is called the accuracy,
 
-$$\textrm{Accuracy} = \frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}\,.$$
+$$\textrm{Accuracy} = \frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}.$$
 
 The accuracy can be calculated directly, or extracted from the confusion matrix, as the sum of the diagonal terms divided by the sum of all terms. Although it looks as the obvious metric for the evaluation of a classifier, the accuracy is not always adequate, specially when the data present class imbalance. For instance, if you have 90% of negative samples in your training data set, classifying all the samples as negative gives you 90% accuracy (you don't need machine learning for that!).
 
 In a business context, a visual inspection of the confusion matrix is always recommended. It will probably help you to decide whether the classifier is going to be useful. In many cases, it is practical to examine the performance of the classifier separately on the actual positives and the actual negatives. Then, the usual metrics are:
 
 * The **true positive** rate is the proportion of right classification among the actual positives,
-$$\textrm{TP\ rate} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}\,.$$
+$$\textrm{TP\ rate} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}.$$
 
 * The **false positive rate** is the proportion of wrong classification among the actual negatives,
-$$\textrm{FP\ rate} = \frac{\textrm{FP}} {\textrm{FP}+\textrm{TN}}\,.$$
+$$\textrm{FP\ rate} = \frac{\textrm{FP}} {\textrm{FP}+\textrm{TN}}.$$
 
 In a good model, the true positive rate should be high and the false positive rate low. The relative importance given to these statistics depends on the actual application. Their advantage is that they are still valid when the proportion of positive samples in the training data has been artificially inflated, because they are calculated separately on the actual positives and the actual negatives. This may sound strange, but it is recommended in cases of class imbalance. When the proportion of positive samples is inflated, the training data cannot be taken as representative of the current population, and the accuracy derived from the confusion matrix cannot be extrapolated to the real world.
 
 An alternative to the true positive and false negative rates, used by scikit-learn, is based on the precision and the recall:
 
 * The **precision** is the proportion of right classification among the predicted positives,
-$$\textrm{Precision} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FP}}\,.$$
+$$\textrm{Precision} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FP}}.$$
 
 * The **recall** is the same as the true positive rate,
-$$\textrm{Recall} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}\,.$$
+$$\textrm{Recall} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}.$$
 
 In a good model, precision and recall should be high. Some authors combine precision and recall in a single metric (in mathematical terms, it is the harmonic mean), called the **F1-score**, also available in scikit-learn:
 $$\textrm{F1-score} = \frac{\textrm{2}\times\textrm{Precision}\times\textrm{Recall}} {\textrm{Precision}+\textrm{Recall}}
-= \frac{2\,\textrm{TP}} {2\,\textrm{TP}+2\,\textrm{FP}+\textrm{FN}}\,.$$
+= \frac{2\,\textrm{TP}} {2\,\textrm{TP}+2\,\textrm{FP}+\textrm{FN}}.$$
 
 ## Logistic regression
 
@@ -70,7 +70,7 @@ $$p = F\big(b_0 + b_1X_1 + b_2X_2 +_ \cdots + b_kX_k\big).$$
 
 Here, $p$ is the predictive score and $F$ is the **logistic function**, whose mathematical expression is
 
-$$F(x) = \frac {1} {1 + \exp(-x)}\,.$$
+$$F(x) = \frac {1} {1 + \exp(-x)}.$$
 
 The graph of the logistic function has an inverted S shape, as shown in the figure. As given by this function, the scores fall within the unit interval ($0 < p < 1$). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples in order to select those to which a specific policy is going to be applied.
 
