@@ -48,4 +48,4 @@ Q1. Develop a model, based on logistic regression equation, to calculate a **chu
 
 Q2. How is the distribution of churn scores? Is it different for the churners and the non-churners?
 
-Q3. Set an adequate **cutoff** for the churning score and apply it to decide which customers are potential churners. What is the **true positive rate**? And the **false positive rate**?
+Q3. Set an adequate **threshold** for the churning score and apply it to decide which customers are potential churners. What is the **true positive rate**? And the **false positive rate**?
