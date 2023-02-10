@@ -36,7 +36,7 @@
 
 * `np.abs(arr)`: replaces the terms of a numeric array by their absolute values. The same as `abs(arr)`.
 
-* `np.arange(n, m, s)`: returns a 1D array containing the integers from `n` to `m-1`, making steps of `s`. So, `np.arange(2, 10, 3)` contains `2`, `5` and `8`. If `s` is negative (and `n`is higher than `m`), steps are made backwards`, from `n` to `m+1`. The same as `np.array(range(n, m, s))`.
+* `np.arange(n, m, s)`: returns a 1D array containing the integers from `n` to `m-1`, making steps of `s`. So, `np.arange(2, 10, 3)` contains `2`, `5` and `8`. If `s` is negative (and `n`is higher than `m`), steps are made backwards, from `n` to `m+1`. The same as `np.array(range(n, m, s))`.
 
 * `np.argmax(arr)`: returns the index of the maximum term of an array. With argument `axis=0`, returns a 1D array containing the index of the maximum of every column of `arr`. With argument `axis=1`, the index of the maximum of every row.
 
@@ -52,11 +52,13 @@
 
 * `np.cumsum(arr)`: returns a 1D array containing the cumulative sums of the terms of `arr`. For a 2D array, the cumulative sums are calculated row following row. With argument `axis=0`, returns a 2D array containing the column cumulative sums. With argument `axis1`, the row cumulative sums. The same as `arr.cumsum()`.
 
+* `np.delete(arr, lst)`: for a 1D array, deletes the terms whose indexes are in the list `lst`. It returns the complement of `arr[lst]`. For a 2D array, an axis can be specified. With `axis=0`, it deletes rows and, with `axis=1`, columns . `lst` can be replaced by a single index, or by a range.
+
 * `np.diagonal(arr)`: returns the diagonal of a square 2D array, as a 1D array. The same as `arr.diagonal()`.
 
 * `np.int64(arr)`: converts a `str`, `float` or `bool` array to data type `int64`. The same as `arr.astype('int')`.
 
-* `np.float64(arr)`: converts a `str``, `int` or `bool` array to data type `float64`. The same as `arr.astype('float')`.
+* `np.float64(arr)`: converts a `str`, `int` or `bool` array to data type `float64`. The same as `arr.astype('float')`.
 
 * `len(arr)`: for a 1D array, returns the number of terms of `arr`. For a 2D array, the number of rows.
 
