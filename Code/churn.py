@@ -1,31 +1,39 @@
 ## Example - The churn model ##
 
 # Importing the data #
-import numpy as np
-path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
-fname = path + 'churn.csv'
-data = np.genfromtxt(fname, delimiter=',', names=True, dtype=None, encoding='utf-8')
-data.shape
-data[:5]
-round(np.mean(data['churn']), 3)
+import csv
+with open('Dropboxml_course/data/churn.csv', mode='r') as conn:
+	reader = csv.reader(conn)
+	data = list(reader)
+len(data)
+
+# Headers #
+header = data[0]
+header
+len(header)
 
 # Target vector and feature matrix #
-y = data['churn']
-X = data[list(data.dtype.names[1:-1])]
-from numpy.lib.recfunctions import structured_to_unstructured
-X = structured_to_unstructured(X)
+import numpy as np
+Xy = np.array(data[1:])
+Xy.shape
+y = Xy[:, 13].astype(float)
+y.shape
+X = Xy[:, 1:13].astype(float)
 X.shape
 
-# Logistic regression equation #
+# Churning rate #
+y.mean().round(3)
+
+# Q1a. Logistic regression model #
 from sklearn.linear_model import LogisticRegression
-logclf = LogisticRegression(max_iter=1500)
-logclf.fit(X, y)
-round(logclf.score(X, y), 3)
+clf = LogisticRegression(max_iter=1500)
+clf.fit(X, y)
+round(clf.score(X, y), 3)
 
-# Predictive scores #
-scores = logclf.predict_proba(X)[:, 1]
+# Q1b. Predictive scores #
+scores = clf.predict_proba(X)[:, 1]
 
-# Distribution of the predictive scores #
+# Q2. Distribution of the predictive scores #
 from matplotlib import pyplot as plt
 # Set the size of the figure
 plt.figure(figsize = (14,6))
@@ -40,16 +48,15 @@ plt.hist(scores[y == 0], range=(0,1), color='gray', rwidth=0.96)
 plt.title('Figure b. Scores (non-churners)')
 plt.xlabel('Churn score');
 
-# The default cutoff #
-ypred = logclf.predict(X)
+# Q3a. The default cutoff #
+y_pred = clf.predict(X)
 from sklearn.metrics import confusion_matrix
-confusion_matrix(y, ypred)
-round(np.mean(y == ypred), 3)
+confusion_matrix(y, y_pred)
+round(np.mean(y == y_pred), 3)
 
-# A lower cutoff #
-ypred = (scores > 0.2).astype('int')
-confusion_matrix(y, ypred)
-round(np.mean(y == ypred), 3)
-round(np.mean(ypred[y == 1]), 3)
-round(np.mean(ypred[y == 0]), 3)
-
+# Q3b. A lower cutoff #
+y_pred = (scores > 0.2).astype('int')
+confusion_matrix(y, y_pred)
+round(np.mean(y == y_pred), 3)
+round(np.mean(y_pred[y == 1]), 3)
+round(np.mean(y_pred[y == 0]), 3)
