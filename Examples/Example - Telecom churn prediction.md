@@ -19,6 +19,7 @@ The objective of this example is to develop a churn model for a telecom company.
 The data come in the file `telecom.csv`. The variables included in the data set are: 
 
 * `id`, customer's unique ID.
+
 * `gender`, customer's gender (Female/Male).
 
 * `senior_citizen`, a dummy for being more than 60 years of age.
