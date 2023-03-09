@@ -28,7 +28,7 @@ The multilayer perceptron could be seen as if the samples were circulating throu
 
 Let me help your intuition with the graphical representation of a small network. The model of the figure below is a MLP regressor with one hidden layer of two nodes. The diagram is just a graphical representation of a set of three equations. The two equations that allow us to go from the input layer to the hidden layer combine the features with weights $w_{1A}$, $w_{2A}$ and $w_{3A}$, and $w_{1B}$, $w_{2B}$ and $w_{3B}$, respectively. The biases are $w_{0A}$ and $w_{0B}$, respectively.
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig%207.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig%_7.1.png)
 
 At the hidden nodes  and , the activation function is applied to the values given by these equations. Once the activation has been applied,  and  are combined in the third equation with weights  and  and bias , to obtain the predicted value of . This model has a total of 11 parameters.
 
