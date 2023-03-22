@@ -12,6 +12,4 @@
 
 * Example - Handwritten digit recognition: `digits.csv.zip` 
 
-* Example - Labeling Zalando pics: `zalando.csv.zip`
-
 * Example - Marketing to frequent fliers: `fliers.csv`
