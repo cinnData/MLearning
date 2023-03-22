@@ -8,10 +8,10 @@
 
 * Example - The spam filter: `spam.csv`
 
-* 
-
 * Example - Telecom churn prediction: `telecom.csv`
 
 * Example - Handwritten digit recognition: `digits.zip` 
 
 * Example - Labeling Zalando pics: `zalando.zip`
+
+* Example - Marketing to frequent fliers: `fliers.csv`
