@@ -10,8 +10,8 @@
 
 * Example - Telecom churn prediction: `telecom.csv`
 
-* Example - Handwritten digit recognition: `digits.zip` 
+* Example - Handwritten digit recognition: `digits.csv.zip` 
 
-* Example - Labeling Zalando pics: `zalando.zip`
+* Example - Labeling Zalando pics: `zalando.csv.zip`
 
 * Example - Marketing to frequent fliers: `fliers.csv`
