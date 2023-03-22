@@ -2,13 +2,13 @@
 
 * Example - Apple Inc. stock prices: `aapl.csv`
 
-* Example - Assessing home values in West Roxbury: `roxbury.csv`
+* Example - House sales in King County: `king.csv`
 
 * Example - The churn model: `churn.csv`
 
 * Example - The spam filter: `spam.csv`
 
-* Example - House sales in King County: `king.csv`
+* 
 
 * Example - Telecom churn prediction: `telecom.csv`
 
