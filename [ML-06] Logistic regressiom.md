@@ -57,7 +57,7 @@ $$\textrm{Precision} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FP}}.$$
 $$\textrm{Recall} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}.$$
 
 In a good model, precision and recall should be high. Some authors combine precision and recall in a single metric (in mathematical terms, it is the harmonic mean), called the **F1-score**, also available in scikit-learn:
-$$\textrm{F1-score} = \frac{\textrm{2}\times\textrm{Precision}\times\textrm{Recall}} {\textrm{Precision}+\textrm{Recall}}$$
+$$\textrm{F1-score} = \frac{\textrm{2}\times\textrm{Precision}\times\textrm{Recall}} {\textrm{Precision}+\textrm{Recall}} = \frac{2\,\textrm{TP}} {2\,\textrm{TP}+2\,\textrm{FP}+\textrm{FN}}.$$
 
 ## Logistic regression
 
