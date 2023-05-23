@@ -34,7 +34,7 @@ In reinforcement learning, an **intelligent agent** takes actions or make decisi
 
 ## Generative AI
 
-The term **generative** is used, in this context, for models that generate new data. This could be pictures with nobody's faces, fake videos or the text outputted by **Chat-GPT**. Generative AI models use techniques which are very close to supervised learning, to identify the patterns within existing data, *i.e*. for an unsupervised learning task. These patterns are used by the model to generate new and original content which follows these patterns. 
+The term **generative** is used, in this context, for models that generate new data. This could be pictures with nobody's faces, fake videos or the text outputted by **ChatGPT**. Generative AI models use techniques which are very close to supervised learning, to identify the patterns within existing data, *i.e*. for an unsupervised learning task. These patterns are used by the model to generate new and original content which follows these patterns. 
 
 The impact of generative AI (when this is written) is difficult to assess, since some generative models, called **large language models** have been found to be able to carry out unexpected tasks. For instance, the GPT-3 model of OpenAI can write programming code, if the training data include enough code in the corresponding language.
 
