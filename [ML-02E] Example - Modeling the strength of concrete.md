@@ -192,6 +192,7 @@ The predicted strength, for this mixture, would be 35.72 MPa. Note that that the
 
 The method `.score()` provides a quick and dirty evaluation of the model: 
 
+```
 In [16]: round(reg.score(X, y), 3)
 Out[16]: 0.616
 ```
