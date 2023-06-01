@@ -171,13 +171,13 @@ In [11]: y_pred = reg.predict(X)
 
 The vector `y_pred` of predicted values can be compared to the vector `y` of actual values, to evaluate the predictive performance of the model. But it can also be applied to new data, which is what we want the model for in real applications. Let us do it in a fictional new sample, which we create by setting the feature values obtained by rounding the mean values calculated in `Out [6]`. 
 
-````
+```
 In [14]: X_new = df.describe().iloc[1:2, :-1].round()
     ...: X_new
 Out[14]: 
       cement  slag   ash  water  superplastic  coarseagg  fineagg   age
 mean   281.0  74.0  54.0  182.0           6.0      973.0    774.0  46.0
-````
+```
 
 Remember that the argument of `.predict()` must be two-dimensional. That is why we use `iloc[1:2, :]` to select the rows in the definition of `X_new`. With `iloc[1:2, :]`, you get a series instead of a data frame. Now:
 
