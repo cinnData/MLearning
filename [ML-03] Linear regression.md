@@ -15,7 +15,7 @@ In general, regression models are evaluated through their **prediction errors**.
 $$\textrm{Prediction\ error} = \textrm{Actual\ value} + \textrm{Predicted\ value}.$$
 
 The **coefficient of determination** is a popular metric for the evaluation of regression models. It is given by the formula
-$$R^2 = 1 - \displaystyle \frac{\textrm{SSE}}{{\textrm{SSY}}}\,,$$ 
+$$R^2 = 1 - \displaystyle \frac{\textrm{SSE}}{{\textrm{SSY}}}\thinspace,$$ 
 in which SSE is the sum of the squared errors and SSY is the sum of the squared centered target values (subtracting the mean).
 
 In a linear regression context, prediction errors are called **residuals**. In the standard approach to linear regression, the regression coefficients are calculated so that the **mean squared error** (MSE) is minimum. This is called the **least squares method**. The errors of a linear equation obtained by means of the least squares method have an important property, that their sum is zero, which is no longer true in regression models obtained by other methods. In that case, the coefficient of determination can be interpreted as the **percentage of variance** explained by the equation. Moreover, it coincides with the square of the correlation between the actual and the predicted values, called the **multiple correlation** in statistics textbooks. This explains the notation, and the name **R-squared statistic**, given to the coefficient of determination.
