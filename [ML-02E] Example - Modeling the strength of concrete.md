@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In the field of engineering, it is crucial to have accurate estimates of the performance of building materials. These estimates are required in order to develop safety guidelines governing the materials used in the construction of buildings, bridges, and roadways.
+The purpose of this example is to illustrate the basic syntax of scikit-learn using data from the field of engineering. In that filed, it is crucial to have accurate estimates of the performance of building materials. These estimates are required in order to develop safety guidelines governing the materials used in the construction of buildings, bridges and roadways.
 
 Estimating the strength of concrete is a challenge of particular interest. Although it is used in nearly every construction project, concrete performance varies greatly due to a wide variety of ingredients that interact in complex ways. As a result, it is difficult to accurately predict the strength of the final product. A model that could reliably predict concrete strength given a listing of the composition of the input materials could result in safer construction practices.
 
@@ -34,24 +34,36 @@ Source: I-Cheng Yeh (1998), Modeling of strength of high performance concrete us
 
 ## Questions
 
-## Importing the data
+Q1. Import this data set to a Pandas data frame and check that the content matches the descriptio given above. 
 
-We use the Pandas funcion `read_csv()` to import the data. First, we import the package:
+Q2. Prepare the data for supervised learning by creating a **target vector** and a **feature matrix**.
+
+Q3. Develop a **linear regression model** for predicting the strength in terms of the components of the mixture.
+
+Q4. Use the model to obtain predicted strength values.
+
+Q5. Evaluate the model obtained.
+
+Q6. Save the model for future use.
+
+## Q1. Import the data
+
+Although scikit-learn is described in the technical documentation as managing the data in NumPy array format, you can equally input data in Pandas format. Using Pandas format makes processing slower, but importing the data and adapting them for the learning process will be easier for you. Nevertheless, remember that, in machine learning, preprocessing is a previous step, so the learning process is carried out with NumPy arrays. Second, that even if scikit-learn estimators can take Pandas data containers, it aleways return arrays. 
+
+We use here the Pandas funcion `read_csv()` to import the data. First, we import the package:
 
 ```
 In [1]: import pandas as pd
 ```
 
-We use a remote path, to a GitHub repository. None of the columns is used as the index.
+The source file is in a GitHub repository, so we use a remote path to get access. 
 
 ```
 In [2]: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
    ...: df = pd.read_csv(path + 'concrete.csv')
 ````
 
-## Exploring the data
-
-We take a look at the data with the stanadrd Pandas methods `.info()`, `.head()` and `.describe()`. The first one prints a report of the dara frame content. We can see that all the columns are numeric, and that there are no missing values.
+`df` is a Pandas data frame. Since we have used the default of `read_csv()`, none of the columns is used as the index. To explore the data set, we use the standard Pandas methods. First,  the method `.info()` prints a report of the data frame content. We can see that all the columns are numeric, and that there are no missing values.
 
 ```
 In [3]: df.info()
@@ -73,7 +85,7 @@ dtypes: float64(8), int64(1)
 memory usage: 72.5 KB
 ```
 
-The method `.head()` prints the first five rows.
+The method `.head()` extracts the first five rows. Everything looks right, so far.
 
 ```
 In [4]: df.head()
@@ -86,7 +98,7 @@ Out[4]:
 4   198.6  132.4  0.0  192.0           0.0      978.4    825.5  360     44.30
 ```
 
-Finally, the method `.describe()` prints a statistical summary. 
+Finally, the method `.describe()` produces a statistical summary. The distribution of `strength` looks quite symmetric, which makes linear regression results easier to manage. The same is not true for all the independent variables, specially for `ash`.
 
 ```
 In [5]: df.describe()
@@ -112,9 +124,9 @@ min     801.000000   594.000000     1.000000     2.330000
 max    1145.000000   992.600000   365.000000    82.600000  
 ```
 
-## Target vector and features matrix
+## Q2. Target vector and feature matrix
 
-Looking at this data set with a supervised learning perspective, we specify the concrete strength as the **target vector**, that is, what we wish to predict. To be consistent, we will always denote this vector (it could either a NumPy 1D array or a Pandas series) as `y`. In this case, the target vector is the last column, wg¡hich we can extract as:
+Looking at this data set with a supervised learning perspective, we specify the concrete strength as the **target vector**, that is, what we wish to predict. To be consistent, we will always denote this vector (it could either a NumPy 1D array or a Pandas series) as `y`. In this case, the target vector is the last column, which we can extract as:
 
 ```
 In [6]: y = df.iloc[:, -1]
@@ -128,46 +140,106 @@ In [7]: X = df.iloc[:, :-1]
 
 The same can be obtained as `X = df.drop(columns='strength')`.
 
-## Linear regression model
+## Q3. Linear regression model
 
-To obtain a **linear regression model** for this example, we use the scikit-learn claa `LinearRegression`, from the subpackage `linear_model`. We create an instance of this estimator with:
+To obtain a **linear regression model** for this example, we use the scikit-learn class `LinearRegression`, from the subpackage `linear_model`. First, we import this class:
 
 ```
 In [8]: from sklearn.linear_model import LinearRegression
-   ...: model = LinearRegression()
 ```
 
-We apply next the three basic methods `.fit()`, `.predict()` and `.score()`. The first one returns the "model", that is an object that, given the components of the mixture, returns the predicted strength. In this case, the model consists in a linear equation, so what `.fit()` does is to calculate the coefficients for the equation. These coefficients are optimal (minimum MSE) for the data provided (the pair `X`, `y`).
+We create an instance of this estimator with:
 
 ```
-In [9]: model.fit(X, y)
-Out[9]: LinearRegression()
+In [9]: reg = LinearRegression()
 ```
 
-
-
-```
-In [10]: y_pred = model.predict(X)
-```
+The method `.fit()` returns the "model", that is an object that, given the components of the mixture, returns the predicted strength. In this case, the model consists in a linear equation, so what `.fit()` does is to calculate the coefficients for the equation. These coefficients are optimal (minimum MSE) for the data provided (the pair `X`, `y`).
 
 ```
-In [11]: round(model.score(X, y), 3)
-Out[11]: 0.616
+In [10]: reg.fit(X, y)
+Out[10]: LinearRegression()
 ```
 
-## Scatter plot
+## Q4. Predicted strength values
+
+Given the feature values, the method `.predict()` returns predicted target values. The argument must a numeric 2D array or a data frame with 8 columns. We can use it on the feature matrix used in the learning process: 
 
 ```
-In [12]: from matplotlib import pyplot as plt
+In [11]: y_pred = reg.predict(X)
+```
+
+The vector `y_pred` of predicted values can be compared to the vector `y` of actual values, to evaluate the predictive performance of the model. But it can also be applied to new data, which is what we want the model for in real applications. Let us do it in a fictional new sample, which we create by setting the feature values obtained by rounding the mean values calculated in `Out [6]`. 
+
+````
+In [14]: X_new = df.describe().iloc[1:2, :-1].round()
+    ...: X_new
+Out[14]: 
+      cement  slag   ash  water  superplastic  coarseagg  fineagg   age
+mean   281.0  74.0  54.0  182.0           6.0      973.0    774.0  46.0
+````
+
+Remember that the argument of `.predict()` must be two-dimensional. That is why we use `iloc[1:2, :]` to select the rows in the definition of `X_new`. With `iloc[1:2, :]`, you get a series instead of a data frame. Now:
+
+```
+In [15]: reg.predict(X_new)
+Out[15]: array([35.71595681])
+```
+
+The predicted strength, for this mixture, would be 35.72 MPa. Note that that the output comes as a 1D array. Adding extra rows to `X_new` would give extra length to this array. Also, note that the predicted strength is very close to mean strength in the training data. This is a property of linear regression models.
+
+## Q5. Evaluate the model
+
+The method `.score()` provides a quick and dirty evaluation of the model: 
+
+In [16]: round(reg.score(X, y), 3)
+Out[16]: 0.616
+```
+
+In the case of a regression model, the value returned by this method is **R-squared statistic**, which you can see as a squared correlation (this is exactly so only in linear regression), the correlation between the actual strength (`y`) and the predicted (`y_pred`). This correlation, that would be $R = 0.785$. 
+
+We can illustrate this with a scatter plot, with the predicted strength in the horizontal axis and the actual strength in the vertical axis. We build the graphic using the **Matplotlib pyplot API** (you can get a less ornamented version directly in Pandas, with the method `.plot.scatter()`).
+
+```
+In [17]: from matplotlib import pyplot as plt
 ```
 
 ```
-In [13]: plt.figure(figsize=(6,6))
+In [18]: plt.figure(figsize=(6,6))
     ...: plt.title('Figure 1. Actual strength vs predicted strength')
     ...: plt.scatter(y_pred, y, color='black', s=2)
-    ...: plt.xlabel('Predicted strength')
-    ...: plt.ylabel('Actual strength');
+    ...: plt.xlabel('Predicted strength (MPa)')
+    ...: plt.ylabel('Actual strength (MPa)');
 ```
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_2.1.png)
 
+This visualization helps, in many cases, to detect whether something does not work as expected. In this case, we see that, in spite of the strong correlation, some of prediction errors are quite big. You should not be surprised. The correlation tells you that *on average* the erros are small, which is not the same as saying that all of them are small. Also, by focusing on vertical slices of this scatter plot, we see that, for a given predicted strength, the dispersion of the actual strength is bigger when the predicted strength is bigger. This is also a general fact.
+
+## Q6. Save the model for future use
+
+Finally, we can save our model to a **PKL file**. We import the package `joblib`:
+
+```
+In [19]: import joblib
+```
+
+Next, we apply the `joblib` function `dump` to create the PKL file:
+
+```
+In [20]: joblib.dump(reg, 'reg.pkl')
+Out[20]: ['reg.pkl']
+```
+
+Now we have new file in the working directory (in Jupyter apps, you can learn where is that with the magic command `%pwd`. If you prefer to put the PKL file in a different place, youy can do it by specifying the appropriate path. You can recover the model, anytime, even if you no longer have the training data, as:
+
+```
+In [21]: newreg = joblib.load('reg.pkl')
+```
+
+`newreg` is like a copy of `reg`. Indeed, both models give the same predictions:
+
+```
+In [22]: (reg.predict(X) != newreg.predict(X)).sum()
+Out[22]: 0
+```
