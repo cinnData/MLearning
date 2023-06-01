@@ -166,7 +166,7 @@ In [10]: plt.figure(figsize=(8,6))
     ...: plt.hist(df['price'], color='gray', rwidth=0.97)
     ...: plt.xlabel('Sale price (thousands)');
 ```
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_3.2.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_3.1.png)
 
 ## Q2. Linear regression equation
 
