@@ -2,15 +2,15 @@
 
 ## Introduction
 
-The objective of this example is to develop a model for **house sale prices** in King County (Washington), which includes Seattle. King is the most populous county in Washington (population 1,931,249 in the 2010 census), and the 13th-most populous in the United States. The data include the homes sold between May 2014 and May 2015.
+This example illustrates linear regression in scikit-learn. It shows how to develop a model for **house sale prices** in King County (Washington), which includes Seattle. King is the most populous county in Washington (population 1,931,249 in the 2010 census), and the 13th-most populous in the United States. The data include the homes sold between May 2014 and May 2015.
 
 ## The data set
 
-The data set comes in the file `king.csv`. It contains 13 house features plus the sale price and date, along with 21,613 observations.
+The data come in the file `king.csv`. It contains 13 house features plus the sale price and date, along with 21,613 observations.
 
 The variables are:
 
-* `id`, an identifier.
+* `id`, an identifier of the house.
 
 * `date`, the date when the sale took place.
 
@@ -48,15 +48,15 @@ Source: Kaggle.
 
 Q1. How is the distribution of the sale price?
 
-Q2. Develop a linear regression equation for predicting the sale price in terms of the available features. Evaluate this predictive model.
+Q2. Develop a linear regression model for predicting the sale price in terms of the house features, leaving aside the zipcode. Evaluate this model.
 
-Q3. Plot the actual price versus the price predicted by your model. What do you see?
+Q3. Plot the actual price versus the price predicted by the model. What do you see?
 
-Q4. Add a collection of dummies asscoiated to the zipcode and run the analysis again. What happened?
+Q4. Add a dummy for every zipcode to the feature collection and run the analysis again. What happened?
 
 # Importing the data
 
-We use the Pandas funcion `read_csv()` to import the data. We use a remote path, to a GitHub repository. We take the column `id` as the index.
+As in the preceding example, we use the Pandas funcion `read_csv()` to import the data from a GitHub repository. In this case, we take the column `id` as the index (this is the role of the argument `index_col=0`.
 
 ```
 In [1]: import pandas as pd
@@ -65,6 +65,8 @@ In [1]: import pandas as pd
 ````
 
 ## Exploring the data
+
+`df` is a Pandas data frame. A report of the content can be printed with the method `.info()`. Everything is as expecetd, so far. There are no missing values.
 
 ```
 In [2]: df.info()
@@ -92,15 +94,21 @@ dtypes: float64(4), int64(10), object(1)
 memory usage: 2.6+ MB
 ```
 
+The index of this data farme, which we can manage as `df.index`, is the same as the column `id` of the original data. There are duplicates there:
+
 ```
 In [3]: df.index.duplicated().sum()
 Out[3]: 177
 ```
 
+The logic of this calculation is as follows. The method `.duplicated()` returns a Boolean series signalling the duplicates (reading top-down, those values that have appeared before). With `.sum()`, we count the `True` values. With the same logic, but applying `.duplicated()` to the (columns of the) data frame, we can check that there are no duplicated rows.
+
 ```
 In [4]: df.duplicated().sum()
 Out[4]: 0
 ```
+
+The potential explanation is that the same house could have been sold more than once during the period covered by the data. Indeed this what we find by focusing on the duplicated ID's.
 
 ```
 In [5]: duplicates = df.index[df.index.duplicated()]
@@ -134,11 +142,16 @@ id
 7520000520          3      1922          1984   232000  
 ```
 
+So, we leave the duplicates where they are. We rescale the sale price to the thousands, to have a cleaner picture. 
+
 ```
 In [7]: df['price'] = df['price']/1000
 ```
+Now, we go for the questions proposed.
 
 ## Q1. Distribution of the sale price
+
+The distribution of a numeric series can be quickly explored in two ways. First, the method `.describe()` extracts a statistical summary. The maximum price suggests that we may have a long right tail, which can be expected in real estate prices.
 
 ```
 In [8]: df['price'].describe()
@@ -154,14 +167,14 @@ max       7700.000000
 Name: price, dtype: float64
 ```
 
-Histogram. Using `matplot.pyplot`.
+Second, we can use a **histogram**. Histograms can be obtained directly in Pandas, but we prefer to use `matplotlib.pyplot` in this course, even if the specification gets longer, because it allows for better control of the graphical output. The histogram confirms our guess about the **skewness** of the distribution.
 
 ```
 In [9]: from matplotlib import pyplot as plt
 ```
 
 ```
-In [10]: plt.figure(figsize=(8,6))
+In [10]: plt.figure(figsize=(7,5))
     ...: plt.title('Figure 1. Actual price')
     ...: plt.hist(df['price'], color='gray', rwidth=0.97)
     ...: plt.xlabel('Sale price (thousands)');
@@ -170,41 +183,48 @@ In [10]: plt.figure(figsize=(8,6))
 
 ## Q2. Linear regression equation
 
-Target vector and features matrix
+We are going to scikit-learn to obtain our regression models (not the only way in Python), so we create a target vector and a feature matrix. The target vector is the last column (`price`) and the feature matrix contains the other columns minus `date` and `zipcode`.
 
 ```
 In [11]: y = df.iloc[:, -1]
     ...: X = df.iloc[:, 2:-1]
 ```
 
-Alternatively, you can use the names of the columns, setting `y = df['strength']` and `X = df.drop(columns=['date', 'zipcode', 'price'])`.
+Alternatively, you can use the names of the columns, setting `y = df['strength']` and `X = df.drop(columns=['date', 'zipcode', 'price'])`. Now, we import the **estimator class** `LinearRegression` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `reg`, to reming us of the job. 
 
 ```
 In [12]: from sklearn.linear_model import LinearRegression
-    ...: model = LinearRegression()
+    ...: reg = LinearRegression()
 ```
 
+The method `.fit()` calculates the optimal equation. Since we are using the default of `LinearRegression`, which is **least squares** regression, the **loss function** is the MSE.
+
 ```
-In [13]: model.fit(X, y)
+In [13]: reg.fit(X, y)
 Out[13]: LinearRegression()
 ```
 
-```
-In [14]: y_pred = model.predict(X)
-```
+The predicted prices for the houses included the data set are then calculated with the method `.predict()`.
 
 ```
-In [15]: round(model.score(X, y), 3)
+In [14]: y_pred = reg.predict(X)
+```
+
+Finally, we obtain a preliminary evaluation of the model with the method `.score()`.
+
+```
+In [15]: reg.score(X, y).round(3)
 Out[15]: 0.646
 ```
 
+This gives us a R-squared value of 0.646. Since this least squares regression, we can interpret it as a squared correlation. So, the correlation between actual prices (`y`) and predicted prices (`y_pred1`) is 0.804.
+
 ## Q3. Plot the actual price versus the price predicted by your model
 
-Scatter plot. Actual price vs predicted price.
-
+We create this scatter plot also with `matplolibt.pyplot`. The argument `s=2` controls the size of the dots. One sets the size taking into account the number of samples, sometimes after a bit of trial and error.
 
 ```
-In [16]: plt.figure(figsize=(6,6))
+In [16]: plt.figure(figsize=(5,5))
     ...: plt.title('Figure 2. Actual price vs predicted price')
     ...: plt.scatter(y_pred, y, color='black', s=2)
     ...: plt.xlabel('Predicted price (thousands)')
@@ -213,19 +233,48 @@ In [16]: plt.figure(figsize=(6,6))
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_3.2.png)
 
-## Dummies for the zipcodes
+This type of visualization helps to understand the data, and to detect undesired effects. In this case, we see that, in spite of the strong correlation, the prediction error can be big. This could be expected, since the correlation only ensures an average predictive performance, and we have more than 20,000 samples.
+
+Paying a bit more of attention, we can see that the biggest errors (in absolute value) happen in the most expensive houses. This also a well know fact: the bigger is what you measure, the bigger are the measurement errors. We can visualize the situation with a scatter plot.
 
 ```
-In [17]: X1 = df.iloc[:, 4:-1]
+In [17]: plt.figure(figsize=(5,5))
+    ...:     ...: plt.title('Figure 3. Absolute prediction error vs predicted price')
+    ...:     ...: plt.scatter(x=y_pred, y=abs(y-y_pred), color='black', s=1)
+    ...:     ...: plt.xlabel('Predicted price (thousands)')
+    ...:     ...: plt.ylabel('Absolute predicted error (thousands)');
 ```
 
-```
-In [18]: X2 = pd.get_dummies(df['zipcode'])
-```
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_3.3.png)
+
+Another issue is that some of the predicted prices are negative. We can count them:
 
 ```
-In [19]: X2.head()
-Out[19]: 
+In [18]: (y_pred < 0).sum()
+Out[18]: 38
+```
+
+This may look pathological to you, but it is not rare in this type of data. Since the average error is null (this is a property of least squares), we have, more or less, the same amount of positive and negative erros. When a cheap house has a negative and substantial error, the predicted price can be negative. A different thing is the isolated point that we observe on the left of the two above figures. Something is wrong in this sample.
+
+## Q4. Dummies for the zipcodes
+
+Since we are going to add the zipcode to the equation, we drop the longitude and the laitude, and pack the remaining features in a matrix:
+
+```
+In [19]: X1 = df.iloc[:, 4:-1]
+```
+
+To create the dummies, we use the Pandas function `get_dummies()`, which returns the dummies as the columns of a data frame. The data type is `bool`. 
+
+```
+In [20]: X2 = pd.get_dummies(df['zipcode'])
+```
+
+Now, `X2` has 70 columns (as many as different zipcodes in the data set). The column names are the zipcode values. The advantage of `get_dummies()`, versus an alternative system included in scikit-learn, is that the columns have names, so you know what is what. The drawback is that the names are numbers, and scikit-learn does not accept data frames with numeric names. We will fix this below.
+
+```
+In [21]: X2.head()
+Out[21]: 
             98001  98002  98003  98004  98005  98006  98007  98008  98010   
 id                                                                          
 7129300520  False  False  False  False  False  False  False  False  False  \
@@ -253,29 +302,42 @@ id
 [5 rows x 70 columns]
 ```
 
+With Pandas function `concat()`, we join the two parts of the new feature matrix. The argument `axis=1` indicates that the two submatrices are joined horizontally (the default is to join vertically).
 ```
-In [20]: X = pd.concat([X1, X2], axis=1)
-```
-
-```
-In [21]: X.shape
-Out[21]: (21613, 80)
+In [22]: X = pd.concat([X1, X2], axis=1)
 ```
 
-```
-In [22]: X = X.values
-```
+Indeed, the new matrix has the right shape:
 
 ```
-In [23]: model.fit(X, y)
-Out[23]: LinearRegression()
+In [23]: X.shape
+Out[23]: (21613, 80)
 ```
 
-```
-In [24]: y_pred = model.predict(X)
-```
+To prvent the trouble with the column names, we turn `X`into a NumPy 2D array:
 
 ```
-In [25]: round(model.score(X, y), 3)
-Out[25]: 0.785
+In [24]: X = X.values
+```
+
+Now we fit the new data. This replaces the former model by a new one, which takes 80 features instead of 12. You could instantiate a new estimator with a different name, keeping both models alive.
+
+```
+In [25]: reg.fit(X, y)
+Out[25]: LinearRegression()
+```
+
+The new prdecitions are:
+
+```
+In [26]: y_pred = reg.predict(X)
+```
+
+And the new R-squared value:
+
+```
+In [27]: round(model.score(X, y), 3)
+Out[27]: 0.785
 `
+
+This looks like a relevant improvement, compared to the former model.
