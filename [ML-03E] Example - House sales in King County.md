@@ -226,7 +226,7 @@ We create this scatter plot also with `matplolibt.pyplot`. The argument `s=2` co
 ```
 In [16]: plt.figure(figsize=(5,5))
     ...: plt.title('Figure 2. Actual price vs predicted price')
-    ...: plt.scatter(y_pred, y, color='black', s=2)
+    ...: plt.scatter(x=y_pred, y=y, color='black', s=2)
     ...: plt.xlabel('Predicted price (thousands)')
     ...: plt.ylabel('Actual price (thousands)');
 ```
@@ -239,10 +239,10 @@ Paying a bit more of attention, we can see that the biggest errors (in absolute 
 
 ```
 In [17]: plt.figure(figsize=(5,5))
-    ...:     ...: plt.title('Figure 3. Absolute prediction error vs predicted price')
-    ...:     ...: plt.scatter(x=y_pred, y=abs(y-y_pred), color='black', s=1)
-    ...:     ...: plt.xlabel('Predicted price (thousands)')
-    ...:     ...: plt.ylabel('Absolute predicted error (thousands)');
+    ...: plt.title('Figure 3. Absolute prediction error vs predicted price')
+    ...: plt.scatter(x=y_pred, y=abs(y-y_pred), color='black', s=1)
+    ...: plt.xlabel('Predicted price (thousands)')
+    ...: plt.ylabel('Absolute predicted error (thousands)');
 ```
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_3.3.png)
@@ -327,7 +327,7 @@ In [25]: reg.fit(X, y)
 Out[25]: LinearRegression()
 ```
 
-The new prdecitions are:
+The new predictions are:
 
 ```
 In [26]: y_pred = reg.predict(X)
@@ -336,8 +336,37 @@ In [26]: y_pred = reg.predict(X)
 And the new R-squared value:
 
 ```
-In [27]: round(model.score(X, y), 3)
+In [27]: reg.score(X, y).round(3)
 Out[27]: 0.785
-`
+```
 
-This looks like a relevant improvement, compared to the former model.
+This looks like a relevant improvement, compared to the former model. The scatter plot shows the increased correlation:
+
+```
+In [28]: plt.figure(figsize=(5,5))
+    ...: plt.title('Figure 4. Actual price vs predicted price')
+    ...: plt.scatter(x=y_pred, y=y, color='black', s=2)
+    ...: plt.xlabel('Predicted price (thousands)')
+    ...: plt.ylabel('Actual price (thousands)');
+```
+
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_3.4.png)
+
+There are still negative predicted prices:
+
+```
+In [29]: (y_pred < 0).sum()
+Out[29]: 16
+```
+
+## Homework
+
+1. The role of longitude and latitude in the prediction of real estate prices is unclear. Do they really contribute to get better predictions in the first model of this example? If we keep them in the second model, do we get a better model? 
+
+2. Evaluate in dollar terms the predictive performance of the two models presented in this example. For instance, you can use the mean (or median) absolute error.  Can you make a statement like "the value of x% of the houses can be predicted with an error below y thousand dollars"?
+
+3. Is it better to use the percentage error in the above assessment?
+
+4. Can the strong correlation be an artifact created by the extreme values? Trim the data set, dropping the houses beyond a certain threshold of price and/or size. Do you get a better model?
+
+5. The distribution of the price is quite skewed, which is a fact of life in real state. The extreme values in the right tail of the distribution can exert an undesired influence on the regression coefficients. Transformations, such as the square root or the logarithm, are recommended in Statistics textbooks in many situations. In particular, the **log transformation** is recommended for variables with skewed distributions, to limit the influence of extreme values. Develop and evaluate a model for predicting the price which is based on a linear regression equation which has the logarithm of the price on the left side. 
