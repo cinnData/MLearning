@@ -1,27 +1,28 @@
-# [ML-06] Logistic regression
+# [ML-04] Logistic regression
 
 ## Class probabilities
 
-In classification models, the predicted target values are usually obtained in two steps:
+**cClassification** is the prediction of a **categorical target**. In classification models, the predicted target values are usually obtained in two steps:
 
-* For every sample, the model calculates a set of **class probabilities**, one for each class.
+* For every sample, the model calculates a set of **class probabilities**, one for each class. The different types of models differ in the way in which they calculate these probabilities.
 
 * The **predicted class** is the one with higher probability.
 
-This is the **default prediction** method. When this approach is used, the class probabilities may be hidden, so the model is presented as it were extracting the predictions directly. The different types of models differ in the way in which they calculate these probabilities.
+This is the **default prediction** method. When this approach is used, the class probabilities may be hidden, so the model is presented as it were extracting the predictions directly. 
 
-In some cases, we switch from the default prediction rule to one which uses the class probabilities in a different way. Departure from the default is not rare when the data present **class imbalance**, that is, when the proportion of samples of one class is significantly different from the proportion of samples of other classes. Class imbalance is frequent in applications like **credit scoring** or **fraud detection**. It is also frequent in **direct marketing**, since conversion rates are typically low.
+In some cases, we switch from the default prediction rule to one which uses the class probabilities in a different way. Departure from the default is not rare when the data present **class imbalance**, that is, when the proportion of samples of one class is significantly different from the proportion of samples of other classes. Class imbalance is frequent in applications like **credit scoring** or **fraud detection**. It is also frequent in **direct marketing**, since **conversion rates** are typically low.
 
 ## Binary classification
 
 In **binary classification**, the two target values are typically called **positive** and **negative**. The labels positive/negative must be assigned so that they favor your intuition. Mind that, if you leave this to the computer, it may call positive what you regard as negative.
 
-In a binary setting, using two complementary probabilities is not practical, so we focus on the positive class probability. This probability, called the **predictive score**, can be used for management purposes in many business applications (*e.g*. in credit scoring).
+In a binary setting, managing two complementary probabilities is redundant, so we focus on the positive class probability. This probability, called the **predictive score**, can be used for management purposes in many business applications (*e.g*. in credit scoring).
 
-In the default prediction, a sample is classified as positive when its score exceeds 0.5. But you may wish to replace 0.5 by a different **threshold** value. In a business application, the choice of the threshold may be based on a **cost/benefit analysis**. It is not hard to find (approximately) the **optimal threshold** for a user-specified cost matrix.
+In the default prediction, a sample would be classified as positive when its score exceeds 0.5. But you may wish to replace 0.5 by a different **threshold** value. In a business application, the choice of the threshold may be based on a **cost/benefit analysis**. It is not hard to find (approximately) the **optimal threshold** for a user-specified cost matrix.
 
 ## The confusion matrix
-The evaluation of a classifier is usually based on a **confusion matrix**, obtained by cross tabulating the actual target values and the predicted target values. There is not a universal consensus on what to place in the rows and what in the columns. I use the same convention as the scikit-learn manual, with the actual target value in the rows and the predicted target value in the columns.
+
+The evaluation of a classifier is, explicitly or implicitly, based on a **confusion matrix**, obtained by cross tabulation of the actual target values and the predicted target values. There is not a universal consensus on what to place in the rows and what in the columns. We use the same convention as the scikit-learn manual, with the actual target value in the rows and the predicted target value in the columns.
 
 In a binary setting, a visual inspection of the confusion matrix is always recommended. It will probably help you to decide whether the model is going to be useful. In many cases, it is practical to examine the model performance separately on the actual positives and negative samples.
 
@@ -34,7 +35,7 @@ The four cells of the confusion matrix are referred to as **true positive** (act
 
 The proportion of samples classified in the right way, that is, those for which the actual and the predicted values coincide, is called the accuracy,
 
-$$\textrm{Accuracy} = \frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}.$$
+$$\textrm{Accuracy} = \displaystyle\frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}.$$
 
 The accuracy can be calculated directly, or extracted from the confusion matrix, as the sum of the diagonal terms divided by the sum of all terms. Although it looks as the obvious metric for the evaluation of a classifier, the accuracy is not always adequate, specially when the data present class imbalance. For instance, if you have 90% of negative samples in your training data set, classifying all the samples as negative gives you 90% accuracy (you don't need machine learning for that!).
 
