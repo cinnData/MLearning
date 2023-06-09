@@ -190,7 +190,7 @@ In [11]: y = df.iloc[:, -1]
     ...: X = df.iloc[:, 2:-1]
 ```
 
-Alternatively, you can use the names of the columns, setting `y = df['strength']` and `X = df.drop(columns=['date', 'zipcode', 'price'])`. Now, we import the **estimator class** `LinearRegression` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `reg`, to reming us of the job. 
+Alternatively, you can use the names of the columns, setting `y = df['strength']` and `X = df.drop(columns=['date', 'zipcode', 'price'])`. Now, we import the **estimator class** `LinearRegression` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `reg`, to reming us of the job it does. 
 
 ```
 In [12]: from sklearn.linear_model import LinearRegression
