@@ -34,8 +34,7 @@ The four cells of the confusion matrix are referred to as **true positive** (act
 | **Actual positive** | FN | TP |
 
 The proportion of samples classified in the right way, that is, those for which the actual and the predicted values coincide, is called the accuracy,
-
-$$\textrm{Accuracy} = \displaystyle\frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}.$$
+$$\textrm{Accuracy} = \frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}\thinspace.$$
 
 The accuracy can be calculated directly, or extracted from the confusion matrix, as the sum of the diagonal terms divided by the sum of all terms. Although it looks as the obvious metric for the evaluation of a classifier, the accuracy is not always adequate, specially when the data present class imbalance. For instance, if you have 90% of negative samples in your training data set, classifying all the samples as negative gives you 90% accuracy (you don't need machine learning for that!).
 
