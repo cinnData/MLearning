@@ -66,7 +66,7 @@ In [1]: import pandas as pd
 
 ## Exploring the data
 
-`df` is a Pandas data frame. A report of the content can be printed with the method `.info()`. Everything is as expecetd, so far. There are no missing values.
+`df` is a Pandas data frame. A report of the content can be printed with the method `.info()`. Everything is as expected, so far. There are no missing values.
 
 ```
 In [2]: df.info()
