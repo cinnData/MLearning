@@ -94,7 +94,7 @@ dtypes: float64(4), int64(10), object(1)
 memory usage: 2.6+ MB
 ```
 
-The index of this data farme, which we can manage as `df.index`, is the same as the column `id` of the original data. There are duplicates there:
+The index of this data frame, which we can manage as `df.index`, is the same as the column `id` of the original data. There are duplicates there:
 
 ```
 In [3]: df.index.duplicated().sum()
