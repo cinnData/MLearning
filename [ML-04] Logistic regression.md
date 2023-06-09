@@ -62,7 +62,7 @@ $$\textrm{Precision} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FP}}\thinspace.$$
 $$\textrm{Recall} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}\thinspace.$$
 
 In a good model, precision and recall should be high. Some authors combine precision and recall in a single metric (in mathematical terms, it is the harmonic mean), called the **F1-score**, also available in scikit-learn:
-$$\textrm{F1-score} = \frac{\textrm{2}\times\textrm{Precision}\times\textrm{Recall}} {\textrm{Precision}+\textrm{Recall}}.$$
+$$\textrm{F1-score} = \frac{\textrm{2}\times\textrm{Precision}\times\textrm{Recall}} {\textrm{Precision}+\textrm{Recall}}\thinspace.$$
 
 ## Logistic regression
 
@@ -74,17 +74,17 @@ $$p = F\big(b_0 + b_1X_1 + b_2X_2 +_ \cdots + b_kX_k\big).$$
 
 Here, $p$ is the predictive score and $F$ is the **logistic function**, whose mathematical expression is
 
-$$F(x) = \frac {1} {1 + \exp(-x)}.$$
+$$F(x) = \frac {1} {1 + \exp(-x)}\thinspace.$$
 
 The graph of the logistic function has an inverted S shape, as shown in the figure. As given by this function, the scores fall within the unit interval ($0 < p < 1$). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples in order to select those to which a specific policy is going to be applied.
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_4.1.png)
 
-The coef cients of the logistic regression equation are optimal, meaning that a certain loss function, called the **cross-entropy**, extracted from information theory, achieves its minimum value. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users. So, it is recommended to use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical package `StatsModels`.
+As for linear regression, in logistic regression the coefficients of the equation are optimal, meaning that a certain **loss function** attains its minimum value. Here, the loss function is the **cross-entropy**, a formula extracted from information theory. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users. So, it is recommended to use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical package `StatsModels`.
 
 ## Classification in scikit-learn
 
-In scikit-learn, we just find a few differences between classification and regression models. In classification, the target values (the terms of `y`) are taken as **labels** for groups or classes. Data type `str` is admitted for `y`. We also have here the three basic methods, `fit`, `predict` and `score`.
+In scikit-learn, we just find a few differences between classification and regression models. In classification, the target values (the terms of `y`) are taken as **labels** for groups or classes. Data type `str` is admitted for `y`. We also have here the three basic methods, `.fit()`, `.predict()` and `.score()`. 
 
 For instance, for a binary logistic regression model, we use the class `LogisticRegression` from the subpackage `linear_model`. As usual in scikit-learn, we instantiate an estimator:
 
@@ -93,30 +93,19 @@ from sklearn.linear_model import LogisticRegression
 clf = LogisticRegression()
 ```
 
-Next, we fit the data:
+The method `.fit()` works the same in all supervised learning models in scikit-learn. The method `.score()` is called in the same way in classification and regression, but, while in regression retruns a R-squared statistic it returns the accuracy of the model, that is the proportion of right prediction. 
 
-```
-clf.fit(X, y)
-```
+In classfication, the default prediction is given by the method `predict()`, which is called as in regression. But, here, in addition to `.predict()`, we also have `.predict_proba()`, which returns a 2D array with the predicted class probabilities. For every row, the sum of the class probabilities equals 1. 
 
-For a classifier, the method `score` gives you the accuracy of the default prediction:
-
-```
-acc = clf.score(X, y)
-```
-
-The default prediction is given by the method `predict`:
-
-```
-y_pred = clf.predict(X)
-```
-
-But, here, in addition to `predict`, you also have `predict_proba`, which returns a 2D array with the predicted class probabilities. For every row, the sum of the class probabilities equals 1.
-
-If you use the predictive scores with a threshold `t`, the predicted target values will be obtained as:
+In binary classification, you may use the predictive scores, which will be obtained as:
 
 ```
 y_score = clf.predict_proba(X)[:, 1]
+```
+
+With a threshold `t`, the predicted target values will then be obtained as:
+
+```
 y_pred = (y_score > t).astype(int)
 ```
 
@@ -133,13 +122,13 @@ tp_rate = sum((y == 1) & (y_pred == 1))/sum(y == 1)
 fp_rate = sum((y == 0) & (y_pred == 1))/sum(y == 0)
 ```
 
-Though you can calculate them directly, as suggested above, these and other metrics can also be extracted from the confusion matrix. One way to get it is by means of the function `confusion_matrix`, from the subpackage `metrics`:
+Though you can calculate them directly, as suggested above, these and other metrics can also be extracted from the confusion matrix. You can obtain it with the Pandas function `crosstab()` or, alternatively, with the function `confusion_matrix`, from the subpackage `metrics`:
 
 ```
 from sklearn.metrics import confusion_matrix
 conf = confusion_matrix(y, y_pred)
 ```
 
-This subpackage also provides specific functions for the precision (`precision_score`), the recall (`recall_score`) and the F1-score (`f1_score`).
+This subpackage also provides specific methods for the precision (`precision_score()`), the recall (`recall_score()`) and the F1-score (`f1_score()`).
 
-`LogisticRegression` works the same in a **multi-class** setting, but instead of basing the predictions on a single equation, it uses several logistic regression equations (as many equations as the number of target values minus 1).
+`LogisticRegression()` works the same in a **multi-class** setting, but instead of basing the predictions on a single equation, it uses several logistic regression equations (as many equations as the number of target values minus 1).
