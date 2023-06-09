@@ -2,7 +2,7 @@
 
 ## Class probabilities
 
-**cClassification** is the prediction of a **categorical target**. In classification models, the predicted target values are usually obtained in two steps:
+**Classification** is the prediction of a **categorical target**. In classification models, the predicted target values are usually obtained in two steps:
 
 * For every sample, the model calculates a set of **class probabilities**, one for each class. The different types of models differ in the way in which they calculate these probabilities.
 
@@ -43,28 +43,30 @@ In a business context, a visual inspection of the confusion matrix is always rec
 
 * The **true positive** rate is the proportion of right classification among the actual positives,
 
-$$\textrm{TP\ rate} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}.$$
+$$\textrm{TP\ rate} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}\thinspace.$$
 
 * The **false positive rate** is the proportion of wrong classification among the actual negatives,
 
-$$\textrm{FP\ rate} = \frac{\textrm{FP}} {\textrm{FP}+\textrm{TN}}.$$
+$$\textrm{FP\ rate} = \frac{\textrm{FP}} {\textrm{FP}+\textrm{TN}}\thinspace.$$
 
-In a good model, the true positive rate should be high and the false positive rate low. The relative importance given to these statistics depends on the actual application. Their advantage is that they are still valid when the proportion of positive samples in the training data has been artificially inflated, because they are calculated separately on the actual positives and the actual negatives. This may sound strange, but it is recommended in cases of class imbalance. When the proportion of positive samples is inflated, the training data cannot be taken as representative of the current population, and the accuracy derived from the confusion matrix cannot be extrapolated to the real world.
+In a good model, the true positive rate should be high and the false positive rate low. The relative importance given to these statistics depends on the actual application. Their advantage is that they are still valid when the proportion of positive samples in the training data has been artificially inflated, because they are calculated separately on the actual positives and the actual negatives. This may sound strange, but it is recommended under class imbalance. When the proportion of positive samples is inflated, the training data cannot be taken as representative of the current population, and the accuracy derived from the confusion matrix cannot be extrapolated to the real world.
 
 An alternative to the true positive and false negative rates, used by scikit-learn, is based on the precision and the recall:
 
 * The **precision** is the proportion of right classification among the predicted positives,
-$$\textrm{Precision} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FP}}.$$
+
+$$\textrm{Precision} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FP}}\thinspace.$$
 
 * The **recall** is the same as the true positive rate,
-$$\textrm{Recall} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}.$$
+
+$$\textrm{Recall} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}\thinspace.$$
 
 In a good model, precision and recall should be high. Some authors combine precision and recall in a single metric (in mathematical terms, it is the harmonic mean), called the **F1-score**, also available in scikit-learn:
 $$\textrm{F1-score} = \frac{\textrm{2}\times\textrm{Precision}\times\textrm{Recall}} {\textrm{Precision}+\textrm{Recall}}.$$
 
 ## Logistic regression
 
-**Logistic regression** is one of the simplest classification methods. The class probabilities are calculated by means of a (nonlinear) equation. Note that, in spite of its name, it is a classification method, not a regression method. The explanation is that logistic regression was created by statisticians, and regression does not mean the same in statistics and machine learning.
+**Logistic regression** is one of the simplest binary classification methods. The class probabilities are calculated by means of a (nonlinear) equation. Note that, in spite of its name, it is a classification method, not a regression method. The explanation is that logistic regression was created by statisticians, and regression does not mean the same in statistics and machine learning.
 
 Let us start with binary classification. A logistic regression equation is one of type
 
@@ -76,7 +78,7 @@ $$F(x) = \frac {1} {1 + \exp(-x)}.$$
 
 The graph of the logistic function has an inverted S shape, as shown in the figure. As given by this function, the scores fall within the unit interval ($0 < p < 1$). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples in order to select those to which a specific policy is going to be applied.
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_6.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_4.1.png)
 
 The coef cients of the logistic regression equation are optimal, meaning that a certain loss function, called the **cross-entropy**, extracted from information theory, achieves its minimum value. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users. So, it is recommended to use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical package `StatsModels`.
 
