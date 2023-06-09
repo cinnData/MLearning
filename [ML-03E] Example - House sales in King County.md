@@ -183,7 +183,7 @@ In [10]: plt.figure(figsize=(7,5))
 
 ## Q2. Linear regression equation
 
-We are going to scikit-learn to obtain our regression models (not the only way in Python), so we create a target vector and a feature matrix. The target vector is the last column (`price`) and the feature matrix contains the other columns minus `date` and `zipcode`.
+We are going to use scikit-learn to obtain our regression models (not the only way in Python), so we create a target vector and a feature matrix. The target vector is the last column (`price`) and the feature matrix contains the other columns minus `date` and `zipcode`.
 
 ```
 In [11]: y = df.iloc[:, -1]
