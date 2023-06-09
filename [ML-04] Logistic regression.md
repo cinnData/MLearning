@@ -34,6 +34,7 @@ The four cells of the confusion matrix are referred to as **true positive** (act
 | **Actual positive** | FN | TP |
 
 The proportion of samples classified in the right way, that is, those for which the actual and the predicted values coincide, is called the accuracy,
+
 $$\textrm{Accuracy} = \frac{\textrm{TN}+\textrm{TP}} {\textrm{TN}+\textrm{FP}+\textrm{FN}+\textrm{TP}}\thinspace.$$
 
 The accuracy can be calculated directly, or extracted from the confusion matrix, as the sum of the diagonal terms divided by the sum of all terms. Although it looks as the obvious metric for the evaluation of a classifier, the accuracy is not always adequate, specially when the data present class imbalance. For instance, if you have 90% of negative samples in your training data set, classifying all the samples as negative gives you 90% accuracy (you don't need machine learning for that!).
@@ -41,9 +42,11 @@ The accuracy can be calculated directly, or extracted from the confusion matrix,
 In a business context, a visual inspection of the confusion matrix is always recommended. It will probably help you to decide whether the classifier is going to be useful. In many cases, it is practical to examine the performance of the classifier separately on the actual positives and the actual negatives. Then, the usual metrics are:
 
 * The **true positive** rate is the proportion of right classification among the actual positives,
+
 $$\textrm{TP\ rate} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}.$$
 
 * The **false positive rate** is the proportion of wrong classification among the actual negatives,
+
 $$\textrm{FP\ rate} = \frac{\textrm{FP}} {\textrm{FP}+\textrm{TN}}.$$
 
 In a good model, the true positive rate should be high and the false positive rate low. The relative importance given to these statistics depends on the actual application. Their advantage is that they are still valid when the proportion of positive samples in the training data has been artificially inflated, because they are calculated separately on the actual positives and the actual negatives. This may sound strange, but it is recommended in cases of class imbalance. When the proportion of positive samples is inflated, the training data cannot be taken as representative of the current population, and the accuracy derived from the confusion matrix cannot be extrapolated to the real world.
