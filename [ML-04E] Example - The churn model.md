@@ -50,7 +50,7 @@ Q2. How is the distribution of churn scores? Is it different for the churners an
 
 Q3. Set an adequate **threshold** for the churn score and apply it to decide which customers are potential churners. What is the **true positive rate**? And the **false positive rate**?
 
-# Importing the data
+## Importing the data
 
 As in the preceding example, we use the Pandas funcion `read_csv()` to import the data from a GitHub repository. In this case, we take the column `id` as the index (this is the role of the argument `index_col=0`.
 
