@@ -254,7 +254,7 @@ In [18]: (y_pred < 0).sum()
 Out[18]: 38
 ```
 
-This may look pathological to you, but it is not rare in this type of data. Since the average error is null (this is a property of least squares), we have, more or less, the same amount of positive and negative erros. When a cheap house has a negative and substantial error, the predicted price can be negative. A different thing is the isolated point that we observe on the left of the two above figures. Something is wrong in this sample.
+This may look pathological to you, but it is not rare in this type of data. Since the average error is null (this is a property of least squares), we have, more or less, the same amount of positive and negative errors. When a cheap house has a negative and substantial error, the predicted price can be negative. A different thing is the isolated point that we observe on the left of the two above figures. Something is wrong in this sample.
 
 ## Q4. Dummies for the zipcodes
 
