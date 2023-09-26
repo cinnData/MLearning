@@ -309,6 +309,6 @@ dtype: float64
 
  1. Train a **logistic regression** classifier with the data from the file `spam.csv` and compare its performance to the classifiers developed in this example.
 
- 2. Change the feature matrix by: (a) dropping the three `cap_` features and (b) **binarizing** all the `word_` features, transforming them into dummies for the occurrence of the corresponding word. Based on this new feature matrix, develop two spam filters, one based on a **logistic regression** classifier and the other one based on a decision tree classifier, using the binarized data set.
+ 2. Change the feature matrix by: (a) dropping the three `cap_` features and (b) **binarizing** all the `word_` features, transforming them into dummies for the occurrence of the corresponding word. Based on this new feature matrix, develop two spam filters, one based on a logistic regression classifier and the other one based on a decision tree classifier, using the binarized data set.
 
 3. Evaluate these new classifiers and compare them to those obtained with the original data.
