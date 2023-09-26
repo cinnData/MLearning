@@ -12,7 +12,7 @@ There are various ways to train a decision tree model from data. The top popular
 
 At every decision node, there is a **split**, based on one of the features and a cutoff value. CART chooses at every node the **optimal split**, that minimizes a **loss function**. In decision tree regressors, as in linear regression, the loss is the **mean square error** (MSE).
 
-![](https://github.com/cinnData/MLearning/blob/main/7.%20Decision%20trees/fig%206%201.png)
+![](https://github.com/cinnData/MLearning/blob/main/7.%20Decision%20trees/fig_6_1.png)
 
 Figure 1 shows a decision tree regressor, developed to predict the assessed value of a house (see the example *Assessing home values in West Roxbury*). At every node, you find the number of samples, the MSE and the predicted value, which is the mean target value in that leaf. The tree is optimal (meaning minimum MSE) among those satisfying the conditions set by the arguments of `DecisionTreeRegressor` (in this case `max_depth=2`).
 
