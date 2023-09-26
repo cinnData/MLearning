@@ -1,4 +1,4 @@
-# [ML-07] Decision trees
+# [ML-06] Decision trees
 
 ## What is a decision tree?
 
@@ -12,13 +12,13 @@ There are various ways to train a decision tree model from data. The top popular
 
 At every decision node, there is a **split**, based on one of the features and a cutoff value. CART chooses at every node the **optimal split**, that minimizes a **loss function**. In decision tree regressors, as in linear regression, the loss is the **mean square error** (MSE).
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_7.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/7.%20Decision%20trees/fig%206%201.png)
 
 Figure 1 shows a decision tree regressor, developed to predict the assessed value of a house (see the example *Assessing home values in West Roxbury*). At every node, you find the number of samples, the MSE and the predicted value, which is the mean target value in that leaf. The tree is optimal (meaning minimum MSE) among those satisfying the conditions set by the arguments of `DecisionTreeRegressor` (in this case `max_depth=2`).
 
 In a decision tree classifier, the loss function is either the **Gini impurity measure** (the default) or the **entropy measure**. For every possible split, CART calculates the loss as the weighted average of the losses at the two branches, choosing the split that leads to the minimum loss.
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_7.2.png)
+![](https://github.com/cinnData/MLearning/blob/main/7.%20Decision%20trees/fig%206%202.png)
 
 Figure 2 shows a decision tree classifier used as a spam filter (see the example *The spam filter*). At every leaf, you find the number of samples, the Gini value and the number of negative and positive samples (alphabetical order) in that leaf. In the leaf nodes, the predicted probabilities are the class proportions. In a binary setting, we can say that the predicted score for a sample is the proportion of positive samples in the leaf where that sample is. The tree is optimal in the sense that the total Gini value (the weighted average of the Gini values of the leaf nodes) is minimum.
 
