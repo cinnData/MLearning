@@ -49,7 +49,7 @@ In [2]: df.shape
 Out[2]: (4601, 52)
 ```
 
-We also take a look at the first rows (of some columns),with the methos `.head()`. 
+We also take a look at the first rows (of some columns),with the method `.head()`. 
 
 ```
 In [3]: df.head()
@@ -93,7 +93,7 @@ Out[4]: 0.394
 
 ## Target vector and feature matrix
 
-We use scikit-learn to obtain our decision tree models, so we create a **target vector** and a **feature matrix**. The target vector is the last column (`spam`) and the feature matrix contains the other columns.
+We use scikit-learn to obtain our decision tree classifiers, so we create a **target vector** and a **feature matrix**. The target vector is the last column (`spam`) and the feature matrix contains the other columns.
 
 ```
 In [5]: y = df['spam']
@@ -102,19 +102,19 @@ In [5]: y = df['spam']
 
 ## Q1. Decision tree classifier (max depth = 2)
 
-To develop a tree decision classifier, we use the **estimator class** `DecisionTreeClassifier` from the scikit-learn subpackage `tree`. This is imported as usual:
+To develop a decision tree classifier, we use the **estimator class** `DecisionTreeClassifier` from the scikit-learn subpackage `tree`. We import this class as we have done with other estimator classes in the preceding examples.
 
 ```
 In [6]: from sklearn.tree import DecisionTreeClassifier
 ```
 
-We instantiate a first estimator from this class. We set `max_depth=2`, which limits the **depth**, that is, the length of the longest branch.
+We instantiate a first estimator from this class. We set `max_depth=2`, which limits the **depth**, that is, the length of the longest branch of the tree.
 
 ```
 In [7]: clf1 = DecisionTreeClassifier(max_depth=2)
 ```
 
-The method `.fit()` finds the optimal tree under this specification. This tree can be seen at the lecture ML-X. I has four leaves and uses only three of the 51 features available.
+The method `.fit()` finds the optimal tree under this specification. This tree can be seen at Figure 2 of lecture ML-06. I has four leaves and uses only three of the 51 features available.
 
 ```
 In [8]: clf1.fit(X, y)
@@ -147,7 +147,7 @@ array([[2575,  213],
        [ 549, 1264]])
 ```
 
-The counts in first row of this matrix correspond to the negative samples (the legal mail), while those in the second row corresponds to the positive samples (the spam mail). Here, the accuracy is poorer for the spam mail. To make the discussion more specific, we can use standard metrics like the true positive rate and the false positive rate.
+The counts in the first row of this matrix correspond to the negative samples (the legal mail), while those in the second row correspond to the positive samples (the spam mail). Here, the accuracy is poorer for the spam mail. To make the discussion more specific, we can use standard metrics like the **true positive rate** and the false positive rate.
 
 ```
 In [12]: tp1 = conf1[1, 1]/sum(conf1[1, :])
@@ -156,7 +156,7 @@ In [12]: tp1 = conf1[1, 1]/sum(conf1[1, :])
 Out[12]: (0.697, 0.076)
 ```
 
-We would like to improve these statistics. Since the model we are using is supersimple, an obvious approach is to increase the maximum depth parameter. Note that a decision tree with depth 2 uses at most three features.
+We would like to improve these statistics. Since the model that we are using is supersimple, an obvious approach is to increase the maximum depth parameter. Note that a decision tree with depth 2 uses at most three features.
 
 ## Q2. Decision tree classifier (max depth = 3)
 
@@ -168,7 +168,7 @@ In [13]: clf2 = DecisionTreeClassifier(max_depth=3)
 Out[13]: DecisionTreeClassifier(max_depth=3)
 ```
 
-Right now, we have two `DecisionTreeClassifier` estimators, `clf1` and `clf2`, both fitted to our training data. Alternatively, we could have continued with `clf1`, setting `clf1.max_depth = 3`. But, mind that every time we refit a model, the previous results are wiped off.
+Right now, we have two `DecisionTreeClassifier` estimators, `clf1` and `clf2`, both fitted to our training data. Alternatively, we could have continued with `clf1`, setting `clf1.max_depth = 3`. But, mind that, every time we refit a model, the previous results are wiped off.
 
 The confusion matrix gets better, specially the false negatives.
 
@@ -243,7 +243,7 @@ array([[2696,   92],
        [ 350, 1463]])
 ```
 
-We find an interesting decrease in the number of false positives, which is relevant for his example. The false positive rate confirms this.
+The decrease in the number of false positives is relevant for this example. The false positive rate confirms it.
 
 ```
 In [21]: tp4 = conf4[1, 1]/sum(conf4[1, :])
@@ -256,7 +256,7 @@ We stop here, since the model is getting complex, raising a concern about **over
 
 ## Q5. Feature relevance
 
-One of the most attractive traits of decision trees is that they produce, as a by-product, a ranking of the features by their contribution to the predictive power of the model. In scikit-learn, this is the attribute `.feature_importances_` of the `DecisionTreeClassifier` estimator, extracted as a 1D array in which every term is the **importance** of one of the features. The importance is measured as the **percentage of reduction of the impurity** due to the splits in which the feature is involved. Zero importance means that the corresponding feature is not involved in any split, so it is not used by the decision tree.
+One of the most attractive traits of the algorithm that scikit-learn uses to train a decision tree is that it produces, as a by-product, a ranking of the features by their contribution to the predictive power of the model. In scikit-learn, this is the attribute `.feature_importances_` of the `DecisionTreeClassifier` estimator. It is extracted as a 1D array, in which ech term is the **importance** of one of the features. The importance is measured as the **percentage of reduction of the impurity** due to the splits in which the feature is involved. Zero importance means that the corresponding feature is not involved in any split, so it is not used by the decision tree.
 
 We take a look at feature importance in the biggest of our trees. In spite of the allowance for depth 5, only 15 features are involved in the splits. 
 
@@ -305,3 +305,10 @@ cap_total          0.002
 word_technology    0.001
 dtype: float64
 ```
+ ## Homework
+
+ 1. Train a **logistic regression** classifier with the data from the file `spam.csv` and compare its performance to the classifiers developed in this example.
+
+ 2. Change the feature matrix by: (a) dropping the three `cap_` features and (b) **binarizing** all the `word_` features, transforming them into dummies for the occurrence of the corresponding word. Based on this new feature matrix, develop two spam filters, one based on a **logistic regression** classifier and the other one based on a decision tree classifier, using the binarized data set.
+
+3. Evaluate these new classifiers and compare them to those obtained with the original data.
