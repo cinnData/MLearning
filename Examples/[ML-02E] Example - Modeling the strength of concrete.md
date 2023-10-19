@@ -193,7 +193,7 @@ The predicted strength, for this mixture, would be 35.72 MPa. Note that that the
 The method `.score()` provides a quick and dirty evaluation of the model: 
 
 ```
-In [16]: round(reg.score(X, y), 3)
+In [16]: reg.score(X, y).round(3)
 Out[16]: 0.616
 ```
 
@@ -206,7 +206,7 @@ In [17]: from matplotlib import pyplot as plt
 ```
 
 ```
-In [18]: plt.figure(figsize=(6,6))
+In [18]: plt.figure(figsize=(5,5))
     ...: plt.title('Figure 1. Actual strength vs predicted strength')
     ...: plt.scatter(y_pred, y, color='black', s=2)
     ...: plt.xlabel('Predicted strength (MPa)')
