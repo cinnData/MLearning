@@ -1,46 +1,61 @@
-## Example - House sales in King County ##
+## [ML-03E] Example - House sales in King County ##
 
-# Importing the data (edit path) #
-import csv
-with open('Dropbox/ml_course/data/king.csv', 'r') as conn:
-	reader = csv.reader(conn)
-	data = list(reader)
-len(data)
+# Importing the data #
+import pandas as pd
+path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
+df = pd.read_csv(path + 'king.csv', index_col=0)
 
-# Headers #
-header = data[0]
-header
-len(header)
-
-# Target vector and feature matrix #
-import numpy as np
-Xy = np.array(data[1:])
-Xy.shape
-y = Xy[:, 15].astype(float)/1000
-y.shape
-X = Xy[:, 3:15].astype(float)
-X.shape
+# Exploring the data #
+df.info()
+df.index.duplicated().sum()
+df.duplicated().sum()
+duplicates = df.index[df.index.duplicated()]
+df.loc[duplicates].head()
+df['price'] = df['price']/1000
 
 # Q1. Distribution of the sale price #
+df['price'].describe()
 from matplotlib import pyplot as plt
-plt.figure(figsize=(8,6))
-plt.title('Figure 1. Sale price')
-plt.hist(y, color='gray', rwidth=0.97)
+plt.figure(figsize=(7,5))
+plt.title('Figure 1. Actual price')
+plt.hist(df['price'], color='gray', rwidth=0.97)
 plt.xlabel('Sale price (thousands)');
 
-# Q2. Linear regression model #
+# Q2. Linear regression equation #
+y = df.iloc[:, -1]
+X = df.iloc[:, 2:-1]
 from sklearn.linear_model import LinearRegression
-linreg = LinearRegression()
-linreg.fit(X, y)
-round(linreg.score(X, y), 3)
-y_pred = linreg.predict(X)
-np.corrcoef(y, y_pred)
-np.corrcoef(y, y_pred)[0, 1]**2
+reg = LinearRegression()
+reg.fit(X, y)
+y_pred = reg.predict(X)
+reg.score(X, y).round(3)
 
-# Q3. Actual price versus predicted price #
-plt.figure(figsize=(6,6))
-plt.scatter(x=y_pred, y=y, color='black', s=1)
-plt.title('Figure 2. Actual vs predicted price')
+# Q3. Plot the actual price versus the price predicted by your model #
+plt.figure(figsize=(5,5))
+plt.title('Figure 2. Actual price vs predicted price')
+plt.scatter(x=y_pred, y=y, color='black', s=2)
 plt.xlabel('Predicted price (thousands)')
 plt.ylabel('Actual price (thousands)');
-np.sum(y_pred < 0)
+plt.figure(figsize=(5,5))
+plt.title('Figure 3. Absolute prediction error vs predicted price')
+plt.scatter(x=y_pred, y=abs(y-y_pred), color='black', s=1)
+plt.xlabel('Predicted price (thousands)')
+plt.ylabel('Absolute predicted error (thousands)');
+(y_pred < 0).sum()
+
+# Q4. Dummies for the zipcodes #
+X1 = df.iloc[:, 4:-1]
+X2 = pd.get_dummies(df['zipcode'])
+X2.head()
+X = pd.concat([X1, X2], axis=1)
+X.shape
+X = X.values
+reg.fit(X, y)
+y_pred = reg.predict(X)
+reg.score(X, y).round(3)
+plt.figure(figsize=(5,5))
+plt.title('Figure 4. Actual price vs predicted price')
+plt.scatter(x=y_pred, y=y, color='black', s=2)
+plt.xlabel('Predicted price (thousands)')
+plt.ylabel('Actual price (thousands)');
+(y_pred < 0).sum()
