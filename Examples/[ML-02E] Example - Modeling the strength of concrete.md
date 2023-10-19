@@ -169,7 +169,7 @@ Given the feature values, the method `.predict()` returns predicted target value
 In [11]: y_pred = reg.predict(X)
 ```
 
-The vector `y_pred` of predicted values can be compared to the vector `y` of actual values, to evaluate the predictive performance of the model. But it can also be applied to new data, which is what we want the model for in real applications. Let us do it in a fictional new sample, which we create by setting the feature values obtained by rounding the mean values calculated in `Out [6]`. 
+The vector `y_pred` of predicted values can be compared to the vector `y` of actual values, to evaluate the predictive performance of the model. But it can also be applied to new data, which is what we want the model for in real applications. Let us do it in a fictional new sample, which we create by setting the feature values obtained by rounding the mean values calculated in `Out [5]`. 
 
 ```
 In [14]: X_new = df.describe().iloc[1:2, :-1].round()
