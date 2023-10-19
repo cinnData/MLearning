@@ -1,4 +1,4 @@
-# [ML-05E] Term deposits
+# [ML-05E] Example - Term deposits
 
 ## Introduction
 
