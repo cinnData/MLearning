@@ -161,16 +161,16 @@ In [10]: # Set the size of the figure
     ...: # First subplot
     ...: plt.subplot(1, 2, 1)
     ...: plt.hist(df['score'][y == 1], range=(0,1), color='gray', edgecolor='white')
-    ...: plt.title('Figure 2.a. Scores (Churners)')
+    ...: plt.title('Figure 1.a. Scores (Churners)')
     ...: plt.xlabel('Churn score')
     ...: # Second subplot
     ...: plt.subplot(1, 2, 2)
     ...: plt.hist(df['score'][y == 0], range=(0,1), color='gray', edgecolor='white')
-    ...: plt.title('Figure 2.b. Scores (non-churners)')
+    ...: plt.title('Figure 1.b. Scores (non-churners)')
     ...: plt.xlabel('Churn score');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_4.2.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_4e.1.png)
 
 You can now imagine the cutoff as a vertical line, and move it, right or left of the default threshold 0.5. Samples falling on the right of the vertical line would be classified as positive. Those falling on the left, as negative.
 
