@@ -87,7 +87,7 @@ Out[3]:
 Everything looks right. We also check the **spam rate** in this data set, which agrees with the description (1,813/4,601).
 
 ```
-In [4]: round(df['spam'].mean(), 3)
+In [4]: df['spam'].mean().round(3)
 Out[4]: 0.394
 ```
 
@@ -124,7 +124,7 @@ Out[8]: DecisionTreeClassifier(max_depth=2)
 The method `.score()` gives us the **accuracy** of this model.
 
 ```
-In [9]: round(clf1.score(X, y), 3)
+In [9]: clf1.score(X, y).round(3)
 Out[9]: 0.834
 ```
 
