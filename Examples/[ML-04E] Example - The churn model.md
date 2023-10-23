@@ -161,7 +161,7 @@ In [10]: # Set the size of the figure
     ...: # First subplot
     ...: plt.subplot(1, 2, 1)
     ...: plt.hist(df['score'][y == 1], range=(0,1), color='gray', edgecolor='white')
-    ...: plt.title('Figure 1.a. Scores (Churners)')
+    ...: plt.title('Figure 1.a. Scores (churners)')
     ...: plt.xlabel('Churn score')
     ...: # Second subplot
     ...: plt.subplot(1, 2, 2)
