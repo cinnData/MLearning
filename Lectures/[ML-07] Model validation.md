@@ -1,4 +1,4 @@
-# [ML-08] Model validation
+# [ML-07] Model validation
 
 ## Overfitting
 
