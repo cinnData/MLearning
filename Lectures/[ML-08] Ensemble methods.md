@@ -1,4 +1,4 @@
-# [ML-09] Ensemble methods
+# [ML-08] Ensemble methods
 
 ## Ensemble methods
 
