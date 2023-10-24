@@ -1,4 +1,4 @@
-# Example - Handwritten digit recognition
+# [ML-08E] Example - Handwritten digit recognition
 
 ## Introduction
 
