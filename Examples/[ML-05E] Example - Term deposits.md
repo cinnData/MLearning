@@ -61,3 +61,295 @@ Q3. Set a **threshold** for the scores to adequate the model to your business pu
 Q4. Based on your model, if we set a **target** of 4,000 subscriptions, how many calls would we need, to hit the target?
 
 Q5. If we set a **budget** 10,000 calls, how will we select the clients to be called? How many subscriptions will we get?
+
+## Importing the data
+
+```
+In [1]: import numpy as np, pandas as pd
+```
+
+```
+In [2]: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
+   ...: df = pd.read_csv(path + 'deposit.csv', index_col=0)
+```
+
+```
+In [3]: df.info()
+<class 'pandas.core.frame.DataFrame'>
+Index: 45211 entries, 2065031284 to 2086934257
+Data columns (total 35 columns):
+ #   Column               Non-Null Count  Dtype
+---  ------               --------------  -----
+ 0   age                  45211 non-null  int64
+ 1   job_admin            45211 non-null  int64
+ 2   job_blue-collar      45211 non-null  int64
+ 3   job_entrepreneur     45211 non-null  int64
+ 4   job_housemaid        45211 non-null  int64
+ 5   job_management       45211 non-null  int64
+ 6   job_retired          45211 non-null  int64
+ 7   job_self-employed    45211 non-null  int64
+ 8   job_services         45211 non-null  int64
+ 9   job_student          45211 non-null  int64
+ 10  job_technician       45211 non-null  int64
+ 11  job_unemployed       45211 non-null  int64
+ 12  job_unknown          45211 non-null  int64
+ 13  marital_divorced     45211 non-null  int64
+ 14  marital_married      45211 non-null  int64
+ 15  marital_single       45211 non-null  int64
+ 16  education_primary    45211 non-null  int64
+ 17  education_secondary  45211 non-null  int64
+ 18  education_tertiary   45211 non-null  int64
+ 19  education_unknown    45211 non-null  int64
+ 20  default              45211 non-null  int64
+ 21  balance              45211 non-null  int64
+ 22  housing              45211 non-null  int64
+ 23  loan                 45211 non-null  int64
+ 24  channel_cellular     45211 non-null  int64
+ 25  channel_telephone    45211 non-null  int64
+ 26  channel_unknown      45211 non-null  int64
+ 27  duration             45211 non-null  int64
+ 28  pdays                45211 non-null  int64
+ 29  previous             45211 non-null  int64
+ 30  poutcome_failure     45211 non-null  int64
+ 31  poutcome_other       45211 non-null  int64
+ 32  poutcome_success     45211 non-null  int64
+ 33  poutcome_unknown     45211 non-null  int64
+ 34  deposit              45211 non-null  int64
+dtypes: int64(35)
+memory usage: 12.4 MB
+```
+
+```
+In [4]: df.head()
+Out[4]: 
+            age  job_admin  job_blue-collar  job_entrepreneur  job_housemaid   
+accnum                                                                         
+2065031284   58          0                0                 0              0  \
+2051283096   44          0                0                 0              0   
+2029034586   33          0                0                 1              0   
+2070859436   47          0                1                 0              0   
+2098635102   33          0                0                 0              0   
+
+            job_management  job_retired  job_self-employed  job_services   
+accnum                                                                     
+2065031284               1            0                  0             0  \
+2051283096               0            0                  0             0   
+2029034586               0            0                  0             0   
+2070859436               0            0                  0             0   
+2098635102               0            0                  0             0   
+
+            job_student  ...  channel_telephone  channel_unknown  duration   
+accnum                   ...                                                 
+2065031284            0  ...                  0                1       261  \
+2051283096            0  ...                  0                1       151   
+2029034586            0  ...                  0                1        76   
+2070859436            0  ...                  0                1        92   
+2098635102            0  ...                  0                1       198   
+
+            pdays  previous  poutcome_failure  poutcome_other   
+accnum                                                          
+2065031284     -1         0                 0               0  \
+2051283096     -1         0                 0               0   
+2029034586     -1         0                 0               0   
+2070859436     -1         0                 0               0   
+2098635102     -1         0                 0               0   
+
+            poutcome_success  poutcome_unknown  deposit  
+accnum                                                   
+2065031284                 0                 1        0  
+2051283096                 0                 1        0  
+2029034586                 0                 1        0  
+2070859436                 0                 1        0  
+2098635102                 0                 1        0  
+
+[5 rows x 35 columns]
+```
+
+```
+In [5]: df['deposit'].mean().round(3)
+Out[5]: 0.117
+```
+
+## Q1. Logistic regression model
+
+We use scikit-learn to obtain our logistic regression model (not the only way in Python), so we create a target vector and a feature matrix. The target vector is the last column (`deposit`) and the feature matrix contains the other columns.
+
+```
+In [6]: y = df['deposit']
+   ...: X = df.drop(columns='deposit')
+```
+
+```
+In [7]: from sklearn.linear_model import LogisticRegression
+   ...: clf = LogisticRegression(max_iter=2000)
+   ...: clf.fit(X, y)
+Out[7]: LogisticRegression(max_iter=2000)
+```
+
+```
+In [8]: y_pred = clf.predict(X)
+   ...: conf = pd.crosstab(y, y_pred)
+   ...: conf
+Out[8]: 
+col_0        0     1
+deposit             
+0        38968   954
+1         3570  1719
+```
+
+```
+In [9]: acc1 = y_pred[y == 1].mean().round(3)
+```
+
+```
+In [10]: acc0 = (1 - y_pred[y_pred == 0]).mean().round(3)
+```
+
+```
+In [11]: acc0 = (1 - y_pred[y == 0]).mean().round(3)
+```
+
+```
+In [12]: acc, acc1, acc0
+Out[12]: (0.9, 0.325, 0.976)
+```
+
+## Q2. Predictive scores
+
+```
+In [13]: df['score'] = clf.predict_proba(X)[:, 1]
+```
+
+```
+In [14]: df[['deposit', 'score']]
+Out[14]: 
+            deposit     score
+accnum                       
+2065031284        0  0.020247
+2051283096        0  0.012138
+2029034586        0  0.003953
+2070859436        0  0.008954
+2098635102        0  0.050026
+...             ...       ...
+2027086314        1  0.699955
+2028473156        1  0.344148
+2026897134        1  0.992496
+2091483260        0  0.194690
+2086934257        0  0.261455
+```
+
+```
+In [15]: df['score'].mean().round(3)
+Out[15]: 0.116
+```
+
+```
+In [16]: from matplotlib import pyplot as plt
+    ...: # Set the size of the figure
+    ...: plt.figure(figsize = (12,5))
+    ...: # First subplot
+    ...: plt.subplot(1, 2, 1)
+    ...: plt.hist(df['score'][y == 1], color='gray', edgecolor='white')
+    ...: plt.title('Figure 1.a. Scores (subscribers)')
+    ...: plt.xlabel('Subscription score')
+    ...: # Second subplot
+    ...: plt.subplot(1, 2, 2)
+    ...: plt.hist(df['score'][y == 0], color='gray', edgecolor='white')
+    ...: plt.title('Figure 1.b. Scores (non-subscribers)')
+    ...: plt.xlabel('Subscription score');
+```
+
+## Q3. Set a threshold for the scores
+
+```
+In [17]: y_pred = (df['score'] > 0.11).astype(int)
+```
+
+```
+In [18]: conf = pd.crosstab(y, y_pred)
+    ...: conf
+Out[18]: 
+score        0     1
+deposit             
+0        32696  7226
+1         1022  4267
+```
+
+```
+In [19]: acc = (y == y_pred).mean().round(3)
+    ...: acc1 = y_pred[y == 1].mean().round(3)
+    ...: acc0 = (1 - y_pred[y == 0]).mean().round(3)
+    ...: acc, acc1, acc0
+Out[19]: (0.818, 0.807, 0.819)
+```
+
+## Q4. Target of 4,000 subscriptions
+
+```
+In [20]: df.sort_values('score', inplace=True, ascending=False)
+```
+
+```
+In [21]: df[['deposit', 'score']]
+Out[21]: 
+            deposit     score
+accnum                       
+2084617209        0  1.000000
+2096318570        1  0.999990
+2054970681        0  0.999987
+2064903718        0  0.999972
+2078910432        0  0.999970
+...             ...       ...
+2064928371        0  0.002513
+2038624917        0  0.002434
+2032496851        0  0.002398
+2024137560        0  0.002370
+2009467351        0  0.002308
+
+[45211 rows x 2 columns]
+```
+
+```
+In [22]: df['cum_subscription'] = df['deposit'].cumsum()
+    ...: df[['deposit', 'score', 'cum_subscription']]
+Out[22]: 
+            deposit     score  cum_subscription
+accnum                                         
+2084617209        0  1.000000                 0
+2096318570        1  0.999990                 1
+2054970681        0  0.999987                 1
+2064903718        0  0.999972                 1
+2078910432        0  0.999970                 1
+...             ...       ...               ...
+2064928371        0  0.002513              5289
+2038624917        0  0.002434              5289
+2032496851        0  0.002398              5289
+2024137560        0  0.002370              5289
+2009467351        0  0.002308              5289
+
+[45211 rows x 3 columns]
+```
+
+```
+In [23]: (df['cum_subscription'] < 4000).sum() + 1
+Out[23]: 9788
+```
+
+## Q5. Budget 10,000 calls
+
+```
+In [24]: call_list = df.index[:10000]
+    ...: call_list
+Out[24]: 
+Int64Index([2084617209, 2096318570, 2054970681, 2064903718, 2078910432,
+            2041730862, 2071098526, 2037940512, 2032450716, 2095471620,
+            ...
+            2084203519, 2052019348, 2095170348, 2073864012, 2036520178,
+            2072640359, 2057328940, 2079536840, 2082357614, 2051370426],
+           dtype='int64', name='accnum', length=10000)
+```
+
+```
+In [25]: df['cum_subscription'][call_list[9999]]
+Out[25]: 4031
+```
