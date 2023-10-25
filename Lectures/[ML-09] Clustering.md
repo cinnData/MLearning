@@ -8,7 +8,7 @@ There are many clustering algorithms, all based on the same principle, which is 
 
 A warning note: clustering algorithms always produce clusters. But those clusters could be useless for their intended application. For instance, to contribute to a better understanding of your customers, the customer segments have to be described in an intelligible way. This would probably imply a low number of segments.
 
-Frequently, professors and teaching materials suggest that, for clusters to be useful, their number has to be low. Though this can be adequate when the clusters are intended to be managed by humans, it may not be so in some business applications. A big e-retailer like Amazon can easily manage hundreds of clusters, with no human mind understanding them. Also, in some cases, the clusters are used only to speed up computation. For instance, to get recommendations faster, you can search them within clusters of products.
+Frequently, professors and teaching materials suggest that, for clusters to be useful, their number has to be low. Though this can be adequate when the clusters are intended to be managed by humans, it may not be so in some business applications. A big e-retailer like Amazon can easily manage hundreds of clusters, with no human mind understanding them. Also, in some cases, the clusters are used only to speed up the computation. For instance, to get recommendations faster, you can search them within clusters of products.
 
 ## Similarities
 
