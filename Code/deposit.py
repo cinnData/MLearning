@@ -1,7 +1,7 @@
 ## [ML-05E]  Example - Direct marketing of term deposits ##
 
 # Importing the data #
-import numpy as np, pandas as pd
+import pandas as pd
 path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
 df = pd.read_csv(path + 'deposit.csv', index_col=0)
 
