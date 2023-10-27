@@ -117,7 +117,6 @@ In [9]: pic = X[1, :].reshape(28,28)
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.4.png)
 
-
 ```
 In [10]: pic = X[2, :].reshape(28,28)
     ...: plt.imshow(255 - pic);
@@ -125,3 +124,63 @@ In [10]: pic = X[2, :].reshape(28,28)
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.5.png)
 
+## Q3. Train-test split
+
+```
+In [11]: from sklearn.model_selection import train_test_split
+    ...: X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/7)
+```
+
+## Q4. Decision tree classifier
+
+```
+In [12]: from sklearn.tree import DecisionTreeClassifier
+    ...: treeclf = DecisionTreeClassifier(max_leaf_nodes=128)
+    ...: treeclf.fit(X_train, y_train)
+Out[12]: DecisionTreeClassifier(max_leaf_nodes=128)
+```
+
+```
+In [13]: round(treeclf.score(X_train, y_train), 3), round(treeclf.score(X_test, y_test), 3)
+Out[13]: (0.812, 0.8)
+```
+
+## Q5. Random forest classifier
+
+```
+In [14]: from sklearn.ensemble import RandomForestClassifier
+    ...: rfclf1 = RandomForestClassifier(max_leaf_nodes=128, n_estimators=10)
+    ...: rfclf1.fit(X_train, y_train)
+    ...: round(rfclf1.score(X_train, y_train), 3), round(rfclf1.score(X_test, y_test), 3)
+Out[14]: (0.905, 0.892)
+```
+
+## Q6. Change the specification 
+
+```
+In [15]: rfclf2 = RandomForestClassifier(max_leaf_nodes=128, n_estimators=50)
+    ...: rfclf2.fit(X_train, y_train)
+    ...: round(rfclf2.score(X_train, y_train), 3), round(rfclf2.score(X_test, y_test), 3)
+Out[15]: (0.92, 0.911)
+```
+
+```
+In [16]: rfclf3 = RandomForestClassifier(max_leaf_nodes=128, n_estimators=100)
+    ...: rfclf3.fit(X_train, y_train)
+    ...: round(rfclf3.score(X_train, y_train), 3), round(rfclf3.score(X_test, y_test), 3)
+Out[16]: (0.924, 0.917)
+```
+
+```
+In [17]: rfclf4 = RandomForestClassifier(max_depth=7, n_estimators=100)
+    ...: rfclf4.fit(X_train, y_train)
+    ...: round(rfclf4.score(X_train, y_train), 3), round(rfclf4.score(X_test, y_test), 3)
+Out[17]: (0.914, 0.904)
+```
+
+```
+In [18]: rfclf5 = RandomForestClassifier(max_leaf_nodes=256, n_estimators=100)
+    ...: rfclf5.fit(X_train, y_train)
+    ...: round(rfclf5.score(X_train, y_train), 3), round(rfclf5.score(X_test, y_test), 3)
+Out[18]: (0.945, 0.934)
+```
