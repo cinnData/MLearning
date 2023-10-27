@@ -88,7 +88,7 @@ dtypes: float64(4), int64(9)
 memory usage: 546.9+ KB
 ```
 
-The index of this data frame, which we can manage as `df.index`, is the same as the column `id` of the original data. There are no dupicate phone numbers, nor two customers with the same data:
+The index of this data frame, which we can manage as `df.index`, is the same as the column `id` of the original data. There are no duplicate phone numbers, nor two customers with the same data:
 
 ```
 In [3]: df.index.duplicated().sum() + df.duplicated().sum()
@@ -104,7 +104,7 @@ In [4]: y = df['churn']
    ...: X = df.drop(columns='churn')
 ```
 
-Alternatively, you can `.iloc` specifications here. Now, we import the **estimator class** `LogisticRegression()` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `clf`, to reming us of the job. Instead of accepting the default arguments, as we did in the linear regression example, we increase the maximum number of interactions, whose default is 100, to 1,500. We leave the discussion of this point for the homework.
+Alternatively, you can `.iloc` specifications here. Now, we import the **estimator class** `LogisticRegression()` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `clf`, to reming us of the job. Instead of accepting the default arguments, as we did in the linear regression example, we increase the maximum number of iterations, whose default is 100, to 1,500. We leave the discussion of this point for the homework.
 
 ```
 In [5]: from sklearn.linear_model import LogisticRegression
