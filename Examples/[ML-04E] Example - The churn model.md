@@ -104,7 +104,7 @@ In [4]: y = df['churn']
    ...: X = df.drop(columns='churn')
 ```
 
-Alternatively, you can `.iloc` specifications here. Now, we import the **estimator class** `LogisticRegression` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `clf`, to reming us of the job. Instead of accepting the default arguments, as we did in the linear regression example, we increase the maximum number of interactions, whose default is 100, to 1,500. We leave the discussion of this point for the homework.
+Alternatively, you can `.iloc` specifications here. Now, we import the **estimator class** `LogisticRegression()` from the subpackage `linear_model`. We instantiate an estimator from this class, calling it `clf`, to reming us of the job. Instead of accepting the default arguments, as we did in the linear regression example, we increase the maximum number of interactions, whose default is 100, to 1,500. We leave the discussion of this point for the homework.
 
 ```
 In [5]: from sklearn.linear_model import LogisticRegression
