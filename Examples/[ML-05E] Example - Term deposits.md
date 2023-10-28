@@ -64,17 +64,18 @@ Q5. If we set a **budget** 10,000 calls, how will we select the clients to be ca
 
 ## Importing the data
 
-```
-In [1]: import numpy as np, pandas as pd
-```
+As in the preceding examples, we use the Pandas funcion `read_csv()` to import the data from a GitHub repository. In this case, we take the column `accnum` as the index (`index_col=0`).
 
 ```
-In [2]: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
+In [1]: import pandas as pd
+   ...: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
    ...: df = pd.read_csv(path + 'deposit.csv', index_col=0)
 ```
 
+We print next a report of the content of `df` with the method `.info()`. Everything is as expected, so far. No missing values.
+
 ```
-In [3]: df.info()
+In [2]: df.info()
 <class 'pandas.core.frame.DataFrame'>
 Index: 45211 entries, 2065031284 to 2086934257
 Data columns (total 35 columns):
@@ -119,9 +120,11 @@ dtypes: int64(35)
 memory usage: 12.4 MB
 ```
 
+We also display the first five rows:
+
 ```
-In [4]: df.head()
-Out[4]: 
+In [3]: df.head()
+Out[3]: 
             age  job_admin  job_blue-collar  job_entrepreneur  job_housemaid   
 accnum                                                                         
 2065031284   58          0                0                 0              0  \
@@ -165,64 +168,81 @@ accnum
 [5 rows x 35 columns]
 ```
 
+Finally, we check the conversion rate:
+
 ```
-In [5]: df['deposit'].mean().round(3)
-Out[5]: 0.117
+In [4]: df['deposit'].mean().round(3)
+Out[4]: 0.117
 ```
+
+*Note*. The value -1 in the column `pdays` when a client has not been previously contacted may look strange, but it is irrelevant in this case, since this situation is covered by the dummy `poutcome_unknown`. It can be proved, bit of algebra that changing the value imputted to avoid having missing values in `pdays` produces an equation with exactly the same predicted values.
 
 ## Q1. Logistic regression model
 
-We use scikit-learn to obtain our logistic regression model (not the only way in Python), so we create a target vector and a feature matrix. The target vector is the last column (`deposit`) and the feature matrix contains the other columns.
+We create a target vector and a feature matrix. The target vector is the last column (`deposit`) and the feature matrix contains the other columns.
 
 ```
-In [6]: y = df['deposit']
+In [5]: y = df['deposit']
    ...: X = df.drop(columns='deposit')
 ```
 
-```
-In [7]: from sklearn.linear_model import LogisticRegression
-   ...: clf = LogisticRegression(max_iter=2000)
-   ...: clf.fit(X, y)
-Out[7]: LogisticRegression(max_iter=2000)
-```
+To develop our logistic regression model with scikit-learn, we instantiate an estimator from the class `LogisticRegression()`, from the subpackage `linear_model`, applying the method `.fit()` as in previous examples. We also increase here the maximum number of iterations. 
 
 ```
-In [8]: y_pred = clf.predict(X)
+In [6]: from sklearn.linear_model import LogisticRegression
+   ...: clf = LogisticRegression(max_iter=2000)
+   ...: clf.fit(X, y)
+Out[6]: LogisticRegression(max_iter=2000)
+```
+
+The default predictions and the corresponding confusion matrix are obtained as in the previous example.
+
+```
+In [7]: y_pred = clf.predict(X)
    ...: conf = pd.crosstab(y, y_pred)
    ...: conf
-Out[8]: 
+Out[7]: 
 col_0        0     1
 deposit             
 0        38968   954
 1         3570  1719
 ```
 
+On one side, these results look fine, since, using this model, we will call only 2,673 clients, capturing 1,719 subscriptions (64.3% conversion rate). On the other side, we are missing 3,570 potential subscribers (70.9%). The total accuracy can be extracted from the con fusion matrix, or calculated directly:
+
+```
+In [8]: acc = (y == y_pred).mean().round(3)
+```
+
+The accuracies on the two groups are: 
+
 ```
 In [9]: acc1 = y_pred[y == 1].mean().round(3)
+   ...: acc0 = (1 - y_pred[y == 0]).mean().round(3)
 ```
 
-```
-In [10]: acc0 = (1 - y_pred[y_pred == 0]).mean().round(3)
-```
+We can print them together as:
 
 ```
-In [11]: acc0 = (1 - y_pred[y == 0]).mean().round(3)
+In [10]: acc, acc1, acc0
+Out[10]: (0.9, 0.325, 0.976)
 ```
 
-```
-In [12]: acc, acc1, acc0
-Out[12]: (0.9, 0.325, 0.976)
-```
+So, we have very good accuracy on the negative group and a very poor accuracy on the positive group. This typical of imbalanced training data. Let us see how this may change if we use the predcitive scores. 
 
 ## Q2. Predictive scores
 
-```
-In [13]: df['score'] = clf.predict_proba(X)[:, 1]
-```
+The predictive scores come as the second column of the 2D array retirned by the method `.predict_proba()`:
 
 ```
-In [14]: df[['deposit', 'score']]
-Out[14]: 
+In [11]: df['score'] = clf.predict_proba(X)[:, 1]
+```
+
+Adding the scores as an additional column to `df` allows us to display the target values and the scores together:
+
+```
+In [12]: df[['deposit', 'score']]
+Out[12]: 
             deposit     score
 accnum                       
 2065031284        0  0.020247
@@ -238,13 +258,26 @@ accnum
 2086934257        0  0.261455
 ```
 
-```
-In [15]: df['score'].mean().round(3)
-Out[15]: 0.116
-```
+On average, the scores are correct, and they have a skewed distribution (nothing wrong with this).
 
 ```
-In [16]: from matplotlib import pyplot as plt
+In [13]: df['score'].describe()
+Out[13]: 
+count    45211.000000
+mean         0.118695
+std          0.179120
+min          0.001720
+25%          0.022626
+50%          0.052807
+75%          0.118823
+max          1.000000
+Name: score, dtype: float64
+```
+
+We can have a better view with separate histograms. The code has already been used in another example.
+
+```
+In [14]: from matplotlib import pyplot as plt
     ...: # Set the size of the figure
     ...: plt.figure(figsize = (12,5))
     ...: # First subplot
@@ -258,6 +291,10 @@ In [16]: from matplotlib import pyplot as plt
     ...: plt.title('Figure 1.b. Scores (non-subscribers)')
     ...: plt.xlabel('Subscription score');
 ```
+
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_5e.1.png)
+
+This figure shows what is wrong with the threshold 0.5. In order to capture at least 2/3 of the potential subscribers, we have to move it to the range 10-20%.
 
 ## Q3. Set a threshold for the scores
 
