@@ -385,7 +385,7 @@ Out[20]: 9788
 
 ## Q5. Budget 10,000 calls
 
-Suppose now that instead of setting an objective, the budget for the campaign allows for a certain number of contacts , for instance 10,000. The manager would pick now the first 10,000 rows of the data set. The account numbers are provided by the index labels:
+Suppose now that, instead of setting an objective, the budget for the campaign allows for a certain number of contacts , for instance 10,000. The manager would pick now the first 10,000 rows of the data set. The account numbers are provided by the index labels:
 
 ```
 In [21]: call_list = df.index[:10000]
