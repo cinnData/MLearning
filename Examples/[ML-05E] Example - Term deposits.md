@@ -294,62 +294,71 @@ In [14]: from matplotlib import pyplot as plt
 
 ![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_5e.1.png)
 
-This figure shows what is wrong with the threshold 0.5. In order to capture at least 2/3 of the potential subscribers, we have to move it to the range 10-20%.
+This figure shows what is wrong with the threshold 0.5. In order to capture at least 2/3 of the potential subscribers, we have to set it within the range 10-20%.
 
 ## Q3. Set a threshold for the scores
 
-```
-In [17]: y_pred = (df['score'] > 0.11).astype(int)
-```
+Let us take the actual conversion rate (rounded) as the threshold.
 
 ```
-In [18]: conf = pd.crosstab(y, y_pred)
+In [15]: y_pred = (df['score'] > 0.11).astype(int)
+```
+
+The  new confusion matrix is:
+
+```
+In [16]: conf = pd.crosstab(y, y_pred)
     ...: conf
-Out[18]: 
+Out[16]: 
 score        0     1
 deposit             
 0        32696  7226
 1         1022  4267
 ```
 
+We would call now 11,493 clients, capturing 4,267 subscribers (37.1% conversion rate), which is 4/5 of the potential subscribers. The accuracies are similar for the two groups:
+
 ```
-In [19]: acc = (y == y_pred).mean().round(3)
+In [17]: acc = (y == y_pred).mean().round(3)
     ...: acc1 = y_pred[y == 1].mean().round(3)
     ...: acc0 = (1 - y_pred[y == 0]).mean().round(3)
     ...: acc, acc1, acc0
-Out[19]: (0.818, 0.807, 0.819)
+Out[17]: (0.818, 0.807, 0.819)
 ```
 
 ## Q4. Target of 4,000 subscriptions
 
-```
-In [20]: df.sort_values('score', inplace=True, ascending=False)
-```
+The manager can decide that he does not need to think on a threshold once he/she has the scores. He can set a target of a reasonable number of subscriptions and use the scores to selext the clients to be contacted. This can be managed easily in a spreadsheet, though we continue here our Python exercise.
+
+The manager would sort the data by the scores, in descending order.
 
 ```
-In [21]: df[['deposit', 'score']]
-Out[21]: 
+In [18]: df.sort_values('score', inplace=True, ascending=False)
+    ...: df[['deposit', 'score']]
+Out[18]: 
             deposit     score
 accnum                       
 2084617209        0  1.000000
-2096318570        1  0.999990
-2054970681        0  0.999987
-2064903718        0  0.999972
-2078910432        0  0.999970
+2054970681        0  0.999984
+2096318570        1  0.999983
+2064903718        0  0.999963
+2078910432        0  0.999958
 ...             ...       ...
-2064928371        0  0.002513
-2038624917        0  0.002434
-2032496851        0  0.002398
-2024137560        0  0.002370
-2009467351        0  0.002308
+2038624917        0  0.002003
+2041538627        0  0.001960
+2037089126        0  0.001908
+2009467351        0  0.001746
+2024137560        0  0.001720
 
 [45211 rows x 2 columns]
 ```
 
+Then, he/she would start contacting the top scored clients, until getting the desired 4,000 subscriptions. This can be managed by adding a column with the cumulative number of subscriptions, which can be created with the method `.cumsum()`.
+
 ```
-In [22]: df['cum_subscription'] = df['deposit'].cumsum()
+In [19]: df['cum_subscription'] = df['deposit'].cumsum()
     ...: df[['deposit', 'score', 'cum_subscription']]
-Out[22]: 
+Out[19]: 
             deposit     score  cum_subscription
 accnum                                         
 2084617209        0  1.000000                 0
@@ -367,17 +376,21 @@ accnum
 [45211 rows x 3 columns]
 ```
 
+The first row where the column `cum_subscription` attains 40,000 will correspond to the last client contacted. In total, 9,788 clients would be contacted.
+
 ```
-In [23]: (df['cum_subscription'] < 4000).sum() + 1
-Out[23]: 9788
+In [20]: (df['cum_subscription'] < 4000).sum() + 1
+Out[20]: 9788
 ```
 
 ## Q5. Budget 10,000 calls
 
+Suppose now that instead of setting an objective, the budget for the campaign allows for a certain number of contacts , for instance 10,000. The manager would pick now the first 10,000 rows of the data set. The account numbers are provided by the index labels:
+
 ```
-In [24]: call_list = df.index[:10000]
+In [21]: call_list = df.index[:10000]
     ...: call_list
-Out[24]: 
+Out[21]: 
 Int64Index([2084617209, 2096318570, 2054970681, 2064903718, 2078910432,
             2041730862, 2071098526, 2037940512, 2032450716, 2095471620,
             ...
@@ -386,7 +399,9 @@ Int64Index([2084617209, 2096318570, 2054970681, 2064903718, 2078910432,
            dtype='int64', name='accnum', length=10000)
 ```
 
+The last of this accounts would be the label `call_list[9999]` (2051370426). The number of subscriptions achieved is now: 
+
 ```
-In [25]: df['cum_subscription'][call_list[9999]]
-Out[25]: 4031
+In [22]: df['cum_subscription'][call_list[9999]]
+Out[22]: 4031
 ```
