@@ -1,8 +1,12 @@
 # [ML-09E] Clustering examples
 
-## Spam data
+## Introduction
 
-Our first clustering exercise uses the data of the example **The spam filter** (`spam.csv`). The questions are:
+This clustering exercise uses the data of the example **The spam filter** (`spam.csv`). The idea is to explore what an **unsupervised learning** approach, based on a **clustering algorithm**, would give for these data. Would the clusters obtained match the spam/ham split?
+
+## Questions
+
+The questions are:
 
 Q1. Extract two **clusters** from the feature matrix, using the *k*-means method. Do these clusters match the 0/1 groups given by the target column `spam`?
 
@@ -12,83 +16,125 @@ Q3. Repeat the clustering exercise with the binarized data, after removing a few
 
 ## Importing the spam data
 
+We import the data from the GitHub repository, as we did previously. We use the function `read_csv()` without any index specification. 
+
 ```
 In [1]: import pandas as pd
    ...: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
    ...: df = pd.read_csv(path + 'spam.csv')
 ```
 
+We also separate the target vector and the feature matrix:
+
 ```
 In [2]: y = df['spam']
    ...: X = df.drop(columns='spam')
 ```
 
-## Q1. 2-cluster analysis (original data)
+## Q1. Two-cluster analysis (original data)
+
+In scikit-learn, the protocol to work with unsupervised learning estimators is similar to that of the supervised learning examples that have already appeared in this course. We import the estimator class `KMeans()` from the subpackage `cluster`:
 
 ```
 In [3]: from sklearn.cluster import KMeans
-   ...: clus = KMeans(n_clusters=2, random_state=0)
-   ...: clus.fit(X)
-Out[3]: KMeans(n_clusters=2, random_state=0)
 ```
 
+The, we instantiate an estimator, which we call `clus`, setting the number of clusters with the argument `n_clusters=2` and adding `random_state=0` to ensure the reproducibility (remember that the *k*-means algorith has a random start:
+
 ```
-In [4]: label1 = clus.labels_
+In [4]: clus = KMeans(n_clusters=2, random_state=0)
+```
+
+Next, we fit the estimator to the feature matrix `X`. Note that, in unsupervised learning, it is `.fit(X)`, instead of `.fit(X, y)`.
+
+```
+In [5]: clus.fit(X)
+Out[5]: KMeans(n_clusters=2, random_state=0)
+```
+
+Once the estimator has been fitted, we can extract the attribute `.labels_`. With two clusters, the **labels** are 0 and 1. They come as a 1D array in which every term indicates the cluster to which the corresponding data unit has been assigned. I call this vector `label1`. We could add it as a new column to `df`, but we will keep it apart in this example.
+
+```
+In [6]: label1 = clus.labels_
    ...: label1
-Out[4]: array([0, 0, 1, ..., 0, 0, 0])
+Out[6]: array([0, 0, 1, ..., 0, 0, 0])
 ```
 
+To respond question Q1, we cross tabulate these labels with the target vector:
+
 ```
-In [5]: pd.crosstab(y, label1)
-Out[5]: 
+In [7]: pd.crosstab(y, label1)
+Out[7]: 
 col_0     0    1
 spam            
 0      2735   53
 1      1622  191
 ```
 
+The match is quite poor, and the reason is clear. The partition into two clusters is unbalanced. This is not strange when the clustering variables have mixed scales. Probably this would change after normalizing the feature matrix, but in this case we adopt a more radical approach, as suggested in question Q2.
+
+Since we have more cases in the main diagonal ( 2,735 + 191) that in the secondary diagonal (1,622 + 53) If we wish to evaluate the match with a single number, we can calculate an "accuracy" as: 
+
 ```
-In [6]: (y == label1).mean().round(3)
-Out[6]: 0.636
+In [8]: (y == label1).mean().round(3)
+Out[8]: 0.636
 ```
+
+With a spam rate of 39.4%, a result so close to 60% means practically nothing.
 
 ## Q2. Binary data set
 
-```
-In [7]: BX = (X.iloc[:, :-3] > 0).astype('int')
-```
+We get the new feature matrix as:
 
 ```
-In [8]: clus.fit(BX)
-   ...: label2 = clus.labels_
+In [9]: BX = (X.iloc[:, :-3] > 0).astype('int')
 ```
 
+Note that, with `X.iloc[:, :-3]`, we exclude the last three columns. Then, `X.iloc[:, :-3] > 0` is a Boolean data frame. In the place `(i, j)` we have `True` when the *i*-th message contains the *j*-th word, and `false` otherwise. `.astype('int')` converts the Booleans to 0/1, just to follow the instructions, because this is not really needed for the exercise.
+
+Now, we fit the estimator `clus` to the new training data `BX`, extracting the cluster labels as an array that we call `label2`.
+
 ```
-In [9]: pd.crosstab(y, label2)
-Out[9]: 
+In [10]: clus.fit(BX)
+    ...: label2 = clus.labels_
+```
+
+Now, the cross tabulation produces something more promising.
+
+```
+In [11]: pd.crosstab(y, label2)
+Out[11]: 
 col_0     0     1
 spam             
 0       293  2495
 1      1173   640
 ```
 
+Note that the cluster labels mean nothing, so cluster 0 could be either spam or not spam. Here we would label cluster 0 as spam and cluster 1 and not spam. The accuracy of such assignation can be calcuated as:
+
 ```
-In [10]: (y == 1 - label2).mean().round(3)
-Out[10]: 0.797
+In [12]: (y == 1 - label2).mean().round(3)
+Out[12]: 0.797
 ```
+
+This shows that unsupervised learning could be a first approximation to spam filtering, with no previous labeling by humans needed.
 
 ## Q3. Removing features
 
-```
-In [11]: from sklearn.tree import DecisionTreeClassifier
-    ...: clf = DecisionTreeClassifier(max_depth=5)
-    ...: clf.fit(BX, y)
-Out[11]: DecisionTreeClassifier(max_depth=5)
-```
+An easy way of selecting features is to train a decision tree classifier, using **feature importance** to rank the features. For the binary data set, this is can be done as follows.
 
 ```
-In [12]: clf.feature_importances_
-Out[12]: 
+In [13]: from sklearn.tree import DecisionTreeClassifier
+    ...: clf = DecisionTreeClassifier(max_depth=5)
+    ...: clf.fit(BX, y)
+Out[13]: DecisionTreeClassifier(max_depth=5)
+```
+
+The feature importance vector for this decision tree classifier produces a first selection of 15 features.
+
+```
+In [14]: clf.feature_importances_
+Out[14]: 
 array([0.        , 0.00267285, 0.        , 0.        , 0.00094443,
        0.        , 0.42095175, 0.        , 0.        , 0.        ,
        0.        , 0.        , 0.        , 0.        , 0.        ,
@@ -101,108 +147,39 @@ array([0.        , 0.00267285, 0.        , 0.        , 0.00094443,
        0.04581248, 0.        , 0.        ])
 ```
 
-```
-In [13]: DBX = BX.iloc[:, clf.feature_importances_ > 0]
-```
+With `.iloc` slection, we can easily create a sub data frame containing only the selected columns.
 
 ```
-In [14]: clus.fit(DBX)
+In [15]: DBX = BX.iloc[:, clf.feature_importances_ > 0]
+```
+
+We fit the estimator `clus` to the new data, extracting the vector of labels:
+
+```
+In [16]: clus.fit(DBX)
     ...: label3 = clus.labels_
 ```
 
+The new cross tabulation shows a better match.
+
 ```
-In [15]: pd.crosstab(y, label3)
-Out[15]: 
+In [17]: pd.crosstab(y, label3)
+Out[17]: 
 col_0     0     1
 spam             
 0       176  2612
 1      1300   513
 ```
 
-```
-In [16]: (y == 1 - label3).mean().round(3)
-Out[16]: 0.85
-```
-
-## MNIST data
-
-Our second clustering exercise uses the MNIST data (`digits.csv.zip`). The questions are:
-
-Q4. Extract ten clusters from the feature matrix, using the *k*-means method. 
-
-Q5. Which is the digit that is better matched by one of the clusters? Can you assign a digit to every cluster?
-
-## Importing the MNIST data
+Labeling cluster 0 as spam, we would get a 85% accuracy.
 
 ```
-In [17]: df = pd.read_csv(path + 'digits.csv.zip')
-    ...: y = df.iloc[:, 0]
-    ...: X = df.iloc[:, 1:]
+In [18]: (y == 1 - label3).mean().round(3)
+Out[18]: 0.85
 ```
 
-## Q4. 10-cluster analysis
+## Homework
 
-```
-In [18]: clus = KMeans(n_clusters=10, random_state=0)
-    ...: clus.fit(X)
-    ...: cluster = clus.labels_
-```
+1. Create a feature matrix for the MNIST data (`digits.csv.zip`) and extract ten clusters from it, using the *k*-means method. 
 
-```
-In [19]: cluster
-Out[19]: array([3, 9, 7, ..., 1, 2, 6])
-```
-
-## Q5. Best matches
-
-```
-In [20]: conf = pd.crosstab(y, cluster)
-    ...: conf
-Out[20]: 
-col_0     0     1     2     3     4     5     6     7     8     9
-label                                                            
-0         9     7  1265    72     2   290   162    39     4  5053
-1        10    11     7     8  4293     8     7     7  3526     0
-2      4863    78   246   201   423   323   147   216   436    57
-3       215    45   462  1083   449  4581    31   193    58    24
-4        29  2173   288    17   178     0   168  3728   234     9
-5         7   215  1811  1157   155  2129    67   432   280    60
-6        53     4  2070    14   190    38  4324    67    45    71
-7        53  4399    12    18   372     6     4  2094   314    21
-8        53   194   291  4115   335  1212    51   208   330    36
-9        19  2849    31    87   261    87    16  3462    95    51
-```
-
-```
-In [21]: conf.max(axis=1)/conf.sum(axis=1)
-Out[21]: 
-label
-0    0.732001
-1    0.545004
-2    0.695708
-3    0.641507
-4    0.546307
-5    0.337241
-6    0.628854
-7    0.603181
-8    0.602930
-9    0.497557
-dtype: float64
-```
-
-```
-In [25]: conf.max(axis=0)/conf.sum(axis=0)
-Out[25]: 
-col_0
-0    0.915647
-1    0.441003
-2    0.319297
-3    0.607649
-4    0.644788
-5    0.528130
-6    0.868796
-7    0.356883
-8    0.662533
-9    0.938870
-dtype: float64
-```
+2. Which is the digit that is better matched by one of the clusters? Can you assign a digit to every cluster?
