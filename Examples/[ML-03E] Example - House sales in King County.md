@@ -314,7 +314,7 @@ In [23]: X.shape
 Out[23]: (21613, 80)
 ```
 
-To prvent the trouble with the column names, we turn `X`into a NumPy 2D array:
+To prevent the trouble with the column names, we turn `X`into a NumPy 2D array:
 
 ```
 In [24]: X = X.values
