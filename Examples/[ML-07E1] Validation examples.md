@@ -83,7 +83,7 @@ Out[9]: (0.788, 0.773)
 
 The R2 value obtained on the training data is 1.5% higher than the value obtianed on the test data. Most practitioners would say that these figures do not constitute an "overfitting issue". Since there is always a residual of subjectivity in such an assertion, it would be wiser to use the test value to evaluatre the model.
 
-# Q2. Repeat the process
+## Q2. Repeat the process
 
 As it is provided by the function `train_test_split()`, the train-test split is just a random selection of data units. So, additional runs will produce different splits and, hence, different R2 values. To explore how this could affect our results, we define a function which integrates splitting the data, fitting an equation and evaluating it.
 
