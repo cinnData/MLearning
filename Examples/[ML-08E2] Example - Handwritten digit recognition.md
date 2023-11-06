@@ -105,7 +105,7 @@ In [6]: from matplotlib import pyplot as plt
    ...: plt.imshow(pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.1.png)
 
 These are the default colors displayed by `imshow()`. To turn them into gray scale, one can use the argument `cmap='gray'`.
 
@@ -113,7 +113,7 @@ These are the default colors displayed by `imshow()`. To turn them into gray sca
 In [7]: plt.imshow(pic, cmap='gray');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.2.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.2.png)
 
 The gray scale can be set as the default by entering `plt.gray()`. Now, reversing the scale, we can show the picture as it were a digit written with black pencil on a white paper surface:
 
@@ -122,7 +122,7 @@ In [8]: plt.gray()
    ...: plt.imshow(255 - pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.3.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.3.png)
 
 This five is far from caligraphic, but still recognizable by a human eye.
 
@@ -135,7 +135,7 @@ In [9]: pic = X[1, :].reshape(28,28)
    ...: plt.imshow(255 - pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.4.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.4.png)
 
 And the third one a four:
 
@@ -144,7 +144,7 @@ In [10]: pic = X[2, :].reshape(28,28)
     ...: plt.imshow(255 - pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e.5.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.5.png)
 
 ## Q3. Train-test split
 
@@ -230,4 +230,4 @@ Out[18]: (0.945, 0.934)
 
 1. At every node of every tree, the random forest algorithm searches for the best split using a random subset of features. The number of features is controlled by the parameter `max_features`. We have used the default, which is the square root of the number of columns of the feature matrix (`max_features='sqrt`). This means, in this case, 28 features. Logic tells us that, by increasing `max_features`, we will improve the accuracy, but the learning process (the fit step) will get slower. Try some variations on this, to see how it works in practice. Do you think that using the default number of features here was a good choice?
 
-2. Develop a **gradient boosting classifier** for these data, using either scikit-learn's `GradientBoostingClassifier()` or XGBoost's `XGBClassifier()`. Take into account that a gradient boosting model is much slower to train than a random forest model with the same tree size and number of trees. A model with 100 trees and a size similar to those shown in this example can take one hour to train (less with XGBoost), though you may find a speed-up by increasing the learning rate.
+2. Develop a **gradient boosting classifier** for these data, using either scikit-learn's `GradientBoostingClassifier()` or XGBoost's `XGBClassifier(). Take into account that a gradient boosting model is much slower to train than a random forest model with the same tree size and number of trees. A model with 100 trees and a size similar to those shown in this example can take one hour to train (less with XGBoost), though you may find a speed-up by increasing the learning rate.
