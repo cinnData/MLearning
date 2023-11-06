@@ -35,7 +35,7 @@ Q5. Among the features available in this data set, which ones are more relevant 
 As in the preceding examples, we use the Pandas funcion `read_csv()` to import the data from a GitHub repository. Since the email messages don't have an identifier, we leave Pandas to create a `RangeIndex`. 
 
 ```
-In [1]: import pandas as pd, numpy as np
+In [1]: import pandas as pd
    ...: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
    ...: df = pd.read_csv(path + 'spam.csv')
 ```
