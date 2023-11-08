@@ -208,7 +208,7 @@ In [16]: rfclf3 = RandomForestClassifier(max_leaf_nodes=128, n_estimators=100)
 Out[16]: (0.924, 0.917)
 ```
 
-Slightly better, but the accuracy is getting flat. So, with a random forest classifier, we can easily achieve 90% accuracy. You can try variations on the size and the number of trees, doing a bit better. For instance, most practitioners prefer using the parameter `max_depth`, but is usually less effective that the corresponding maximum leaf nodes (note that $2^7 = 128$).
+Slightly better, but the accuracy is getting flat. So, with a random forest classifier, we can easily achieve 90% accuracy. You can try variations on the size and the number of trees, doing a bit better. For instance, most practitioners prefer using the parameter `max_depth`, but it is usually less effective that the corresponding maximum leaf nodes (note that $2^7 = 128$).
 
 ```
 In [17]: rfclf4 = RandomForestClassifier(max_depth=7, n_estimators=100)
