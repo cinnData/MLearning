@@ -1,10 +1,10 @@
-# [ML-02E] Example - Modeling the strength of concrete
+# [MLE-01] Example - Modeling the strength of concrete
 
 ## Introduction
 
-The purpose of this example is to illustrate the basic syntax of scikit-learn using data from the field of engineering. In that filed, it is crucial to have accurate estimates of the performance of building materials. These estimates are required in order to develop safety guidelines governing the materials used in the construction of buildings, bridges and roadways.
+The purpose of this example is to illustrate the basic syntax of scikit-learn using data from the field of **engineering**, where it is crucial to have accurate estimates of the performance of building materials. Those estimates are required in order to develop safety guidelines governing the materials used in the construction of buildings, bridges and roadways.
 
-Estimating the strength of concrete is a challenge of particular interest. Although it is used in nearly every construction project, concrete performance varies greatly due to a wide variety of ingredients that interact in complex ways. As a result, it is difficult to accurately predict the strength of the final product. A model that could reliably predict concrete strength given a listing of the composition of the input materials could result in safer construction practices.
+Estimating the **strength of concrete** is a challenge of particular interest. Although it is used in nearly every construction project, concrete performance varies greatly due to a wide variety of ingredients that interact in complex ways. As a result, it is difficult to accurately predict the strength of the final product. A model that could reliably predict concrete strength given the composition of the input materials could result in safer construction practices.
 
 The concrete compressive strength seems to be a highly nonlinear function of age and ingredients. I-Cheng Yeh found success using neural networks to model concrete strength data. The file `concrete.csv` contains 1,030 examples of concrete with eight features describing the components used in the mixture. These features are thought to be related to the final compressive strength and they include the amount (in kilograms per cubic meter) of cement, slag, ash, water, superplasticizer, coarse aggregate, and fine aggregate used in the product in addition to the aging time (measured in days). 
 
@@ -34,7 +34,7 @@ Source: I-Cheng Yeh (1998), Modeling of strength of high performance concrete us
 
 ## Questions
 
-Q1. Import this data set to a Pandas data frame and check that the content matches the descriptio given above. 
+Q1. Import this data set to a Pandas data frame and check that the content matches the description given above. 
 
 Q2. Prepare the data for supervised learning by creating a **target vector** and a **feature matrix**.
 
@@ -48,15 +48,15 @@ Q6. Save the model for future use.
 
 ## Q1. Import the data
 
-Although scikit-learn is described in the technical documentation as managing the data in NumPy array format, you can equally input data in Pandas format. Using Pandas format makes processing slower, but importing the data and adapting them for the learning process will be easier for you. Nevertheless, remember that, in machine learning, preprocessing is a previous step, so the learning process is carried out with NumPy arrays. Second, that even if scikit-learn estimators can take Pandas data containers, it aleways return arrays. 
+Although scikit-learn is described in the technical documentation as managing the data in NumPy array format, you can equally input data in Pandas format. Using Pandas format makes processing slower, but importing the data and adapting them for the learning process will be easier for you. Nevertheless, remember that, in machine learning, preprocessing is a previous step. The learning step is made when the data are already clean and prepared (no missing values, no duplicates, binary columns for every possible outcome of a categorical feature, etc)., so the Pandas tools are no longer needed. Nevertheless, even if scikit-learn estimators can take Pandas data containers, they always return NumPyarrays. 
 
-We use here the Pandas funcion `read_csv()` to import the data. First, we import the package:
+We use here the Pandas function `read_csv()` to import the data. First, we import the package:
 
 ```
 In [1]: import pandas as pd
 ```
 
-The source file is in a GitHub repository, so we use a remote path to get access. 
+The source file is in a GitHub repository, so we can use a remote path to get access. 
 
 ```
 In [2]: path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
@@ -126,7 +126,7 @@ max    1145.000000   992.600000   365.000000    82.600000
 
 ## Q2. Target vector and feature matrix
 
-Looking at this data set with a supervised learning perspective, we specify the concrete strength as the **target vector**, that is, what we wish to predict. To be consistent, we will always denote this vector (it could either a NumPy 1D array or a Pandas series) as `y`. In this case, the target vector is the last column, which we can extract as:
+Looking at this data set with a supervised learning perspective, we specify the concrete strength as the **target vector**, that is, what we wish to predict. To be consistent, we will always denote this vector (it could be either a NumPy 1D array or a Pandas series) by `y`. In this case, the target vector is the last column, which we can extract as:
 
 ```
 In [6]: y = df.iloc[:, -1]
@@ -138,17 +138,17 @@ Alternatively, you can use the column name, setting `y = df['strength']`. The fe
 In [7]: X = df.iloc[:, :-1]
 ```
 
-The same can be obtained as `X = df.drop(columns='strength')`.
+The same could be obtained as `X = df.drop(columns='strength')`.
 
 ## Q3. Linear regression model
 
-To obtain a **linear regression model** for this example, we use the scikit-learn class `LinearRegression`, from the subpackage `linear_model`. First, we import this class:
+To obtain a **linear regression model** for this example, we use the estimator class `LinearRegression()`, from the subpackage `sklearn.linear_model`. First, we import this class:
 
 ```
 In [8]: from sklearn.linear_model import LinearRegression
 ```
 
-We create an instance of this estimator with:
+We create an instance of this class with:
 
 ```
 In [9]: reg = LinearRegression()
@@ -169,7 +169,9 @@ Given the feature values, the method `.predict()` returns predicted target value
 In [11]: y_pred = reg.predict(X)
 ```
 
-The vector `y_pred` of predicted values can be compared to the vector `y` of actual values, to evaluate the predictive performance of the model. But it can also be applied to new data, which is what we want the model for in real applications. Let us do it in a fictional new sample, which we create by setting the feature values obtained by rounding the mean values calculated in `Out [5]`. 
+If you are using Pandas, as in this example, you can add the vector of predicted values as an extra column of the data frame from which you have extracted the target vector and the feature matrix. To evaluate the predictive performance of the model, `y_pred` can be compared to the vector `y` of actual values. The difference `y - y_pred` contains the prediction errors.
+
+`.predict()` can also be applied to new data, which is what we want the model for in real applications. Let us do it in a fictional new sample, which we create by setting the feature values obtained by rounding the mean values calculated in `Out [5]`. 
 
 ```
 In [14]: X_new = df.describe().iloc[1:2, :-1].round()
@@ -199,7 +201,7 @@ Out[16]: 0.616
 
 In the case of a regression model, the value returned by this method is **R-squared statistic**, which you can see as a squared correlation (this is exactly so only in linear regression), the correlation between the actual strength (`y`) and the predicted (`y_pred`). This correlation, that would be $R = 0.785$. 
 
-We can illustrate this with a scatter plot, with the predicted strength in the horizontal axis and the actual strength in the vertical axis. We build the graphic using the **Matplotlib pyplot API** (you can get a less ornamented version directly in Pandas, with the method `.plot.scatter()`).
+We can illustrate this with a scatter plot, with the predicted strength in the horizontal axis and the actual strength in the vertical axis. We build the graphic using the **Matplotlib pyplot API** (you can also get it in Pandas, with the method `.plot.scatter()`). The argument `s=2` controls the size of the dots.
 
 ```
 In [17]: from matplotlib import pyplot as plt
@@ -232,7 +234,7 @@ In [20]: joblib.dump(reg, 'reg.pkl')
 Out[20]: ['reg.pkl']
 ```
 
-Now we have new file in the working directory (in Jupyter apps, you can learn where is that with the magic command `%pwd`. If you prefer to put the PKL file in a different place, youy can do it by specifying the appropriate path. You can recover the model, anytime, even if you no longer have the training data, as:
+Now we have a new file in the **working directory** (in the Jupyter apps, you can learn where this directory is with the magic command `%pwd`). If you prefer to put the PKL file in a different place, youy can do it by specifying the appropriate path. You can recover the model, anytime, even if you no longer have the training data, as:
 
 ```
 In [21]: newreg = joblib.load('reg.pkl')
