@@ -215,7 +215,7 @@ In [18]: plt.figure(figsize=(5,5))
     ...: plt.ylabel('Actual strength (MPa)');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_2.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-01.1.png)
 
 This visualization helps, in many cases, to detect whether something does not work as expected. In this case, we see that, in spite of the strong correlation, some of prediction errors are quite big. You should not be surprised. The correlation tells you that *on average* the errors are small, which is not the same as saying that all of them are small. Also, by focusing on vertical slices of this scatter plot, we see that, for a given predicted strength, the dispersion of the actual strength is bigger when the predicted strength is bigger. This is also a general fact.
 
