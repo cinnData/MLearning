@@ -1,4 +1,4 @@
-## [ML-03E] Example - House sales in King County ##
+## [MLE-02] Example - House sales in King County ##
 
 # Importing the data #
 import pandas as pd
