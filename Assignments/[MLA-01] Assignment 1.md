@@ -1,4 +1,4 @@
-# Assignment 1
+# [MLA-01] Assignment
 
 ## Introduction
 
@@ -16,8 +16,12 @@ This assignment is based on the example **House sales in King County**, which de
 
 ## Questions
 
-Q1. Evaluate in dollar terms the predictive performance of the model presented in this example. A statement in this line could be something like "the sale price of x% of the houses can be predicted with an error below y thousand dollars".
+Q1. The role of longitude and latitude in the prediction of real estate prices is unclear. Do they really contribute to get better predictions in the first model of this example? If we keep them in the second model, do we get a better model? 
 
-Q2. Would it be better to evaluate the model expressing the prediction error in percentage terms? Then our statement would be like "the price of x% of the houses can be predicted with an error below y% of the actual price".
+Q2. Evaluate in dollar terms the predictive performance of the two models presented in this example. For instance, you can use the mean (or median) absolute error.  Can you make a statement like "the value of x% of the houses can be predicted with an error below y thousand dollars"?
 
-Q3. Develop a model for predicting the sale price which is based on a linear regression equation which has the logarithm of the price on the left side. Do you get better predictions with this model? Does this respond to the objections listed above?
+Q3. Is it better to use the percentage error in the above assessment?
+
+Q4. Can the strong correlation be an artifact created by the extreme values? Trim the data set, dropping the houses beyond a certain threshold of price and/or size. Do you get a better model?
+
+Q5. The distribution of the price is quite skewed, which is a fact of life in real state. The extreme values in the right tail of the distribution can exert an undesired influence on the regression coefficients. Transformations, such as the square root or the logarithm, are recommended in Statistics textbooks in many situations. In particular, the **log transformation** is recommended for variables with skewed distributions, to limit the influence of extreme values. Develop and evaluate a model for predicting the price which is based on a linear regression equation which has the logarithm of the price on the left side. 
