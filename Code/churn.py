@@ -1,4 +1,4 @@
-## [ML-04E] Example - The churn model ##
+## [MLE-03] Example - The churn model ##
 
 # Importing the data #
 import pandas as pd
@@ -16,7 +16,9 @@ from sklearn.linear_model import LogisticRegression
 clf = LogisticRegression(max_iter=1500)
 clf.fit(X, y)
 clf.score(X, y).round(3)
+clf.predict_proba(X)
 df['score'] = clf.predict_proba(X)[:, 1]
+df[['churn', 'score']]
 
 # Q2. Distribution of the predictive scores #
 from matplotlib import pyplot as plt
@@ -25,7 +27,7 @@ plt.figure(figsize = (12,5))
 # First subplot
 plt.subplot(1, 2, 1)
 plt.hist(df['score'][y == 1], range=(0,1), color='gray', edgecolor='white')
-plt.title('Figure 1.a. Scores (Churners)')
+plt.title('Figure 1.a. Scores (churners)')
 plt.xlabel('Churn score')
 # Second subplot
 plt.subplot(1, 2, 2)
