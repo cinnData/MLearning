@@ -217,7 +217,7 @@ The default threshold, used by the method `.predict()`, is 0.5. The predicted cl
 In [13]: y_pred = clf.predict(X)
 ```
 
-It is plainly seen, in Figure 2.a, that with this threshold we are missing more than one half of the churners. So, in spite of its accuracy, our model would not be adequate for the actual business application. 
+It is plainly seen, in Figure 1.a, that with this threshold we are missing more than one half of the churners. So, in spite of its accuracy, our model would not be adequate for the actual business application. 
 
 The **confusion matrix** resulting from the cross tabulation of the actual and the predicted target values, will confirm this visual intuition. Confusion matrices can be obtained in many ways. For instance, with the function `confusion_matrix` of the scikit-learn subpackage `metrics`:
 
