@@ -2,7 +2,7 @@
 
 ## Class probabilities
 
-**Classification** is the prediction of a **categorical target**. In classification models, the predicted target values are usually obtained in two steps:
+**Classification** is the prediction of a **categorical target**. In classification models, the predicted target values, called **classes**, are usually obtained in two steps:
 
 * For every sample, the model calculates a set of **class probabilities**, one for each class. The different types of models differ in the way in which they calculate these probabilities.
 
@@ -14,15 +14,15 @@ In some cases, we switch from the default prediction rule to one which uses the 
 
 ## Binary classification
 
-In **binary classification**, the two target values are typically called **positive** and **negative**. The labels positive/negative must be assigned so that they favor your intuition. Mind that, if you leave this to the computer, it may call positive what you regard as negative.
+In **binary classification**, the two classes are typically called **positive** and **negative**. The labels positive/negative must be assigned so that they favor your intuition. Mind that, if you leave this to the computer, it may call positive what you regard as negative.
 
 In a binary setting, managing two complementary probabilities is redundant, so we focus on the positive class probability. This probability, called the **predictive score**, can be used for management purposes in many business applications (*e.g*. in credit scoring).
 
-In the default prediction, a sample would be classified as positive when its score exceeds 0.5. But you may wish to replace 0.5 by a different **threshold** value. In a business application, the choice of the threshold may be based on a **cost/benefit analysis**. It is not hard to find (approximately) the **optimal threshold** for a user-specified cost matrix.
+In the default prediction, a sample would be classified as positive when its score exceeds 0.5. But you may wish to replace 0.5 by a different **threshold** value. In a business application, the choice of the threshold may be based on a **cost/benefit analysis**. It is not hard to (approximately) find the **optimal threshold** for a user-specified cost matrix.
 
 ## The confusion matrix
 
-The evaluation of a classifier is, explicitly or implicitly, based on a **confusion matrix**, obtained by cross tabulation of the actual target values and the predicted target values. There is not a universal consensus on what to place in the rows and what in the columns. We use the same convention as the scikit-learn manual, with the actual target value in the rows and the predicted target value in the columns.
+The evaluation of a classifier is, explicitly or implicitly, based on a **confusion matrix**, obtained by cross tabulation of the actual classes and the predicted classes. There is not a universal consensus on what to place in the rows and what in the columns. We use the same convention as the scikit-learn manual, with the actual classes in the rows and the predicted classes in the columns.
 
 In a binary setting, a visual inspection of the confusion matrix is always recommended. It will probably help you to decide whether the model is going to be useful. In many cases, it is practical to examine the model performance separately on the actual positives and negative samples.
 
@@ -49,7 +49,7 @@ $$\textrm{TP\ rate} = \frac{\textrm{TP}} {\textrm{TP}+\textrm{FN}}\thinspace.$$
 
 $$\textrm{FP\ rate} = \frac{\textrm{FP}} {\textrm{FP}+\textrm{TN}}\thinspace.$$
 
-In a good model, the true positive rate should be high and the false positive rate low. The relative importance given to these statistics depends on the actual application. Their advantage is that they are still valid when the proportion of positive samples in the training data has been artificially inflated, because they are calculated separately on the actual positives and the actual negatives. This may sound strange, but it is recommended under class imbalance. When the proportion of positive samples is inflated, the training data cannot be taken as representative of the current population, and the accuracy derived from the confusion matrix cannot be extrapolated to the real world.
+A good model should have both a high true positive rate and a low false positive rate low. The relative importance given to these statistics depends on the actual application. Their advantage is that they are still valid when the proportion of positive samples in the training data has been artificially inflated, because they are calculated separately on the actual positives and the actual negatives. This may look strange, but it is common practice under class imbalance. When the proportion of positive samples is inflated, the training data cannot be taken as representative of the current population, and the accuracy derived from the confusion matrix cannot be extrapolated to the real world.
 
 An alternative to the true positive and false negative rates, used by scikit-learn, is based on the precision and the recall:
 
@@ -76,17 +76,17 @@ Here, $p$ is the predictive score and $F$ is the **logistic function**, whose ma
 
 $$F(x) = \frac {1} {1 + \exp(-x)}\thinspace.$$
 
-The graph of the logistic function has an inverted S shape, as shown in the figure. As given by this function, the scores fall within the unit interval ($0 < p < 1$). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples in order to select those to which a specific policy is going to be applied.
+The graph of the logistic function has an inverted S shape, as shown in Figure 1. As given by this function, the scores fall within the unit interval ($0 < p < 1$). Although statisticians take them as probabilities, in machine learning you may be more pragmatic, using the scores just to rank the samples, in order to select those to which a specific policy is going to be applied.
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_4.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/ml-04.1.png)
 
-As for linear regression, in logistic regression the coefficients of the equation are optimal, meaning that a certain **loss function** attains its minimum value. Here, the loss function is the **cross-entropy**, a formula extracted from information theory. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users. So, it is recommended to use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical package `StatsModels`.
+As for linear regression, in logistic regression the coefficients of the equation are optimal, meaning that a certain **loss function** attains its minimum value. Here, the loss function is the **average cross-entropy**, a formula extracted from information theory. For every sample, the cross-entropy is the negative logarithm of the predicted class probability of the actual class of that sample. In scikit-learn, you can choose the optimization method, named the **solver**, but this is a bit too mathematical for most users. So, it is recommended to use the default, unless you are an optimization expert. If you are using Python, but you want logistic regression with a statistical package `StatsModels`.
 
 ## Classification in scikit-learn
 
-In scikit-learn, we just find a few differences between classification and regression models. In classification, the target values (the terms of `y`) are taken as **labels** for groups or classes. Data type `str` is admitted for `y`. We also have here the three basic methods, `.fit()`, `.predict()` and `.score()`. 
+In scikit-learn, we just find a few differences between classification and regression models. In classification, the terms of the target vector `y` are taken as **labels** for groups or classes. Data type `str` is admitted for `y`. We also have here the three basic methods, `.fit()`, `.predict()` and `.score()`. 
 
-For instance, for a binary logistic regression model, we use the class `LogisticRegression` from the subpackage `linear_model`. As usual in scikit-learn, we instantiate an estimator:
+For instance, for a binary logistic regression model, we use the class `LogisticRegression()` from the subpackage `linear_model`. As usual in scikit-learn, we instantiate an estimator:
 
 ```
 from sklearn.linear_model import LogisticRegression
@@ -95,7 +95,7 @@ clf = LogisticRegression()
 
 The method `.fit()` works the same in all supervised learning models in scikit-learn. The method `.score()` is called in the same way in classification and regression, but, while in regression retruns a R-squared statistic it returns the accuracy of the model, that is the proportion of right prediction. 
 
-In classfication, the default prediction is given by the method `predict()`, which is called as in regression. But, here, in addition to `.predict()`, we also have `.predict_proba()`, which returns a 2D array with the predicted class probabilities. For every row, the sum of the class probabilities equals 1. 
+In classification, the default prediction is given by the method `.predict()`. But, here, in addition to `.predict()`, we also have `.predict_proba()`, which returns a 2D array with one column for every class, containing the predicted class probabilities. For every row, the sum of the class probabilities equals 1. 
 
 In binary classification, you may use the predictive scores, which will be obtained as:
 
