@@ -170,7 +170,7 @@ In [10]: # Set the size of the figure
     ...: plt.xlabel('Churn score');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_4e.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-03.1.png)
 
 You can now imagine the cutoff as a vertical line, and move it, right or left of the default threshold 0.5. Samples falling on the right of the vertical line would be classified as positive. Those falling on the left, as negative.
 
