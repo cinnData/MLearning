@@ -1,4 +1,4 @@
-## [ML-05E]  Example - Direct marketing of term deposits ##
+## [MLE-04]  Example - Direct marketing of term deposits ##
 
 # Importing the data #
 import pandas as pd
@@ -27,20 +27,19 @@ acc, acc1, acc0
 # Q2. Predictive scores #
 df['score'] = clf.predict_proba(X)[:, 1]
 df[['deposit', 'score']]
-df['score'].mean().round(3)
-(df['score'] > 0.5).mean().round(3)
+df['score'].describe()
 from matplotlib import pyplot as plt
 # Set the size of the figure
-plt.figure(figsize = (12,5))
+plt.figure(figsize=(12,5))
 # First subplot
 plt.subplot(1, 2, 1)
 plt.hist(df['score'][y == 1], color='gray', edgecolor='white')
-plt.title('Figure a. Scores (subscribers)')
+plt.title('Figure 1.a. Scores (subscribers)')
 plt.xlabel('Subscription score')
 # Second subplot
 plt.subplot(1, 2, 2)
 plt.hist(df['score'][y == 0], color='gray', edgecolor='white')
-plt.title('Figure b. Scores (non-subscribers)')
+plt.title('Figure 1.b. Scores (non-subscribers)')
 plt.xlabel('Subscription score');
 
 # Q3. Set a threshold for the scores #
@@ -63,16 +62,3 @@ df[['deposit', 'score', 'cum_subscription']]
 call_list = df.index[:10000]
 call_list
 df['cum_subscription'][call_list[9999]]
-
-# Q6. Validation assuming budget of 20% #
-df = df.drop(columns=['score', 'cum_subscription'])
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5)
-clf.fit(X_train, y_train)
-y_score = clf.predict_proba(X_test)[:, 1]
-df_test = pd.DataFrame({'deposit': y_test, 'score': y_score}, index=X_test.index)
-df_test.sort_values('score', inplace=True, ascending=False)
-df_test
-N = int(len(y_test)/5)
-N
-df_test['deposit'].head(N).sum()
