@@ -1,4 +1,4 @@
-# [ML-06E] Example - The spam filter
+# [MLE-05] Example - The spam filter
 
 ## Introduction
 
@@ -93,7 +93,7 @@ Out[4]: 0.394
 
 ## Target vector and feature matrix
 
-We use scikit-learn to obtain our decision tree classifiers, so we create a **target vector** and a **feature matrix**. The target vector is the last column (`spam`) and the feature matrix contains the other columns.
+We use scikit-learn to obtain our decision tree classifiers, so we create a **target vector** and a **feature matrix**. The target vector is the last column (`spam`) and the feature matrix integrates the other columns.
 
 ```
 In [5]: y = df['spam']
@@ -102,13 +102,13 @@ In [5]: y = df['spam']
 
 ## Q1. Decision tree classifier (max depth = 2)
 
-To develop a decision tree classifier, we use the **estimator class** `DecisionTreeClassifier` from the scikit-learn subpackage `tree`. We import this class as we have done with other estimator classes in the preceding examples.
+To develop a decision tree classifier, we use the **estimator class** `DecisionTreeClassifier()` from the scikit-learn subpackage `tree`. We import this class as we have done with other estimator classes in the preceding examples.
 
 ```
 In [6]: from sklearn.tree import DecisionTreeClassifier
 ```
 
-We instantiate a first estimator from this class. We set `max_depth=2`, which limits the **depth**, that is, the length of the longest branch of the tree.
+We instantiate a first estimator from this class, setting `max_depth=2`, which limits the **depth**, that is, the length of the longest branch of the tree.
 
 ```
 In [7]: clf1 = DecisionTreeClassifier(max_depth=2)
@@ -136,7 +136,7 @@ So, we take a closer look at the predictions of this model, y means of the **con
 In [10]: y_pred1 = clf1.predict(X)
 ```
 
-We obtain the confusion matrix as in other examples, with the function `confusion_matrix()`, from the scikit-learn subpackage `sklearn.metrics`.
+In this example, we obtain the confusion matrices with the function `confusion_matrix()`, from the scikit-learn subpackage `sklearn.metrics`.
 
 ```
 In [11]: from sklearn.metrics import confusion_matrix
@@ -156,11 +156,11 @@ In [12]: tp1 = conf1[1, 1]/sum(conf1[1, :])
 Out[12]: (0.697, 0.076)
 ```
 
-We would like to improve these statistics. Since the model that we are using is supersimple, an obvious approach is to increase the maximum depth parameter. Note that a decision tree with depth 2 uses at most three features.
+We would like to improve these statistics. Since the model that we are using is supersimple, an obvious approach is to increase the parameter `max_depth`. Note that a decision tree with depth 2 uses at most three features.
 
 ## Q2. Decision tree classifier (max depth = 3)
 
-We instantiate a second decision tree classifier, `clf2`, with `max_depth=3`. 
+We instantiate a second decision tree classifier, now with `max_depth=3`. 
 
 ```
 In [13]: clf2 = DecisionTreeClassifier(max_depth=3)
@@ -168,9 +168,9 @@ In [13]: clf2 = DecisionTreeClassifier(max_depth=3)
 Out[13]: DecisionTreeClassifier(max_depth=3)
 ```
 
-Right now, we have two `DecisionTreeClassifier` estimators, `clf1` and `clf2`, both fitted to our training data. Alternatively, we could have continued with `clf1`, setting `clf1.max_depth = 3`. But, mind that, every time we refit a model, the previous results are wiped off.
+Right now, we have two estimators from the class `DecisionTreeClassifier()` , namely `clf1` and `clf2`, both fitted to our training data. Alternatively, we could have continued with `clf1`, setting `clf1.max_depth = 3`. But, mind that, every time we refit a model, the previous results are wiped off.
 
-The confusion matrix gets better, specially the false negatives.
+The confusion matrix gets better, specially the false negatives:
 
 ```
 In [14]: y_pred2 = clf2.predict(X)
@@ -256,7 +256,7 @@ We stop here, since the model is getting complex, raising a concern about **over
 
 ## Q5. Feature relevance
 
-One of the most attractive traits of the algorithm that scikit-learn uses to train a decision tree is that it produces, as a by-product, a ranking of the features by their contribution to the predictive power of the model. In scikit-learn, this is the attribute `.feature_importances_` of the `DecisionTreeClassifier` estimator. It is extracted as a 1D array, in which ech term is the **importance** of one of the features. The importance is measured as the **percentage of reduction of the impurity** due to the splits in which the feature is involved. Zero importance means that the corresponding feature is not involved in any split, so it is not used by the decision tree.
+One of the most attractive traits of the algorithm that scikit-learn uses to train a decision tree is that it produces, as a by-product, a ranking of the features by their contribution to the predictive power of the model. In scikit-learn, this is the estimator's attribute `.feature_importances_`. It is extracted as a 1D array, in which each term is the **importance** of one of the features. The importance is measured as the **percentage of reduction of the impurity** due to the splits in which the feature is involved. Zero importance means that the corresponding feature is not involved in any split, so it is not used by the decision tree.
 
 We take a look at feature importance in the biggest of our trees. In spite of the allowance for depth 5, only 15 features are involved in the splits. 
 
@@ -305,10 +305,3 @@ cap_total          0.002
 word_technology    0.001
 dtype: float64
 ```
- ## Homework
-
- 1. Train a **logistic regression** classifier with the data from the file `spam.csv` and compare its performance to the classifiers developed in this example.
-
- 2. Change the feature matrix by: (a) dropping the three `cap_` features and (b) **binarizing** all the `word_` features, transforming them into dummies for the occurrence of the corresponding word. Based on this new feature matrix, develop two spam filters, one based on a logistic regression classifier and the other one based on a decision tree classifier, using the binarized data set.
-
-3. Evaluate these new classifiers and compare them to those obtained with the original data.
