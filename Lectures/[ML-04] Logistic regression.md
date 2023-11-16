@@ -10,7 +10,7 @@
 
 This is the **default prediction** method. When this approach is used, the class probabilities may be hidden, so the model is presented as it were extracting the predictions directly. 
 
-In some cases, we switch from the default prediction rule to one which uses the class probabilities in a different way. Departure from the default is not rare when the data present **class imbalance**, that is, when the proportion of samples of one class is significantly different from the proportion of samples of other classes. Class imbalance is frequent in applications like **credit scoring** or **fraud detection**. It is also frequent in **direct marketing**, since **conversion rates** are typically low.
+In some cases, we switch from the default prediction rule to one which uses the class probabilities in a different way. Departure from the default is not rare when the data present class imbalance, which will be specifically discussed in the next lecture.
 
 ## Binary classification
 
