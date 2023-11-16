@@ -192,7 +192,7 @@ Note that `plt.subplot(1, 2, i)` refers to the $i$-th subplot in a grid of one r
 
 ```
 In [12]: # Set the size of the figure
-    ...: plt.figure(figsize = (12,5))
+    ...: plt.figure(figsize=(12,5))
     ...: # First subplot
     ...: plt.subplot(1, 2, 1)
     ...: plt.hist(df['score'][y == 1], range=(0,1), color='gray', edgecolor='white')
