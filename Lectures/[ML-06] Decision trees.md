@@ -56,7 +56,7 @@ clf = DecisionTreeClassifier(max_depth=2)
 
 ### Feature importance
 
-One of the advantages of decision tree models is that it is very easy to get a report on **feature importance**. The importance of a feature is computed as the proportion of impurity decrease (either a mean sum of squares or a Gini value) brought by that feature. In scikit-learn, the attribute `feature_importances_` is a 1D array containing importance values for all the features. A zero value signals a feature that has not used in the tree. For the tree of Figure 1, this is would be obtained as follows.
+One of the advantages of decision tree models is that it is very easy to get a report on **feature importance**. The importance of a feature is computed as the proportion of impurity decrease (either a mean sum of squares or a Gini value) brought by that feature. In scikit-learn, the attribute `.feature_importances_` is a 1D array containing importance values for all the features. A zero value signals a feature that has not used in the tree. For the tree of Figure 1, this is would be obtained as follows.
 
 ```
 reg.feature_importances_
