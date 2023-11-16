@@ -10,7 +10,7 @@
 
 This is the **default prediction** method. When this approach is used, the class probabilities may be hidden, so the model is presented as it were extracting the predictions directly. 
 
-In some cases, we switch from the default prediction rule to one which uses the class probabilities in a different way. Departure from the default is not rare when the data present class imbalance, which will be specifically discussed in the next lecture.
+In some cases, we switch from the default prediction rule to one which uses the class probabilities in a different way. Departure from the default is not rare when the data present **class imbalance**, which will be specifically discussed in the next lecture.
 
 ## Binary classification
 
