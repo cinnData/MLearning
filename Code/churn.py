@@ -23,7 +23,7 @@ df[['churn', 'score']]
 # Q2. Distribution of the predictive scores #
 from matplotlib import pyplot as plt
 # Set the size of the figure
-plt.figure(figsize = (12,5))
+plt.figure(figsize=(12,5))
 # First subplot
 plt.subplot(1, 2, 1)
 plt.hist(df['score'][y == 1], range=(0,1), color='gray', edgecolor='white')
