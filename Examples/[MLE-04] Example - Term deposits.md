@@ -1,22 +1,20 @@
-# [ML-05E] Example - Term deposits
+# [MLE-04] Example - Term deposits
 
 ## Introduction
 
-There are two main approaches for companies to promote products and/or services: through mass campaigns, targeting general indiscriminate public, or through **direct marketing**, targeting a specific set of contacts. Nowadays, in a global competitive world, positive responses to mass campaigns are typically very low. Alternatively, direct marketing focus on targets that assumably will be keener to that specific product/service, making these campaigns more attractive, because of their efficiency. But the increasingly vast number of marketing campaigns has reduced their effect on the general public. Furthermore, economical pressures and competition has led marketing managers to invest on direct campaigns with a strict and rigorous selection of contacts.
+There are two main approaches for companies to promote products and/or services: through mass campaigns, targeting general indiscriminate public, or through **direct marketing**, targeting a specific set of contacts. Nowadays, in a global competitive world, positive responses to mass campaigns are typically very low. Alternatively, direct marketing focuses on targets that assumably will be keener to that specific product/service, making these campaigns more attractive, because of their efficiency. But the increasingly vast number of marketing campaigns has reduced their effect on the general public. Furthermore, economical pressures and competition has led marketing managers to invest on direct campaigns with a strict and rigorous selection of contacts.
 
-Due to the internal competition and the current financial crisis, there are huge pressures for European banks to increase their financial assets. One strategy is to offer attractive **long-term deposit** applications with good interest rates, in particular by using direct marketing campaigns.
-
-A Portuguese institution has been offering term deposits to its clients for the past two years, but in a way that the board finds disorganized and inefficient. It looks as if too many contacts were made, for the subscriptions obtained.
+Due to the internal competition and the current financial crisis, there are huge pressures for European banks to increase their financial assets. One strategy is to offer attractive **long-term deposit** applications with good interest rates, in particular by using direct marketing campaigns. A Portuguese institution has been offering term deposits to its clients for the past two years, but in a way that the board finds disorganized and inefficient. It looks as if too many contacts were made, for the subscriptions obtained.
 
 The bank has been using its own contact-center to carry out direct marketing campaigns. The telephone was the dominant marketing channel, although sometimes with an auxiliary use of the Internet online banking channel (*e.g*. by showing information to a specific targeted client). Furthermore, each campaign was managed in an integrated fashion and the results for all channels were outputted together.
 
-The manager in charge of organizing the next campaign is expected to optimize the effort. His objective is to find a **predictive model**, based on data of the preceding campaign, which can explain the success of a contact, *i.e*. whether the client subscribes the deposit. Such model can increase the campaign's efficiency by identifying the main characteristics that affect success, helping in a better management of the available resources (*e.g*. human effort, phone calls and time) and the selection of a high quality and affordable set of potential clients. To be useful for the direct campaign, a predictive model should allow reducing the number of calls in a relevant way without loosing a relevant number of subscribers.
+The manager in charge of organizing the next campaign is expected to optimize the effort. His objective is to find a **predictive model**, based on data of the preceding campaign, for the success of a contact, *i.e*. whether the client subscribes the deposit. Such model can increase the campaign's efficiency by identifying the main characteristics that affect success, helping in a better management of the available resources (*e.g*. human effort, phone calls and time) and the selection of a high quality and affordable set of potential clients. To be useful for the direct campaign, a predictive model should allow reducing the number of calls in a relevant way without losing a relevant number of subscribers.
 
 ## The data set
 
 The data for this lecture come from the previous phone campaign of the bank, which involved a total of 45,211 contacts. During that campaign, an attractive long-term deposit application, with good interest rates, was offered. The contacts led to 5,289 subscriptions, a 11.7% **conversion rate**.
 
-The data set combines demographic data with data about the interaction of the client and the bank. Some of the categorical variables (the type of job, the marital status, etc) have been transformed into **dummy variables** (1/0) so they can be directly entered in an equation:
+The data set combines demographic data with data about the interaction of the client and the bank. Some of the categorical variables (the type of job, the marital status, etc) have been transformed into **dummy variables** (1/0) so they can part of an equation:
 
 * The client's account number (`accnum`).
 
@@ -175,18 +173,18 @@ In [4]: df['deposit'].mean().round(3)
 Out[4]: 0.117
 ```
 
-*Note*. The value -1 in the column `pdays` when a client has not been previously contacted may look strange, but it is irrelevant in this case, since this situation is covered by the dummy `poutcome_unknown`. It can be proved, bit of algebra that changing the value imputted to avoid having missing values in `pdays` produces an equation with exactly the same predicted values.
+*Note*. The value -1 in the column `pdays` when a client has not been previously contacted may look strange, but it is irrelevant in this case, since this situation is covered by the dummy `poutcome_unknown`. It can be proved, with a bit of algebra, that changing the value imputed to the missing values in `pdays` produces an equation with exactly the same predicted values.
 
 ## Q1. Logistic regression model
 
-We create a target vector and a feature matrix. The target vector is the last column (`deposit`) and the feature matrix contains the other columns.
+We create a target vector and a feature matrix. The target vector is the last column (`deposit`) and the feature matrix integrates the other columns.
 
 ```
 In [5]: y = df['deposit']
    ...: X = df.drop(columns='deposit')
 ```
 
-To develop our logistic regression model with scikit-learn, we instantiate an estimator from the class `LogisticRegression()`, from the subpackage `linear_model`, applying the method `.fit()` as in previous examples. We also increase here the maximum number of iterations. 
+To develop our logistic regression model with scikit-learn, we instantiate an estimator from the class `LogisticRegression()`, from the subpackage `linear_model`, applying the method `.fit()` as in the previous example. We also increase here the maximum number of iterations. 
 
 ```
 In [6]: from sklearn.linear_model import LogisticRegression
@@ -195,7 +193,7 @@ In [6]: from sklearn.linear_model import LogisticRegression
 Out[6]: LogisticRegression(max_iter=2000)
 ```
 
-The default predictions and the corresponding confusion matrix are obtained as in the previous example.
+The default predictions and the corresponding confusion matrix are obtained as in the previous example. We use now the Pandas function `crosstab()`. 
 
 ```
 In [7]: y_pred = clf.predict(X)
@@ -208,7 +206,7 @@ deposit
 1         3570  1719
 ```
 
-On one side, these results look fine, since, using this model, we will call only 2,673 clients, capturing 1,719 subscriptions (64.3% conversion rate). On the other side, we are missing 3,570 potential subscribers (70.9%). The total accuracy can be extracted from the con fusion matrix, or calculated directly:
+On one side, these results look fine, since, using this model, we will call only 2,673 clients, capturing 1,719 subscriptions (64.3% conversion rate). On the other side, we are missing 3,570 potential subscribers (70.9%). The total accuracy can be extracted from the confusion matrix, or calculated directly:
 
 ```
 In [8]: acc = (y == y_pred).mean().round(3)
@@ -228,7 +226,7 @@ In [10]: acc, acc1, acc0
 Out[10]: (0.9, 0.325, 0.976)
 ```
 
-So, we have very good accuracy on the negative group and a very poor accuracy on the positive group. This typical of imbalanced training data. Let us see how this may change if we use the predcitive scores. 
+So, we have very good accuracy on the negative group and a very poor accuracy on the positive group. This is typical of imbalanced training data. Let us see how this may change if we use the predictive scores. 
 
 ## Q2. Predictive scores
 
@@ -274,12 +272,12 @@ max          1.000000
 Name: score, dtype: float64
 ```
 
-We can have a better view with separate histograms. The code has already been used in another example.
+We can have a better view with separate histograms. The code has already been used in the previous example.
 
 ```
 In [14]: from matplotlib import pyplot as plt
     ...: # Set the size of the figure
-    ...: plt.figure(figsize = (12,5))
+    ...: plt.figure(figsize=(12,5))
     ...: # First subplot
     ...: plt.subplot(1, 2, 1)
     ...: plt.hist(df['score'][y == 1], color='gray', edgecolor='white')
@@ -292,9 +290,9 @@ In [14]: from matplotlib import pyplot as plt
     ...: plt.xlabel('Subscription score');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_5e.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-04.1.png)
 
-This figure shows what is wrong with the threshold 0.5. In order to capture at least 2/3 of the potential subscribers, we have to set it within the range 10-20%.
+This figures show what is wrong with the threshold 0.5. In order to capture at least 2/3 of the potential subscribers, we have to set it within the range 10-20%.
 
 ## Q3. Set a threshold for the scores
 
@@ -328,7 +326,7 @@ Out[17]: (0.818, 0.807, 0.819)
 
 ## Q4. Target of 4,000 subscriptions
 
-The manager can decide that he does not need to think on a threshold once he/she has the scores. He can set a target of a reasonable number of subscriptions and use the scores to selext the clients to be contacted. This can be managed easily in a spreadsheet, though we continue here our Python exercise.
+The manager can decide that he does not need to worry about the threshold once he/she has the scores. He can set a target of a reasonable number of subscriptions and use the scores to select the clients to be contacted. This can be managed easily in a spreadsheet, though we continue here with Python.
 
 The manager would sort the data by the scores, in descending order.
 
@@ -385,7 +383,7 @@ Out[20]: 9788
 
 ## Q5. Budget 10,000 calls
 
-Suppose now that, instead of setting an objective, the budget for the campaign allows for a certain number of contacts , for instance 10,000. The manager would pick now the first 10,000 rows of the data set. The account numbers are provided by the index labels:
+Suppose now that, instead of setting an objective, the budget for the campaign allows for a certain number of contacts , for instance 10,000. The manager would pick now the first 10,000 rows of the data set. The account numbers of the selected clients are provided by the index labels:
 
 ```
 In [21]: call_list = df.index[:10000]
@@ -399,7 +397,7 @@ Int64Index([2084617209, 2096318570, 2054970681, 2064903718, 2078910432,
            dtype='int64', name='accnum', length=10000)
 ```
 
-The last of this accounts would be the label `call_list[9999]` (2051370426). The number of subscriptions achieved is now: 
+The last of these account numbers would be the label `call_list[9999]` (2051370426). The number of subscriptions achieved is now: 
 
 ```
 In [22]: df['cum_subscription'][call_list[9999]]
