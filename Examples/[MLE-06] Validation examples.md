@@ -135,7 +135,7 @@ In [16]: val_scores.mean().round(3)
 Out[16]: 0.781
 ```
 
-# Q4. Using the mean absolute percentage error
+## Q4. Using the mean absolute percentage error
 
 We are going to repeat the validation exercise, but replacing the R-squared default metric by a popular alternative. We first repeat the splitting and fitting steps. 
 
