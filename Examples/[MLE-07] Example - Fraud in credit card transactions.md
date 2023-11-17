@@ -1,4 +1,4 @@
-# [ML-07E2] Example - Fraud in credit card transactions
+# [MLE-07] Example - Fraud in credit card transactions
 
 ## Introduction
 
@@ -40,7 +40,7 @@ The effective application of ML methods to card fraud data present some specific
 
 * **Class overlap**. With only raw information about a transaction, distinguishing between a fraudulent and a genuine transaction is close to impossible. This is commonly addressed with feature engineering techniques, which add contextual information to raw payment information.
 
-* **Performance measures**. Standard measures for classification models, such as the **accuracy** or the **AUC ROC**, are not well suited for detection problems, due to class imbalance and the complex cost structure of fraud detection. It is often necessary to consider multiple measures to assess the overall performance of a fraud detection system. Despite its central role in the design of a fraud detection system, there is currently no consensus on the performance measures to be used.
+* **Performance measures**. Standard metrics for classification models, such as the **accuracy** or the **AUC ROC**, are not well suited for detection problems, due to class imbalance and the complex cost structure of fraud detection. It is often necessary to consider multiple metrics to assess a fraud detection system. Despite its central role in the design of a fraud detection system, there is currently no consensus on the metrics to be used.
 
 * **Lack of public datasets**. For confidentiality reasons, real-world credit card transactions cannot be publicly shared. There exist a few publicly shared data sets, with limitations such as **obfuscated features** and short time scope. The scarcity of data sets for fraud detection is partly remedied with **simulated data**.
 
