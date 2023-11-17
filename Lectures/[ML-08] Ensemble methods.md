@@ -24,7 +24,7 @@ Here follows a classification example:
 
 ```
 from sklearn.ensemble import RandomForestClassifier
-rfclf = RandomForestClassifier(max_leaf_nodes=128, n_estimators=50)
+clf = RandomForestClassifier(max_leaf_nodes=128, n_estimators=50)
 ```
 
 In general, increasing the tree size or the number of trees leads to better prediction, but this may come at the price of overfitting the training data. A safe approach is to accept the default of `n_estimators=100`, increasing gradually the tree size and testing overfitting at every step.
@@ -33,7 +33,7 @@ In general, increasing the tree size or the number of trees leads to better pred
 
 The general idea of the **boosting** methodology is to train the models of the ensemble sequentially, each model trying to correct its predecessor. The star is here the **gradient boosting** algorithm, used in both regression and classification. As in the random forest algorithm, the models of the ensemble are based on decision trees, though, here, every tree model is trained on the errors made by the previous one.
 
-The prediction of the ensemble model is obtained as a weighted average. The weights decrease at every step according to a parameter called the **learning rate**. With a low learning rate, the weight decreases more slowly. There is a trade-off between the learning rate and the number of trees. With a low learning rate, you will probably need a higher number of trees. Some experts recommend to set a low learning rate (in the range from 0.001 to 0.01) and aim at a high number of trees (in the range from 3,000 to 10,000), but for that you may need huge computing power, since gradient boosting is a slow process with a high number of features.
+The prediction of the ensemble model is obtained as a weighted average. The weights decrease at every step according to a parameter called the **learning rate**. With a low learning rate, the weights decrease more slowly. There is a trade-off between the learning rate and the number of trees. With a low learning rate, you will probably need a higher number of trees. Some experts recommend to set a low learning rate (in the range from 0.001 to 0.01) and aim at a high number of trees (in the range from 3,000 to 10,000), but for that you may need huge computing power, since gradient boosting is a slow process with a high number of features.
 
 In scikit-learn, gradient boosting is provided by the classes `GradientBoostingRegressor()` and `GradientBoostingClassifier()`, from the subpackage `ensemble`. The growth of the trees and the number of trees is controlled as for random forest models. Most practitioners accept the defaults `n_estimators=100` and `learning_rate=0.1`, but go beyond the default `max_depth=3`.
 
@@ -41,7 +41,7 @@ Here follows a classification example:
 
 ```
 from sklearn.ensemble import GradientBoostingClassifier
-gbclf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)
+clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)
 ```
 
 **XGBoost** (extreme gradient boosting) is an implementation of gradient boosting designed for speed and performance. These last years, it has often been on top of the ranking in applied machine learning competitions. For Python, it is available in the package `xgboost`, which can be used as if it were a scikit-learn subpackage (though other API's are available). Gradient boosting optimization takes less time in `xgboost` than in scikit-learn. The defaults are `n_estimators=100`, `learning_rate=0.3` and `max_depth=6`.
@@ -50,7 +50,7 @@ The `xgboost` version of the preceding example would be:
 
 ```
 from xgboost import XGBClassifier
-xgbclf = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)
+clf = XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=6)
 ```
 
-`xgboost` can be installed from the shell or the console, with `pip install xgboost` or `conda install -c conda-forge xgboost`. `pip` is the standard package installer for Python. `conda` comes hand in hand with Anaconda distributions. Although it is much slower than `pip`, it is sometimes needed to get a successful installation, because `xgboost` has many dependencies, and you may have a conflict of versions. It is already available in Google Colab, so no installation is needed there.
+*Note*. `xgboost` can be installed from the shell or the console, with `pip install xgboost`. A few years ago, the installation raised conflicts of versions in many computers. These problems seem to have disappeared. The last versions do not seem to present installation problems. It is already available in Google Colab, so no installation is needed there.
