@@ -1,10 +1,10 @@
-# [ML-08E2] Example - Handwritten digit recognition
+# [MLE-09] Example - Handwritten digit recognition
 
 ## Introduction
 
-This example deals with the classification of grayscale images of handwritten digits (28 pixels by 28 pixels), into 10 classes (0 to 9). The data come from the **MNIST data set**, a classic in the machine learning community, which has been around for almost as long as the field itself and has been very intensively studied. 
+This example deals with the classification of grayscale images of handwritten digits (28 pixels by 28 pixels), into 10 classes (0 to 9). The data are the **MNIST data**, a classic in the machine learning community, which has been around for almost as long as the field itself and have been very intensively studied. 
 
-The MNIST data set contains 60,000 training images, plus 10,000 test images, assembled by the National Institute of Standards and Technology (NIST) in the 1980s. You can think of “solving” MNIST as the "Hello World" of deep learning, what you do to verify that your algorithms are working as expected. As you become a machine learning practitioner, you will see MNIST come up over and over again, in scientific papers, blog posts, and so on.
+The MNIST data set contains 60,000 training images, plus 10,000 test images, assembled by the National Institute of Standards and Technology (NIST) in the 1980s. They have been extensively used for benchmarking. You can think of "solving" MNIST as the "Hello World" of deep learning. As you become a machine learning practitioner, MNIST comes up over and over again, in scientific papers, blog posts, and so on.
 
 ## The data set
 
@@ -12,13 +12,13 @@ The data from the 70,000 images come together in the file `digits.csv` (zipped).
 
 ## Questions
 
-Q1. Pick the first digit image (row 1). The 784 entries on the right of the label, from `1x1` to `28x28`, are the pixels' gray intensities. Pack these numbers as a vector and reshape that vector as a matrix of 28 rows and 28 columns. With the `matplotlib.pyplot` function `imshow`, plot the corresponding image. `pyplot.imshow` will be using default colors which do not help here, so you can turn everything to gray scale by inputting `pyplot.gray()`. So, your plot will have black background and the number is drawn in white. Guess how to reverse this, so that the image looks like white paper with a number drawn in black ink.
+Q1. Pick the first digit image (row 1). The 784 entries on the right of the label, from `1x1` to `28x28`, are the pixels' gray intensities. Pack these numbers as a vector and reshape that vector as a matrix of 28 rows and 28 columns. With the `matplotlib.pyplot` function `imshow()`, plot the corresponding image. This function will be using default colors which do not help here, so you can turn everything to gray scale by inputting `pyplot.gray()`. Your plot will have then black background, with the number drawn in white. Guess how to reverse this, so the image looks like white paper with a number drawn in black ink.
 
 Q2. Repeat the exercise with other images. You don't need `pyplot.gray()` anymore.
 
 Q3. Split the data in a training set with 60,000 samples and a test set with 10,000 samples.
 
-Q4. Train and test a **decision tree classifier**, with `max_leaf_nodes=128`, using these data.
+Q4. Train and test a **decision tree classifier**, using these data. Control the growth of the tree with the argument `max_leaf_nodes=128`.
 
 Q5. Train and test a **random forest classifier**, with  `max_leaf_nodes=128` and `n_ estimators=10`. Is it better than the decision tree model?
 
@@ -34,7 +34,7 @@ In [1]: import numpy as np, pandas as pd
    ...: df = pd.read_csv(path + 'digits.csv.zip')
 ```
 
-We check the shape of the data frame. We have the data on the 70,000 images.
+We calculate the shape of the data frame, to check that we have the data for the 70,000 images.
 
 ```
 In [2]: df.shape
@@ -43,7 +43,7 @@ Out[2]: (70000, 785)
 
 ## Target vector and feature matrix
 
-We set this first column (the image labels) as the target vector. We can examine this vector with the Pandas function `value_counts()`. This shows that the data set is a bit unbalanced: ones are most frequent, and fives least frequent.
+We set this first column (the image labels) as the target vector. We can examine this vector with the Pandas function `value_counts()`. This shows that the data are a bit unbalanced: ones are most frequent, and fives least frequent.
 
 ```
 In [3]: y = df.iloc[:, 0]
@@ -62,7 +62,7 @@ Out[3]:
 Name: label, dtype: int64
 ```
 
-The 784 columns containing the pixel intensities will form the feature matrix. We convert them to a 2D NumPy array with `values`, so we can work better on the first questions. We check then that the pixels values are also as expected, with the NumPy function `unique()`.
+The 784 columns containing the pixel intensities will integrate the feature matrix. We convert them to a 2D NumPy array with `values`, so we can work better on the first questions. We check then that the pixels values are also as expected, with the NumPy function `unique()`.
 
 ```
 In [4]: X = df.iloc[:, 1:].values
@@ -92,20 +92,20 @@ array([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12,
 
 ## Q1. Plotting the first image
 
-Every row corresponds to the image of a digit. Let us visualize this by plotting the images with Matplotlib. In the first row, the 784 entries, from 1x1 to 28x28 are the pixels' gray intensities. To plot the image, we have to reshape it as a 2D array with 28 rows and 28 columns. This can be done with method `.reshape()`.
+Every row corresponds to the image of a digit. Let us visualize this by plotting the images with Matplotlib. In the first row, the 784 entries, from 1 $\times$ 1 to 28 $\times$ 28, are the pixels' gray intensities. To plot the image, we have to reshape it as a 2D array with 28 rows and 28 columns. This can be done with method `.reshape()`.
 
 ```
 In [5]: pic = X[0, :].reshape(28,28)
 ```
 
-The matplotlib.pyplot function `imshow()` converts this array to a picture:
+The `matplotlib.pyplot` function `imshow()` converts this array to a picture and displays it:
 
 ```
 In [6]: from matplotlib import pyplot as plt
    ...: plt.imshow(pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-09.1.png)
 
 These are the default colors displayed by `imshow()`. To turn them into gray scale, one can use the argument `cmap='gray'`.
 
@@ -113,7 +113,7 @@ These are the default colors displayed by `imshow()`. To turn them into gray sca
 In [7]: plt.imshow(pic, cmap='gray');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.2.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-09.2.png)
 
 The gray scale can be set as the default by entering `plt.gray()`. Now, reversing the scale, we can show the picture as it were a digit written with black pencil on a white paper surface:
 
@@ -122,7 +122,7 @@ In [8]: plt.gray()
    ...: plt.imshow(255 - pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.3.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-09.3.png)
 
 This five is far from caligraphic, but still recognizable by a human eye.
 
@@ -135,7 +135,7 @@ In [9]: pic = X[1, :].reshape(28,28)
    ...: plt.imshow(255 - pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.4.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-09.4.png)
 
 And the third one a four:
 
@@ -144,7 +144,7 @@ In [10]: pic = X[2, :].reshape(28,28)
     ...: plt.imshow(255 - pic);
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_8e2.5.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-09.5.png)
 
 ## Q3. Train-test split
 
@@ -157,7 +157,7 @@ In [11]: from sklearn.model_selection import train_test_split
 
 ## Q4. Decision tree classifier
 
-We start with a decision tree classifier, to get a benchmark for the ensemble models. Given the size of the data set, we set the argument `max_leaf_nodes=128` to control the growth of the tree.
+We start with a decision tree classifier, to get a benchmark for the ensemble models. We use an estimator from the class `DecisionTreeClassifier()`, of the scikit-learn subpackage `tree`. Given the size of the data set, we set `max_leaf_nodes=128`, to control the growth of the tree.
 
 ```
 In [12]: from sklearn.tree import DecisionTreeClassifier
@@ -225,9 +225,3 @@ In [18]: rfclf5 = RandomForestClassifier(max_leaf_nodes=256, n_estimators=100)
     ...: round(rfclf5.score(X_train, y_train), 3), round(rfclf5.score(X_test, y_test), 3)
 Out[18]: (0.945, 0.934)
 ```
-
-## Homework
-
-1. At every node of every tree, the random forest algorithm searches for the best split using a random subset of features. The number of features is controlled by the parameter `max_features`. We have used the default, which is the square root of the number of columns of the feature matrix (`max_features='sqrt`). This means, in this case, 28 features. Logic tells us that, by increasing `max_features`, we will improve the accuracy, but the learning process (the fit step) will get slower. Try some variations on this, to see how it works in practice. Do you think that using the default number of features here was a good choice?
-
-2. Develop a **gradient boosting classifier** for these data, using either scikit-learn's `GradientBoostingClassifier()` or XGBoost's `XGBClassifier(). Take into account that a gradient boosting model is much slower to train than a random forest model with the same tree size and number of trees. A model with 100 trees and a size similar to those shown in this example can take one hour to train (less with XGBoost), though you may find a speed-up by increasing the learning rate.
