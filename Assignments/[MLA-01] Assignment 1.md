@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This assignment is based on the example **House sales in King County**, which develops a linear regression model for predicting housing prices. Some shortcomings of the model obtained have already appeared in the discussion of the example:
+This assignment is based on the example MLA-01, which develops a linear regression model for predicting housing prices in King County. Some shortcomings of the model obtained have already appeared in the discussion of the example:
 
 * The model predicts negative prices for some houses.
 
