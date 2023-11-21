@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This assignment is based on the example **The spam filter**. The objective is to try some variations of the filters developed in class.
+This assignment is based on the example MLE-05, focused on a spam filter. The objective is to try some variations of the filters developed in class.
 
 ## Questions
 
