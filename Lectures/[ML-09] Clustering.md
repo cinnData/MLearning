@@ -51,7 +51,7 @@ These functions can be applied to any numeric column of a Pandas data frame. Min
 
 ## Cluster centers
 
-Suppose that you wish to group the data units in $k$ clusters using $p$ numeric variables. Many clustering algorithms are based on finding a set of $k$ points, called **centers**, in the $p$-dimensional space of those variables, and clustering the units around the centers. Every unit will be assigned to the cluster whose center is most similar to that unit. The centers can also be used to assign a cluster to a new unit which has not been used to extract the centers. That cluster would be the one whose center is closer to the new unit.
+Suppose that you wish to group the data units in $k$ clusters using $p$ numeric variables. Many clustering algorithms are based on finding a set of $k$ points, called **centers**, in the $p$-dimensional space of those variables, and clustering the units around the centers. Every unit will be assigned to the cluster whose center is most similar to that unit. The centers can also be used to assign a cluster to a new unit that has not been used to extract the centers. That cluster would be the one whose center is closer to the new unit.
 
 In real-world applications, we look at the center as the "typical element'' of the cluster. The values that the center takes for the different variables are used to produce a description of the cluster, as far as that makes sense. This is the typical approach in customer segmentation. So a marketing manager can describe a segment of customers as individuals above 60, with annual family income between $100,000 and $250,000, who frequently watch soap opera TV series. This would be nothing but a description of the center of that segment.
 
@@ -63,7 +63,7 @@ The **$k$-means algorithm** searches for a set of $k$ centers such that the corr
 
 * The center is the average of the units of the cluster.
 
-* The **distortion**, which is the sum of the squared (Euclidean) distances of the units to the centers of their respective clusters, is minimum.
+* The average squared (Euclidean) distance of a data unit to the center of its cluster, is minimum. If you regard the cluster center as a prediction, this works like a MSE loss.
 
 The $k$-means search is iterative. The steps are:
 
@@ -77,11 +77,11 @@ The $k$-means search is iterative. The steps are:
 
 * The outcome consists in a matrix containing the final cluster centers and a vector containing the cluster labels, which indicate the cluster membership.
 
-Despite some drawbacks, $k$-means remains the most widely used clustering algorithm. It is simple, easily understandable and reasonably scalable, and it can be easily modified to deal with streaming data.
+Despite some drawbacks, $k$-means remains the most widely used clustering algorithm. It is simple, easily understandable and reasonably scalable. Moreover, it can be easily modified to deal with streaming data.
 
 In $k$-means clustering, you have to specify the number of clusters. Even if this is something on which you do not have a definite number, you will probably have a preliminary idea, so you can work around that. For instance, you may wish to have a number of clusters from 3 to 6. So, you will try $k = 3, 4, 5, 6$, comparing the results. You will probably consider the cluster sizes, since you do not want clusters which are too small, and you will monitor how the clusters change when you increase the number of clusters.
 
-**Stability** is expected from a respectable segmentation. Mind that, due to the random start, two runs of the $k$-means clustering can give different results. The difference should not be relevant. 
+**Stability** is expected from a respectable segmentation. Mind that, due to the random start, two runs of the $k$-means clustering can give different results. The difference should not be relevant if the clusters mean something.
 
 ## *k*-means clustering in Python
 
@@ -98,13 +98,13 @@ from sklearn.cluster import KMeans
 clus = KMeans(n_clusters=4)
 ```
 
-The method `.fit()` is applied to a feature matrix (no `y` vector here):
+The method `.fit()` is applied to a feature matrix (no target vector `y` here):
 
 ```
 clus.fit(X)
 ```
 
-There are two interesting attributes here. `.labels_` is a 1D array containing a cluster label for every sample. With `n_clusters=4`, the labels would be 0, 1, 2 and 3. 
+There are two interesting attributes here. First, `.labels_` is a 1D array containing a cluster label for every sample. With `n_clusters=4`, the labels would be 0, 1, 2 and 3. 
 
 ```
 labels = clus.labels_
@@ -116,4 +116,4 @@ The attribute `.cluster_centers_` is a matrix containing the coordinates of the 
 centers = clus.cluster_centers_
 ```
 
-The examination of the matrix centers can help you to describe the clusters. It is recommended to normalize the feature matrix, for instance using with min-max normalization.
+Taking a look at the matrix centers can help to describe the clusters. It is recommended to normalize the feature matrix, for instance using with min-max normalization.
