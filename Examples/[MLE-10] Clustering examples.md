@@ -1,8 +1,8 @@
-# [ML-09E] Clustering examples
+# [MLE-10] Clustering examples
 
 ## Introduction
 
-This clustering exercise uses the data of the example **The spam filter** (`spam.csv`). The idea is to explore what an **unsupervised learning** approach, based on a **clustering algorithm**, would give for these data. Would the clusters obtained match the spam/ham split?
+This clustering exercise uses the data of the example MLE-05, used there to develop a **spam filter**. The idea is to explore an **unsupervised learning** approach, based on a **clustering algorithm**, setting the number of clusters to two. Would the clusters obtained match the spam/ham split?
 
 ## Questions
 
@@ -10,13 +10,13 @@ The questions are:
 
 Q1. Extract two **clusters** from the feature matrix, using the *k*-means method. Do these clusters match the 0/1 groups given by the target column `spam`?
 
-Q2. Drop the three `cap_` variables and **binarize** all the `word_` variables, transforming them into dummies for the occurrence of the corresponding word. Repeat the analysis of question 1 with these binarized data.
+Q2. Drop the three `cap_` variables and **binarize** all the `word_` variables, transforming them into dummies for the occurrence of the corresponding word. Repeat the analysis of question Q1 with these binarized data.
 
 Q3. Repeat the clustering exercise with the binarized data, after removing a few features, those that contribute less to predict spamness. Compare the results of the three analyses. What do you conclude?
 
 ## Importing the spam data
 
-We import the data from the GitHub repository, as we did previously. We use the function `read_csv()` without any index specification. 
+We import the data from the GitHub repository, as we have done in the previous analyses. We use the function `read_csv()` without any index specification. 
 
 ```
 In [1]: import pandas as pd
@@ -71,9 +71,9 @@ spam
 1      1622  191
 ```
 
-The match is quite poor, and the reason is clear. The partition into two clusters is unbalanced. This is not strange when the clustering variables have mixed scales. Probably this would change after normalizing the feature matrix, but in this case we adopt a more radical approach, as suggested in question Q2.
+The match is quite poor, and the reason is clear. The partition created by the clustering algorithm is strongly unbalanced. This is not strange when the clustering variables have mixed scales. Probably this would change after normalizing the feature matrix, but in this case we adopt a more radical approach, as suggested in question Q2.
 
-Since we have more cases in the main diagonal ( 2,735 + 191) that in the secondary diagonal (1,622 + 53) If we wish to evaluate the match with a single number, we can calculate an "accuracy" as: 
+We have more cases in the main diagonal (2,735 + 191 = 2,926) that in the secondary diagonal (1,622 + 53 = 1,675). If we wish to evaluate the match with a single number, we can calculate an "accuracy" as: 
 
 ```
 In [8]: (y == label1).mean().round(3)
@@ -99,7 +99,7 @@ In [10]: clus.fit(BX)
     ...: label2 = clus.labels_
 ```
 
-Now, the cross tabulation produces something more promising.
+Now, the cross tabulation yields something more promising.
 
 ```
 In [11]: pd.crosstab(y, label2)
@@ -110,7 +110,7 @@ spam
 1      1173   640
 ```
 
-Note that the cluster labels mean nothing, so cluster 0 could be either spam or not spam. Here we would label cluster 0 as spam and cluster 1 and not spam. The accuracy of such assignation can be calcuated as:
+Note that the cluster labels mean nothing, so cluster 0 could be either spam or not spam. Here we would label cluster 0 as spam and cluster 1 as not spam. The accuracy of such assignation can be calculated as:
 
 ```
 In [12]: (y == 1 - label2).mean().round(3)
@@ -121,7 +121,7 @@ This shows that unsupervised learning could be a first approximation to spam fil
 
 ## Q3. Removing features
 
-An easy way of selecting features is to train a decision tree classifier, using **feature importance** to rank the features. For the binary data set, this is can be done as follows.
+An easy approach selecting features consists in training a decision tree classifier, using **feature importance** to rank the features. For the binary data set, this is can be done as follows.
 
 ```
 In [13]: from sklearn.tree import DecisionTreeClassifier
@@ -130,7 +130,7 @@ In [13]: from sklearn.tree import DecisionTreeClassifier
 Out[13]: DecisionTreeClassifier(max_depth=5)
 ```
 
-The feature importance vector for this decision tree classifier produces a first selection of 15 features.
+The feature importance vector for this decision tree classifier produces a first selection of 15 features, those with non-null importance, *i.e*. those used by decision tree.
 
 ```
 In [14]: clf.feature_importances_
@@ -147,7 +147,7 @@ array([0.        , 0.00267285, 0.        , 0.        , 0.00094443,
        0.04581248, 0.        , 0.        ])
 ```
 
-With `.iloc` slection, we can easily create a sub data frame containing only the selected columns.
+With `.iloc` selection, we can easily create a data subframe containing only the selected columns.
 
 ```
 In [15]: DBX = BX.iloc[:, clf.feature_importances_ > 0]
@@ -178,8 +178,4 @@ In [18]: (y == 1 - label3).mean().round(3)
 Out[18]: 0.85
 ```
 
-## Homework
-
-1. Create a feature matrix for the MNIST data (`digits.csv.zip`) and extract ten clusters from it, using the *k*-means method. 
-
-2. Which is the digit that is better matched by one of the clusters? Can you assign a digit to every cluster?
+Why is this better than using 48 features? This example illustrates an interesting difference between supervised and unsupervised learning. In supervised learning, adding irrelevant features will never worsen the predictions (though it can make the interpretation more difficult). But, in unsupervised learning, adding features that are unrelated to the patterns that we try to capture can "deviate"  the model from its goal.
