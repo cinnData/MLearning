@@ -22,19 +22,19 @@ How do these networks work? Suppose first that $Z$ is a hidden node and $U_1, U_
 
 $$Z = F\big(w_0 + w_1U_1 + w_2U_2 + \cdots + w_kU_k\big).$$
 
-In this context, the slope coefficients $w_1, w_2, \dots, w_k$  are called weights, and the intercept $w_0$ is called **bias**. $F$ is the **activation function**. The role of the activation function is to introduce nonlinearity in the model (see below).
+In this context, the slope coefficients $w_1, w_2, \dots, w_k$  are called weights, and the intercept $w_0$ is called **bias**. $F()$ is the **activation function**. The role of the activation function is to introduce nonlinearity in the model (see below).
 
 The multilayer perceptron could be seen as if the samples were circulating through the network one-by-one. The feature values are entered in the input nodes, which send them to the nodes of the first hidden layer. At each hidden node, they are combined using the corresponding weights, and the result is transformed by means of the activation function. The hidden nodes send the resulting values to the nodes of the next layer, where they are combined. According to the legend, this is the way animal neurons learn.
 
 Let us help intuition with the graphical representation of a small network. The model of the figure below is a MLP regressor with one hidden layer of two nodes. The diagram is just a graphical representation of a set of three equations, two for the hidden nodes and one for the output node. The equation of node $A$ combines $X_1$, $X_2$ and $X_3$ with weights $w_{1A}$, $w_{2A}$ and $w_{3A}$, while the equation in node $B$ combines them with weights $w_{1B}$, $w_{2B}$ and $w_{3B}$. The biases are $w_{0A}$ and $w_{0B}$, respectively.
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/fig_10.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/ml-10.1.png)
 
 At the hidden nodes, the **activation function** is applied to the values given by these equations. Once the activation has been applied, the outcomes of the two hidden nodes are combined in the third equation, with weights $w_{AY}$ and $w_{BY}$ and bias $w_{0Y}$, to obtain the predicted value of $Y$. This model has a total of 11 parameters.
 
 ## The activation function
 
-The choice of the activation function is based on performance, since we do not have any serious theory which could explain why a specific mathematical formula works better than others. Just a few years ago, the **logistic function** was the recommended activation function in the hidden layers, although some preferred a similar formula called the **hyperbolic tangent** function. The current trend favors the **rectified linear unit function** ($\hbox{ReLU}$). $\hbox{ReLU}(x)$ is equal to $x$ when $x>0$ and equal to $0$ otherwise. So, the default activation in the hidden layers consists in turning the negative incoming values into zeros.
+The choice of the activation function is based on performance, since we do not have any serious theory that could explain why a specific mathematical formula works better than others. Just a few years ago, the **logistic function** was the recommended activation function in the hidden layers, although some preferred a similar formula called the **hyperbolic tangent** function. The current trend favors the **rectified linear unit function** ($\hbox{ReLU}$). $\hbox{ReLU}(x)$ is equal to $x$ when $x>0$ and equal to $0$ otherwise. So, the default activation in the hidden layers consists in turning the negative incoming values into zeros.
 
 In a MLP regressor (as in the figure), there is no activation at the (single) output node, so the equation predicting the values at that node is linear. In a MLP classifier, there are as many output nodes as target values. An activation function called the **softmax function** is applied to the whole set of incoming values, turning them into a set of **class probabilities**. The mathematical expressions involved in the definition of the softmax function are similar to the logistic function formula.
 
@@ -46,9 +46,9 @@ In a MLP regressor (as in the figure), there is no activation at the (single) ou
 
 * *The number of iterations*, that is, the number of times every sample passes through the network is controlled in Keras with the parameter **epochs**. The default is `epochs=1`. The samples don't pass all at once, but in random batches (see below).
 
-* *The learning rate*, which we have already found in gradient boosting modeling, is a parameter which rules how fast the adjustment of the weights is done. If it is too low, there is no convergence to the optimal solution. If it is too high, you can overshoot the optimal solution. Modern ML software allows setting an initial learning rate and decrease it as the learning process goes on. The Keras default is `learning_rate=0.001`. We don't use this parameter in this course
+* *The learning rate*, which we have already found in gradient boosting modeling, is a parameter which rules how fast the adjustment of the weights is done. If it is too low, there is no convergence to the optimal solution. If it is too high, you can overshoot the optimal solution. Modern ML software allows setting an initial learning rate and decrease it as the learning process goes on. The Keras default is `learning_rate=0.001`. We don't use this parameter in this course.
 
-* *The batch size*. In the SGD method, the training data are randomly partitioned in batches in every iteration. The batches are tried one-by-one and the weights are modified every time that a batch is tried. The Keras default is `batch_size=32`. We don't use this parameter in this course, but if you do, you may speed up the training step by increasing the batch size.
+* *The batch size*. In the SGD method, the training data are randomly partitioned in batches in every iteration. The batches are tried one-by-one and the weights are modified every time that a batch is tried. The Keras default is `batch_size=32`. We don't use this parameter in this course.
 
 * *Normalization*. Optimization methods are sensitive to feature scaling, so it is highly recommended to scale your data. In the old data mining suites, normalization was applied as a part of the algorithm, and the output was scaled back to the original range. It is not so in the Python ML toolbox.
 
@@ -72,7 +72,7 @@ You do not need to worry about the math technicalities, as far as you pay attent
 
 **Keras** is a deep learning framework for Python (there is also a version for R), which provides a convenient way to define and train deep learning models. The documentation is available at `https://keras.io`. Keras does not handle itself low-level operations such as tensor manipulation and differentiation. Instead, it relies on a specialized tensor library to do so. That library serves as the **backend** engine of Keras. Keras was organized in a modular way, so several different backend engines could be plugged seamlessly into Keras. Initially, it worked with three backend implementations, TensorFlow, Theano and CNTK, but the last two options have been dropped in the recent versions, so Keras is no longer multi-backend.
 
-Just to give you an idea why Keras is popular, it has been said that the number of keystrokes needed to specify a deep learning model in Keras is one half of what was needed in old TensorFlow. So, the leading choice of deep learning aficionados has been, for years, be the combination of TensorFlow (backend) and Keras (frontend). Pythonistas can have this combo in two ways. (a) using the package `keras` with the TensorFlow backend, or (b) using the module `keras` of the package `tensorflow`. we use the second option in this course. it is available yo you just running `pip install tensorflow` in the shell. If you have problems with the installation (this was happening to students of this course until recently), you can switch to Google Colab for your deep learning experience.
+Just to give you an idea why Keras is popular, it has been said that the number of keystrokes needed to specify a deep learning model in Keras is one half of what was needed in old TensorFlow. So, the leading choice of deep learning aficionados has been, for years, be the combination of TensorFlow (backend) and Keras (frontend). Pythonistas can have this combo in two ways. (a) using the package `keras` with the TensorFlow backend, or (b) using the module `keras` of the package `tensorflow`. We use the second option in this course. It is available by just running `pip install tensorflow` in the shell or the console. If you have problems with the installation (this was happening to students of this course until recently), you can switch to Google Colab for your deep learning experience.
 
 *Note*. Last news are: (a) Google seems to be replacing TensorFlow by a new thing, called JAX (see `https://jax.readthedocs.io`), (b) Keras is going to be multi-backend again, with optional backeneds being TensorFlow, PyTorch and JAX. Stay tuned! 
 
@@ -110,7 +110,7 @@ Now, we can apply the method `.fit()`, which is just a bit more complex than in 
 clf.fit(X_train, y, epochs=10)
 ```
 
-Note that, the number of iterations (the parameter `epochs`) is specified as an argument of `.fit()`, not as in scikit-learn, when instantiating the estimator. In `tensorflow.keras`, you can run `.fit()` many times, getting a gradual improvement.
+Note that the number of iterations (the parameter `epochs`) is specified as an argument of `.fit()`, not as in scikit-learn, when instantiating the estimator. In `tensorflow.keras`, you can run `.fit()` many times, getting a gradual improvement.
 
 The method `.fit()` prints a report tracking the training process. You can stop this with the argument `verbose=0`. After fitting, we validate the model on the test set:
 
@@ -142,7 +142,7 @@ Practitioners typically use two strategies for extracting more of their data:
 
 ## Applications to sequence data
 
-The second area of success of deep learning is **sequence data**. This is a generic expression including text (sequences of words or characters), time series data, video and others. Although I do not have room here for this type of data, let me mention that the main types of networks used in this context are:
+The second area of success of deep learning is **sequence data**. This is a generic expression including text (sequences of words or characters), time series data, video and others. Although we do not have room here for this type of data, let us mention that the main types of networks used in this context are:
 
 * 1D convolutional networks, with applications to machine translation, document classification and spelling correction.
 
@@ -160,7 +160,7 @@ Let us use again the MNIST data as to illustrate the Keras syntax, now for CNN m
 X_train, X_test = X_train.reshape(60000, 28, 28, 1), X_test.reshape(10000, 28, 28, 1)
 ```
 
-*Note*. This is reshaping may not be needed if you get the MINST data from other sources than the GitHub repository that is used in this course. 
+*Note*. This is reshaping may not be needed if you get the MINST data from other sources than the GitHub repository of this course. 
 
 The network architecture can be specified, in a comprehensive way, as a list of layers. The following list is quite typical:
 
@@ -183,13 +183,13 @@ We continue with two Conv2D layers, with 64 nodes each, with a MaxPooling2D laye
 
 The network is closed by by a stack of two Dense layers. Since the input in these layers has to be a vector, we have to flatten the 3D output of the last Conv2D layer to a 1D tensor. This is done with a Flatten layer, which involves no calculation, but just a reshape. 
 
-Next, we initialize the class `Sequential()`, in order to specify the network architecture:
+Next, we initialize the class `Sequential()`, with the network architecture:
 
 ```
 clf = models.Sequential(network)
 ```
 
-Once the network has been completely specified, we apply, as in the MLP example, the methods `compile`, `fit` and `evaluate`:
+Now we can apply, as in the MLP example, the methods `compile`, `fit` and `evaluate`:
 
 ```
 clf.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='acc')
@@ -197,13 +197,13 @@ clf.fit(X_train, y_train, epochs=10)
 clf.evaluate(X_test, y_test) 
 ```
 
-Alternatively, you can fit and evaluate the model in one shot, testing after every epoch:
+Alternatively, one can fit and evaluate the model in one shot, testing after every epoch:
 
 ```
 clf.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test))
 ```
 
-Once the model has been compiled, you can also print a summary of the network as:
+Once the model has been compiled, a summary of the network can be printed as:
 
 ```
 clf.summary()
