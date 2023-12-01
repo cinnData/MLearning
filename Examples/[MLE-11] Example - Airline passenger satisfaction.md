@@ -237,7 +237,7 @@ business
 
 ## Q4. MLP model
 
-We try now a simple neural network., using the TensorFlow with the Keras API. We import the modules `models` and `layers`, that contain all the resources needed.
+We try now a simple neural network, using the TensorFlow with the Keras API. We import the modules `models` and `layers`, that contain all the resources needed.
 
 ```
 In [12]: from tensorflow.keras import models, layers
