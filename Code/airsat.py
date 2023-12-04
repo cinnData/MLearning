@@ -36,7 +36,7 @@ pd.crosstab(df['business'], df['sat'])
 # Q4. MLP model #
 from tensorflow.keras import models, layers
 network = [layers.Dense(32, activation='relu'), layers.Dense(2, activation='softmax')]
-mlp = models.Sequential(network)
+mlp = models.Sequential(layers=network)
 mlp.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='acc')
 mlp.fit(X_train, y_train, epochs=50, verbose=0);
 round(mlp.evaluate(X_test, y_test, verbose=0)[1], 3)
