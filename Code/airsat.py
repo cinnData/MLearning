@@ -46,7 +46,7 @@ def normalize(x):
     return (x - x.min())/(x.max() - x.min())
 XN = X.apply(normalize)
 XN_train, XN_test = train_test_split(XN, test_size=0.2, random_state=0)
-mlp = models.Sequential(network)
+mlp = models.Sequential(layers=network)
 mlp.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='acc')
 mlp.fit(XN_train, y_train, epochs=50, verbose=0);
 round(mlp.evaluate(XN_test, y_test, verbose=0)[1], 3)
