@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The data for this example, published by MysaR Ahmad Bhat, provide details of customers who have already flown with an **airline company**. The feedback of the customers on various context and their flight data has been consolidated.
+The data for this example, published by Mysar Ahmad Bhat, provide details of customers who have already flown with an **airline company**. The feedback of the customers on various context and their flight data has been consolidated.
 
 The main objective of this data could be to predict whether a future customer would be satisfied with their service given the values of the other parameters. A second objective could to explore which aspects of the services offered have to be emphasized to generate more satisfied customers.
 
