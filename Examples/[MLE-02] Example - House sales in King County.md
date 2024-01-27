@@ -244,7 +244,7 @@ In [17]: plt.figure(figsize=(5,5))
     ...: plt.ylabel('Absolute predicted error (thousands)');
 ```
 
-![](https://github.com/cinnData/MLearning/blob/main/Figures/ml-02.3.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-02.3.png)
 
 Another issue is that some of the predicted prices are negative. We can count them:
 
