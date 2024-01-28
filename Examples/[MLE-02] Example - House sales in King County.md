@@ -175,10 +175,10 @@ In [9]: from matplotlib import pyplot as plt
 ```
 In [10]: plt.figure(figsize=(7,5))
     ...: plt.title('Figure 1. Actual price')
-    ...: plt.hist(df['price'], color='gray', rwidth=0.97)
+    ...: plt.hist(df['price'], color='gray', edgecolor='white')
     ...: plt.xlabel('Sale price (thousands)');
 ```
-![](https://github.com/cinnData/MLearning/blob/main/Figures/mle-02.1.png)
+![](https://github.com/cinnData/MLearning/blob/main/Figures/ml-02.1.png)
 
 ## Q2. Linear regression equation
 
@@ -225,7 +225,7 @@ We use again `matplolibt.pyplot` to create this scatter plot. The argument `s=2`
 ```
 In [16]: plt.figure(figsize=(5,5))
     ...: plt.title('Figure 2. Actual price vs predicted price')
-    ...: plt.scatter(x=y_pred, y=y, color='black', s=2)
+    ...: plt.scatter(x=y_pred, y=y, color='black', s=1)
     ...: plt.xlabel('Predicted price (thousands)')
     ...: plt.ylabel('Actual price (thousands)');
 ```
@@ -269,7 +269,7 @@ To create the dummies, we use the Pandas function `get_dummies()`, which returns
 In [20]: X2 = pd.get_dummies(df['zipcode'])
 ```
 
-Now, `X2` has 70 columns (as many as different zipcodes in the data set). The column names are the zipcode values. The advantage of `get_dummies()`, versus an alternative system included in scikit-learn, is that the columns have names, so you know what is what. The drawback is that, when a categorical feature is numeric, the column names are numbers, whioch is not accepted by scikit-learn. We will fix this below.
+Now, `X2` has 70 columns (as many as different zipcodes in the data set). The column names are the zipcode values. The advantage of `get_dummies()`, versus an alternative system included in scikit-learn, is that the columns have names, so you know what is what. The drawback is that, when a categorical feature is numeric, the column names are numbers, which is not accepted by scikit-learn. We will fix this below.
 
 ```
 In [21]: X2.head()
@@ -344,7 +344,7 @@ This looks like a relevant improvement, compared to the former model. The scatte
 ```
 In [28]: plt.figure(figsize=(5,5))
     ...: plt.title('Figure 4. Actual price vs predicted price')
-    ...: plt.scatter(x=y_pred, y=y, color='black', s=2)
+    ...: plt.scatter(x=y_pred, y=y, color='black', s=1)
     ...: plt.xlabel('Predicted price (thousands)')
     ...: plt.ylabel('Actual price (thousands)');
 ```
