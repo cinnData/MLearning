@@ -18,7 +18,7 @@ df['price'].describe()
 from matplotlib import pyplot as plt
 plt.figure(figsize=(7,5))
 plt.title('Figure 1. Actual price')
-plt.hist(df['price'], color='gray', rwidth=0.97)
+plt.hist(df['price'], color='gray', edgecolor='white')
 plt.xlabel('Sale price (thousands)');
 
 # Q2. Linear regression equation #
@@ -33,7 +33,7 @@ reg.score(X, y).round(3)
 # Q3. Plot the actual price versus the price predicted by your model #
 plt.figure(figsize=(5,5))
 plt.title('Figure 2. Actual price vs predicted price')
-plt.scatter(x=y_pred, y=y, color='black', s=2)
+plt.scatter(x=y_pred, y=y, color='black', s=1)
 plt.xlabel('Predicted price (thousands)')
 plt.ylabel('Actual price (thousands)');
 plt.figure(figsize=(5,5))
@@ -55,7 +55,7 @@ y_pred = reg.predict(X)
 reg.score(X, y).round(3)
 plt.figure(figsize=(5,5))
 plt.title('Figure 4. Actual price vs predicted price')
-plt.scatter(x=y_pred, y=y, color='black', s=2)
+plt.scatter(x=y_pred, y=y, color='black', s=1)
 plt.xlabel('Predicted price (thousands)')
 plt.ylabel('Actual price (thousands)');
 (y_pred < 0).sum()
