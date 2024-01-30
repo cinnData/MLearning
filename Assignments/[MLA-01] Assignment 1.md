@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This assignment is based on the example MLE-02, which develops a linear regression model for predicting housing prices in King County. Some shortcomings of the model obtained have already appeared in the discussion of the example:
+This assignment is based on the example MLE-02, which develops a linear regression model for predicting **housing prices in King County**. Some shortcomings of the model obtained have already appeared in the discussion of the example:
 
 * The model predicts negative prices for some houses.
 
@@ -24,7 +24,7 @@ Q3. Is it better to use the percentage error in the above assessment?
 
 Q4. Can the strong correlation be an artifact created by the extreme values? Trim the data set, dropping the houses beyond a certain threshold of price and/or size. Do you get a better model?
 
-Q5. The distribution of the price is quite skewed, which is a fact of life in real state. The extreme values in the right tail of the distribution can exert an undesired influence on the regression coefficients. Transformations, such as the square root or the logarithm, are recommended in Statistics textbooks in many situations. In particular, the **log transformation** is recommended for variables with skewed distributions, to limit the influence of extreme values. Develop and evaluate a model for predicting the price which is based on a linear regression equation which has the logarithm of the price on the left side. 
+Q5. The distribution of the price is quite skewed, which is a fact of life in real state. The extreme values in the right tail of the distribution can exert an undesired influence on the regression coefficients. Develop and evaluate a model for predicting the price that is based on a linear regression equation which has the logarithm of the price on the left side. 
 
 ## Submission
 
