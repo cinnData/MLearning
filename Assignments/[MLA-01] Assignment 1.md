@@ -18,7 +18,7 @@ This assignment is based on the example MLE-02, which develops a linear regressi
 
 Q1. The role of longitude and latitude in the prediction of real estate prices is unclear. Do they really contribute to get better predictions in the first model of this example? If we keep them in the second model, do we get a better model? 
 
-Q2. Evaluate in dollar terms the predictive performance of the two models presented in this example. For instance, you can use the mean (or median) absolute error.  Can you make a statement like "the value of x% of the houses can be predicted with an error below y thousand dollars"?
+Q2. Evaluate in dollar terms the predictive performance of the two models presented in this example. For instance, you can use the mean (or median) absolute error. Can you make a statement like "the value of *x*% of the houses can be predicted with an error below *y* thousand dollars"?
 
 Q3. Is it better to use the percentage error in the above assessment?
 
