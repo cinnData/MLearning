@@ -4,8 +4,6 @@
 import pandas as pd
 path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
 df = pd.read_csv(path + 'deposit.csv', index_col=0)
-
-# Exploring the data #
 df.info()
 df.head()
 df['deposit'].mean().round(3)
