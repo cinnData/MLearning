@@ -52,7 +52,7 @@ Source: S Moro, P Cortez & P Rita (2014), A data-driven approach to predict the 
 
 Q1. Develop a **logistic regression model** to predict the response to the campaign (`deposit`) from the other variables.
 
-Q2. Use your model to assign, to every client, a **predictive score** for suscribing the deposit. How is the distribution of the subscription scores obtained? Is it different for the subscribers and the non-subscribers?
+Q2. Use your model to assign, to every client, a **predictive score** for suscribing the deposit. How is the distribution of the scores so obtained? Is it different for the subscribers and the non-subscribers?
 
 Q3. Set a **threshold** for the scores to adequate the model to your business purpose.
 
