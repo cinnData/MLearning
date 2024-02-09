@@ -1,4 +1,4 @@
-## [ML-06E] Example - The spam filter ##
+## [MLE-05] Example - The spam filter ##
 
 # Importing the data #
 import pandas as pd, numpy as np
