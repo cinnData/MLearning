@@ -18,13 +18,13 @@ X_test.shape, y_test.shape
 from sklearn.linear_model import LinearRegression
 reg = LinearRegression()
 reg.fit(X_train, y_train)
-return reg.score(X_train, y_train).round(3), reg.score(X_test, y_test).round(3)
+reg.score(X_train, y_train).round(3), reg.score(X_test, y_test).round(3)
 
 # Q2. Repeat the process #
 def check():
 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 	reg.fit(X_train, y_train)
-	reg.score(X_train, y_train).round(3), reg.score(X_test, y_test).round(3)
+	return reg.score(X_train, y_train).round(3), reg.score(X_test, y_test).round(3)
 check()
 check()
 check()
