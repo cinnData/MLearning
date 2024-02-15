@@ -150,9 +150,10 @@ The mean absolute percentage error can be calculated, but it is also provided by
 
 ```
 In [18]: from sklearn.metrics import mean_absolute_percentage_error as mape
+    ...: y_pred_train, y_pred_test = reg.predict(X_train), reg.predict(X_test)
     ...: mape(y_train, y_pred_train).round(3), mape(y_test, y_pred_test).round(3)
 Out[18]: (0.21, 0.213)
-```
+````
 
 These results don't provide evidence of overfitting, as expected. For the cross-validation exercise, we can use the function `cross_val_score()`, with the argument `scoring='neg_mean_absolute_percentage_error'`. Now, the function returns the negative MAPE. 
 
