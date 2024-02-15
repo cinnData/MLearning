@@ -4,7 +4,6 @@
 import pandas as pd
 path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
 df = pd.read_csv(path + 'king.csv', index_col=0)
-df['price'] = df['price']/10**3
 y = df.iloc[:, -1]
 X1 = df.iloc[:, 4:-1]
 X2 = pd.get_dummies(df['zipcode'])
