@@ -1,4 +1,4 @@
-# [MLA-02] Assignment 2
+ry # [MLA-02] Assignment 2
 
 ## Introduction
 
@@ -8,7 +8,7 @@ This assignment is based on the example MLE-05, focused on a **spam filter**. Th
 
 Q1. Train a **logistic regression** classifier with the data from the file `spam.csv` and compare its performance to the classifiers developed in this example.
 
-Q2. Change the features matrix by: (a) dropping the three `cap_` variables and (b) **binarizing** all the `word_` variables, transforming them into dummies for the occurrence of the corresponding word. Based on this new features matrix, develop two spam classifiers, one based on a **logistic regression** equation and the other one based on a **decision tree**, using the binarized data set.
+Q2. Change the features matrix by: (a) dropping the three `cap_` variables and (b) **binarizing** all the `word_` variables, transforming every column into a dummy for the occurrence of the corresponding word, taking value 1 if the word occurs in the message and 0 otherwise. This means that the new columns Based on this new features matrix, develop two spam classifiers, one based on a **logistic regression** equation and the other one based on a **decision tree**, using the binarized data set.
 
 Q3. Evaluate these classifiers based on their respective **confusion matrices**.
 
