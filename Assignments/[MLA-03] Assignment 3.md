@@ -13,3 +13,13 @@ Q1. Perform a **random split** of the data set, taking one half for training and
 Q2. **Undersample** the training subset, by randomly dropping as many negative units as needed to match the positive units, so that you end up with a pefectly balanced training data set. Leave the test data set as it is, without correcting there the class imbalance. Train a **logistic regression model** on the undersampled training data set and evaluate it on the test data set, based on a confusion matrix. 
 
 Q3. **Oversample** the training subset, by randomly adding as many duplicates of the positive units as needed to match the negative units, so that you end up with a pefectly balanced training data set. Leave the test data set as it is, without correcting there the class imbalance. Train a logistic regression model on oversampled training data set and evaluate it on the test data set, based on a confusion matrix.
+
+## Submission
+
+1. Submit, through Blackboard, a readable and printable report responding these questions and explaining what you have done, including Python input and output. This can be a Word document, a PDF document or a Jupyter notebook (.ipynb).
+
+2. Put your name on top of the document.
+
+## Deadline
+
+February 25 (Sunday), 24:00.
