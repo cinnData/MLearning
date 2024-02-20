@@ -4,7 +4,7 @@
 
 This assignment is a continuation of the analysis performed in the example MLE-04, focused on the selection of the contacts for a direct marketing campaign of **term deposits**. Here, we take a different approach to the problem of **class imbalance**. With a 11.7% **conversion rate**, the data from the bank show a moderate class imbalance, which was addressed in the example with a **scoring** approach. In this assignment, we use a **resampling** approach, training our predictive models in a modified data set in which the class imbalance has been artificially corrected.
 
-Though there is a Python package, called `imblearn`, devoted to **imbalanced learning**, the suggestion for the assignment is to extract the random samples directly from the Pandas data frame, with the method `.sample()`, which is supersimple. 
+Though there is a Python package, called `imblearn`, devoted to **imbalanced learning**, the suggestion for the assignment is to extract the random samples directly from the Pandas data frames, with the method `.sample()`, which is supersimple. 
 
 ## Questions
 
