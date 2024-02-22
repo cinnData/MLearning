@@ -1,4 +1,4 @@
-# [MLE-08] - Ensemble model examples
+# [MLE-08] Ensemble model examples
 
 ## Introduction
 
@@ -139,7 +139,7 @@ In [14]: rf.fit(X_train, y_train)
 Out[14]: (0.7, 0.69)
 ```
 
-The MAPE confirms the previous remarks, though the improvement looks more relevant than when compating R-squared values.
+The MAPE confirms the previous remarks:
 
 ```
 In [15]: mape(y_train, rf.predict(X_train)).round(3), mape(y_test, rf.predict(X_test)).round(3)
