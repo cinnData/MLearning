@@ -116,4 +116,4 @@ The attribute `.cluster_centers_` is a matrix containing the coordinates of the 
 centers = clus.cluster_centers_
 ```
 
-Taking a look at the matrix centers can help to describe the clusters. It is recommended to normalize the feature matrix, for instance using with min-max normalization.
+Taking a look at the matrix centers can help to describe the clusters. It is recommended to normalize the feature matrix.
