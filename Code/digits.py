@@ -1,27 +1,15 @@
-## Example - Handwritten digit recognition ##
+## [ML-08E] Example - Handwritten digit recognition ##
 
 # Importing the data #
-import csv, numpy as np
-with open('Dropbox/ml_course/data/digits.csv', mode='r') as conn:
-	reader = csv.reader(conn)
-	data = list(reader)
-len(data)
-
-# Headers #
-header = data[0]
-header[:10]
-len(header)
+import numpy as np, pandas as pd
+path = 'https://raw.githubusercontent.com/cinnData/MLearning/main/Data/'
+df = pd.read_csv(path + 'digits.csv.zip')
+df.shape
 
 # Target vector and feature matrix #
-Xy = np.array(data[1:])
-Xy.shape
-y = Xy[:, 0].astype(float)
-y.shape
-X = Xy[:, 1:].astype(float)
-X.shape
-
-# Exploring the data #
-np.unique(y, return_counts=True)
+y = df.iloc[:, 0]
+y.value_counts()
+X = df.iloc[:, 1:].values
 np.unique(X)
 
 # Q1. Plotting the first image #
