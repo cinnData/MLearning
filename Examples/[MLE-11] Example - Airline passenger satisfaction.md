@@ -224,7 +224,7 @@ female          0.002411
 dtype: float32
 ```
 
-Online boarding looks that the most relevant feature. Also, the model reveals a difference between flying for business and the overall satisfaction, although it does not show in which direction. Popular wisdom tells us that people flying for personal issues (and also paying) are usually less tolerant with anything not working properly. Indeed, this is what cross tabulation tells us:
+Online boarding looks that the most relevant feature. Also, the model reveals a difference between flying for business and the overall satisfaction, although it does not show in which direction. Popular wisdom tells us that people flying for personal issues (and also paying) are usually less tolerant with anything not working properly. Indeed, cross tabulation confirms this:
 
 ```
 In [11]: pd.crosstab(df['business'], df['sat'])
