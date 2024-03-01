@@ -17,13 +17,13 @@ X = df.drop(columns='sat')
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-# Random forest model #
+# Q1. Random forest model #
 from sklearn.ensemble import RandomForestClassifier
 rf = RandomForestClassifier(max_depth=5, n_estimators=200, random_state=0)
 rf.fit(X_train, y_train)
 rf.score(X_train, y_train).round(3), rf.score(X_test, y_test).round(3)
 
-# XGBoost model #
+# Q2. XGBoost model #
 from xgboost import XGBClassifier
 xgb = XGBClassifier(max_depth=5, n_estimators=200, random_state=0)
 xgb.fit(X_train, y_train)
