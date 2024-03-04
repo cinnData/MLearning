@@ -13,3 +13,13 @@ Q2. Develop a **gradient boosting classifier** for these data, extracted from th
 Q3. Calculate the **confusion matrix** for the XGBoost model (dimension 10x10). Which is the best classified digit? Which is the main source of misclassification?
 
 Q4. Create a single feature matrix for the whole MNIST data set and extract ten clusters from it, using the **$k$-means** method. Which is the digit that is better matched by one of the clusters? Can you assign a digit to every cluster?
+
+## Submission
+
+1. Submit, through Blackboard, a readable and printable report responding these questions and explaining what you have done, including Python input and output. This can be a Word document, a PDF document or a Jupyter notebook (.ipynb).
+
+2. Put your name on top of the document.
+
+## Deadline
+
+March 10 (Sunday), 24:00.
