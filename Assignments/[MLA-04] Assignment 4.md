@@ -11,3 +11,13 @@ Q1. At every node of every tree, the **random forest** algorithm searches for th
 Q2. Develop a **gradient boosting classifier** for these data, extracted from the `xgboost` class `XGBClassifier()`. Take into account that, with hundreds of columns, a gradient boosting model may be much slower to train than a random forest model with the same tree size and number of trees. A model with 100 trees and a size similar to those shown in this example can take one hour to train (less with XGBoost), though you may find a speed-up by increasing the **learning rate**.
 
 Q3. Create a single feature matrix for the whole MNIST data set and extract ten clusters from it, using the **$k$-means** method. Which is the digit that is better matched by one of the clusters? Can you assign a digit to every cluster?
+
+## Submission
+
+1. Submit, through Blackboard, a readable and printable report responding these questions and explaining what you have done, including Python input and output. This can be a Word document, a PDF document or a Jupyter notebook (.ipynb).
+
+2. Put your name on top of the document.
+
+## Deadline
+
+March 10 (Sunday), 24:00.
