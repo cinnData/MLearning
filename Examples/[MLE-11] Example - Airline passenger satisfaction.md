@@ -294,7 +294,7 @@ We have now a new feature matrix, that we split exactly in the same way as we di
 ```
 In [20]: XN_train, XN_test = train_test_split(XN, test_size=0.2, random_state=0)
 ```
-We replicate the process of question Q4 with the normalized features. The improvement is quite clear, though the MLP falls a bit of the XGBoost model.
+We replicate the process of question Q4 with the normalized features. The improvement is quite clear, though the MLP falls a bit short of the XGBoost model.
 
 ```
 In [21]: mlp = models.Sequential(layers=network)
