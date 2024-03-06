@@ -270,11 +270,11 @@ Epoch 10/10
 
 As for the MLP model, we can print a summary shpowing the number of parameters involved in every layer:
 
-* The first `Conv2D` layer has 32 nodes, with different parameters. Every node performs a special type of linear calculation, called **convolution**. The convolution extracts a single number of a 3 $times$ 3 submatrix, using nine weights and one bias. This makes a total of 10 parameters for every node, a grand total of 32 $times$ 10 = 320 parameters. The original 28 $times$ 28 matrix can be covered by 26 $times$ 26 submatrices, so the outputs of this layer have shape (26, 26, 32).
+* The first `Conv2D` layer has 32 nodes, with different parameters. Every node performs a special type of linear calculation, called **convolution**. The convolution extracts a single number of a 3 $\times$ 3 submatrix, using nine weights and one bias. This makes a total of 10 parameters for every node, a grand total of 32 $\times$ 10 = 320 parameters. The original 28 $\times$ 28 matrix can be covered by 26 $times$ 26 submatrices, so the outputs of this layer have shape (26, 26, 32).
 
-* The `MaxPooling` layer uses 2 $times$ 2 submatrices and, instead of a convolution, it just takes the maximum value. So, no parameters are involved, and the outputs have shape (13, 13, 32). 
+* The `MaxPooling` layer uses 2 $\times$ 2 submatrices and, instead of a convolution, it just takes the maximum value. So, no parameters are involved, and the outputs have shape (13, 13, 32). 
 
-* The third layer has 64 nodes, with different parameters. Every node takes inputs from the 32 nodes of the preceding layer. Nine weights are needed for every input and one bias for the whole set, making a total of 32 $\times$ 9 + 1 = 289 parameters for every node, a grand total of 64 $times$ 289 = 18,496 parameters. Now the outputs have shape (11, 11, 64).
+* The third layer has 64 nodes, with different parameters. Every node takes inputs from the 32 nodes of the preceding layer. Nine weights are needed for every input and one bias for the whole set, making a total of 32 $\times$ 9 + 1 = 289 parameters for every node, a grand total of 64 $\times$ 289 = 18,496 parameters. Now the outputs have shape (11, 11, 64).
 
 * The next two layers can be explained in a similar way. At the fifth layer, we have added 36,928 parameters and the outputs have shape (3, 3, 64).
 
