@@ -278,7 +278,7 @@ As for the MLP model, we can print a summary shpowing the number of parameters i
 
 * The next two layers can be explained in a similar way. At the fifth layer, we have added 36,928 parameters and the outputs have shape (3, 3, 64).
 
-* The sixth layer consistes in taking 3 $\times 3 $\times 64 = 576 inputs and arranging them as a 1D arry. No parameters are involved.
+* The sixth layer consistes in taking 3 $\times$ 3 $\times$ 64 = 576 inputs and arranging them as a 1D arry. No parameters are involved.
 
 * The seventh layer is a dense layer, so have we know how it works. The 64 nodes need 577 parameters each to manage the 576 inputs. So, we have 36,928 parameters more, and the output has shape (64,).
 
