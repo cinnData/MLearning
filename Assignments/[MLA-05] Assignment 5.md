@@ -8,7 +8,7 @@ These data were intended to serve as a direct drop-in replacement for the MNIST 
 
 ## The data set
 
-The data from the 70,000 images come together in the file zalando.csv (zipped). Every row stands for an image. Every row stands for an image. The first column is a label identifying the digit (0-9), and the other 784 columns correspond to the image pixels (28 $\times$ 28 = 784). The column name `pixelnum` must be read as the gray intensity of the pixel `num`, counting pixels by row, from top-left to bottom-right. The intensities are integers from 0 = Black to 255 = White (8-bit grayscale).
+The data from the 70,000 images come together in the file `zalando.csv` (zipped). Every row stands for an image. Every row stands for an image. The first column is a label identifying the digit (0-9), and the other 784 columns correspond to the image pixels (28 $\times$ 28 = 784). The column name `pixelnum` must be read as the gray intensity of the pixel `num`, counting pixels by row, from top-left to bottom-right. The intensities are integers from 0 = Black to 255 = White (8-bit grayscale).
 
 ## Questions
 
