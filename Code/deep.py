@@ -44,6 +44,6 @@ net2 = [layers.Conv2D(32, (3, 3), activation='relu'),
     layers.Dense(10, activation='softmax')]
 clf3 = models.Sequential(net2)
 clf3.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics='acc')
-clf3.fit(Z_train, y_train, epochs=10, validation_data=(Z_test, y_test));
+clf3.fit(X_train, y_train, epochs=10, validation_data=(X_test, y_test));
 clf3.summary()
 
