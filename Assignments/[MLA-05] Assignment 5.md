@@ -21,3 +21,13 @@ Q3. Develop an ensemble classifier for these images.
 Q4. Develop a neural network classifier for these images and compare it to the ensemble classifier of question Q3. 
 
 Q5. Which type of clothes are better predicted by these models?
+
+## Submission
+
+1. Submit, through Blackboard, a readable and printable report responding these questions and explaining what you have done, including Python input and output. This can be a Word document, a PDF document or a Jupyter notebook (.ipynb).
+
+2. Put your name on top of the document.
+
+## Deadline
+
+March 17 (Sunday), 24:00.
