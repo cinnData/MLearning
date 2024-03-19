@@ -14,7 +14,7 @@ pd.DataFrame(output)
 
 # Zero-shot classification #
 task = 'zero-shot-classification'
-model_name = facebook/bart-large-mnli'
+model_name = 'facebook/bart-large-mnli'
 classify = pipeline(task, model=model_name)
 prompt = 'I have a problem with my iphone that needs to be resolved asap!'
 labels = ['urgent', 'not urgent']
