@@ -25,9 +25,9 @@ pd.DataFrame(output)
 task = 'text-generation'
 model_name = 'gpt2'
 generate = pipeline(task, model=model_name)
-prompt = 'The Gion neighborhood in Kyoto is famous for'
+prompt = 'Barcelona is famous for'
 output = generate(prompt, max_length=100)
-pd.DataFrame(output)
+print(output[0]['generated_text'])
 
 # Summarization #
 task = 'summarization'
